@@ -150,7 +150,7 @@ table.res{border-collapse:collapse;width:100%;min-width:900px;font-size:14px}
 .res th,.res td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line)}.res thead th{background:var(--bg2);font-weight:700;font-size:13px}
 .res tbody th{text-align:left;white-space:nowrap}.res td.k{color:var(--ink3);font-size:12.5px}
 .res td[style]{background:color-mix(in srgb,var(--ok) calc(var(--v) * .22%),transparent)}.res td.mean{font-weight:800}.res td.na{color:var(--ink3)}
-.res tr.real td{border-bottom:2px solid var(--line)}
+.res tr.sep td{border-bottom:2px solid var(--line)}
 /* bib */
 .bib{position:relative;background:#0f1726;border-radius:14px;padding:22px;box-shadow:var(--shadow)}.bib pre{margin:0;color:#d7e2f2;font:13.5px/1.7 var(--mono);white-space:pre-wrap}
 .copy{position:absolute;top:12px;right:12px;border:1px solid #2b3a52;background:#16233a;color:#d7e2f2;border-radius:8px;padding:6px 12px;cursor:pointer;font:600 12.5px/1 var(--sans)}
@@ -160,7 +160,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.bar .track i{transition:none}}
 .clip figcaption b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .simrow .tgt .clip figcaption{flex-wrap:nowrap;font-size:12.5px}
-/* per-task rows: demonstration -> simulation -> real robots */
+/* per-task rows */
 .jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
 .jump a{font:600 13.5px/1 var(--sans);padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2)}
 .jump a:hover{border-color:var(--accent);color:var(--accent)}
@@ -172,8 +172,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
 .lane-t i{display:grid;place-items:center;width:20px;height:20px;border-radius:6px;background:var(--grad);color:#fff;font-style:normal;font-size:11.5px}
 .lane-v{display:grid;gap:10px}
 .lane.src{background:color-mix(in srgb,var(--warm) 9%,transparent)}.lane.src .lane-v{grid-template-columns:1fr 1fr}
-.lane.sim{background:color-mix(in srgb,var(--accent) 7%,transparent)}.lane.sim .lane-v,.lane.real .lane-v{grid-template-columns:repeat(4,1fr)}
-.lane.real{background:color-mix(in srgb,var(--ok) 8%,transparent)}
+.lane.sim{background:color-mix(in srgb,var(--accent) 7%,transparent)}.lane.sim .lane-v{grid-template-columns:repeat(4,1fr)}
 .lane.note{display:flex;align-items:center;justify-content:flex-end;text-align:right;color:var(--ink2);font-size:14.5px;line-height:1.5;position:relative;padding-right:34px}
 .lane.note p{margin:0}.lane.note small{color:var(--ink3)}
 .lane.note::after{content:"\2192";position:absolute;right:6px;top:50%;transform:translateY(-50%);font:700 22px/1 var(--sans);color:var(--accent2)}
@@ -184,7 +183,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
 .clip.ph{display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;background:var(--bg2);text-align:center;color:var(--ink3);font-size:12.5px;padding:8px}
 .clip.ph b{display:block;color:var(--ink2);margin-bottom:2px}.lane.src .clip.ph{aspect-ratio:auto;min-height:100%}
 @media (max-width:1000px){.tgrid{grid-template-columns:1fr}.lane.note{justify-content:flex-start;text-align:left;padding:2px 4px 2px 30px}
-  .lane.note::after{content:"\2193";left:6px;right:auto}.lane.sim .lane-v,.lane.real .lane-v{grid-template-columns:1fr 1fr}}
+  .lane.note::after{content:"\2193";left:6px;right:auto}.lane.sim .lane-v{grid-template-columns:1fr 1fr}}
 #layouts .panel .lgrid{margin-top:0}
 .dark .tabs button.on{background:var(--grad);color:#fff;border-color:transparent}
 /* three video sections: larger clips */
@@ -193,7 +192,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
 .big2 .clip figcaption span:not(.pill){width:100%;font-size:13px}
 .big2 .clip.demo{outline:2px solid color-mix(in srgb,var(--warm) 65%,transparent);outline-offset:-2px}
 .big2 .clip.ph{aspect-ratio:auto;min-height:240px}
-#demos .wrap,#sim .wrap,#real .wrap,#layouts .wrap{max-width:1320px}
+#demos .wrap,#sim .wrap,#layouts .wrap,#skills .wrap{max-width:1320px}
 #layouts .lrow{grid-template-columns:120px repeat(3,1fr)}
 @media (max-width:900px){.big3{grid-template-columns:1fr 1fr}}@media (max-width:620px){.big2,.big3{grid-template-columns:1fr}}
 .clip video::-webkit-media-controls-fullscreen-button{display:none}
@@ -214,8 +213,6 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
 .matrix .clip.demo{outline:2px solid color-mix(in srgb,var(--warm) 65%,transparent);outline-offset:-2px}
 @media (max-width:760px){.matrix.m4{grid-template-columns:1fr 1fr}.matrix .mh:first-child{display:none}
   .matrix .ml{grid-column:1/-1;margin-top:8px}.matrix .mh{grid-column:auto}}
-#real .robot{margin:0 0 40px}#real .clips{grid-template-columns:repeat(4,1fr)}
-@media (max-width:900px){#real .clips{grid-template-columns:1fr 1fr}}
 #layouts .robot{margin:0 0 34px}.lname{margin:0 0 12px}
 .clip video{cursor:zoom-in}
 .lb{position:fixed;inset:0;z-index:100;background:rgba(5,10,20,.88);display:grid;place-items:center;padding:24px}
@@ -233,19 +230,22 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
 .dark .tablewrap{background:#131c2b;border-color:#223047}.dark .res thead th{background:#1c2738;color:#eaf0f8}
 .dark .res th,.dark .res td{border-color:#223047;color:#eaf0f8}.dark .res td.mean{color:#fff}
 .dark .big{color:#c3cede}.dark .big2 .clip figcaption span:not(.pill){color:#a9b6c9}
-#real .wrap{max-width:1320px}
 .rd{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.rd .clip video{aspect-ratio:4/3}
 .rd .clip figcaption{flex-wrap:wrap;font-size:12.5px;padding:7px 9px}.rd .clip figcaption b{width:100%}
 @media (max-width:1000px){.rd{grid-template-columns:repeat(3,1fr)}}@media (max-width:620px){.rd{grid-template-columns:1fr 1fr}}
 #robodojo .wrap{max-width:1320px}
 .case .clip video{aspect-ratio:2/1;object-fit:contain;background:#000}
-.r2s .clip video{aspect-ratio:32/9;object-fit:contain;background:#000}
-.r2s .clip figcaption{padding:8px 12px}
 .res sup,.bar sup{font-size:.7em}
+.band .bar .track{background:var(--bg)}
+.one{max-width:880px;margin:30px auto 0}
+#skills .head h3{font-size:22px}
+#robodojo .head,#skills .head{max-width:900px}
+.skillgrid,.reusegrid{margin-top:28px}.skillgrid:empty,.reusegrid:empty,.rd:empty{display:none}
+.follow{margin:18px 0 0;font-size:14.5px;color:rgba(255,255,255,.78)}.follow a{color:#fff;border-bottom:1px solid rgba(255,255,255,.45)}.follow a:hover{border-color:#fff}
 </style></head>
 <body>
 <nav class="nav" aria-label="Sections"><div class="wrap navin"><a class="logo" href="#top">ReSkill</a>
-  <div class="links"><a href="#idea">Idea</a><a href="#method">Method</a><a href="#case">Case study</a><a href="#robodojo">RoboDojo</a><a href="#real">Real robot</a><a href="#analysis">Analysis</a><a href="#cite">BibTeX</a></div>
+  <div class="links"><a href="#idea">Idea</a><a href="#method">Method</a><a href="#skills">Skills</a><a href="#case">Case study</a><a href="#robodojo">RoboDojo</a><a href="#analysis">Analysis</a><a href="#cite">BibTeX</a></div>
   <button class="theme" type="button" aria-label="Toggle dark mode">&#9680;</button></div></nav>
 <header class="hero" id="top">
   <video class="hero-bg" src="assets/video/hero.mp4" poster="assets/video/hero.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
@@ -253,15 +253,16 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
   <div class="hero-in">
     <p class="kicker">Improve only what fails &rarr; validate &rarr; reuse</p>
     <h1><span class="brand">ReSkill</span><span class="sub1">Selective Self-Improvement</span><span class="sub2">for Robot Manipulation</span></h1>
-    <p class="authors"><span class="au">Zheng Sun<sup>1</sup></span>, <span class="au">Zhihao Li<sup>1</sup></span>, <span class="au">Zhuo Li<sup>1</sup></span>, <span class="au">Wenrui Liu<sup>1</sup></span>, <span class="au">Xin Wang<sup>2</sup></span>, <span class="au">Fei Chen<sup>1&dagger;</sup></span></p>
-    <p class="affils"><span><sup>1</sup>The Chinese University of Hong Kong</span> <span><sup>2</sup>Openmind Intelligent Robot Co., Ltd.</span> <span><sup>&dagger;</sup>Corresponding author</span></p>
+    <p class="authors"><span class="au">Zheng Sun<sup>1*</sup></span>, <span class="au">Zhihao Li<sup>1*</sup></span>, <span class="au">Zhuo Li<sup>1*</sup></span>, <span class="au">Wenrui Liu<sup>1</sup></span>, <span class="au">Xin Wang<sup>2</sup></span>, <span class="au">Fei Chen<sup>1&dagger;</sup></span></p>
+    <p class="affils"><span><sup>1</sup>The Chinese University of Hong Kong</span> <span><sup>2</sup>Openmind Intelligent Robot Co., Ltd.</span> <span><sup>*</sup>Equal contribution</span> <span><sup>&dagger;</sup>Corresponding author</span></p>
     <div class="btns"><a class="btn primary" href="assets/ReSkill.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v5h5M10 13h6M10 17h6" stroke="currentColor" stroke-width="1.8"/></svg><span>Paper</span></a><a class="btn" href="https://arxiv.org/abs/2611.10510" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v5h5M10 13h6M10 17h6" stroke="currentColor" stroke-width="1.8"/></svg><span>arXiv</span></a><a class="btn" href="https://github.com/ZainZh/ReSkill" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>Code</span></a><a class="btn" href="#cite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17V11a4 4 0 014-4M13 17v-6a4 4 0 014-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>BibTeX</span></a></div>
+    <p class="follow">Follow-up work: <a href="https://zainzh.github.io/RESET/" target="_blank" rel="noopener"><b>RESET</b>: One Demonstration, One Verified World, Self-Improved Skills Across Embodiments &rarr;</a></p>
   </div>
   <a class="scroll" href="#numbers" aria-label="Scroll down"><span></span></a>
 </header>
 <section class="numbers" id="numbers"><div class="wrap grid4">
   <div class="stat"><b>83.6%</b><span>average success on ten RoboDojo tasks<br><small>282/337 recorded evaluation episodes</small></span></div>
-  <div class="stat"><b>62/80</b><span>real-robot trials succeed on eight tasks<br><small>72/80 in the rebuilt simulation</small></span></div>
+  <div class="stat"><b>86.2%</b><span>development-set success of the final programs<br><small>up from 30.0% for the initial task graphs</small></span></div>
   <div class="stat"><b>3</b><span>functions changed by the median revision<br><small>about 0.5% of a program</small></span></div>
   <div class="stat"><b>0</b><span>agent calls at run time<br><small>the agent works only during development</small></span></div>
 </div></section>
@@ -271,7 +272,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
     <p>A new task often fails at only a few stages. ReSkill finds those stages, revises the task graph or the skill behind them, keeps a change only after it wins a whole-task comparison, and adds the improved skill to a library that later tasks reuse.</p></div>
   <figure class="fig wide"><img src="assets/fig/teaser.jpg" alt="The problem and three ways to respond" loading="lazy">
     <figcaption>(a) In tool storage, the existing locate, grasp, and place skills succeed, but the tape measure remains tilted because a tilt-aware seating skill is missing. (b) An end-to-end policy retrains the whole task policy, and an agent used as the policy calls a model at every step without retaining a reusable skill. ReSkill revises the task graph and local skills during development, validates candidates, and retains reusable skills and a frozen policy that makes no run-time agent calls.</figcaption></figure>
-  <div class="narrow-in"><p class="eyebrow abs-h">Abstract</p><p class="abstract">Self-improvement on compositional manipulation tasks requires deciding what to reuse, where to improve, and which changes to retain. We present <b>ReSkill</b>, a selective self-improvement framework that concentrates revision on capability gaps. A coding agent constructs an object-centric task graph from an instruction and a skill library, then uses node-level execution records to locate failures. At the <b>task level</b>, it revises stage organization, hand-off conditions, and recovery routes; at the <b>skill level</b>, it strengthens perception, motion, manipulation, and verification capabilities that repeatedly fail. Candidate revisions undergo full-task evaluation and paired comparisons before adoption, allowing local changes to accumulate into validated skills and an independently executable policy. The agent participates only during development; the deployed policy calls the retained skills without invoking the agent at run time. On the same development set, average success across ten RoboDojo tasks rises from 30.0% for the initial versions to 86.2% for the final adopted programs; retained programs achieve 83.6% in recorded robustness and model-selection evaluations. Across eight real-world tasks, ReSkill succeeds in 72 of 80 rebuilt-simulation trials and 62 of 80 real-robot trials (77.5%). The median revision changes only three functions, approximately 0.5% of a program, while 39% of task-specific functions in later-added tasks directly reuse existing implementations.</p></div>
+  <div class="narrow-in"><p class="eyebrow abs-h">Abstract</p><p class="abstract">Self-improvement on compositional manipulation tasks requires deciding what to reuse, where to improve, and which changes to retain. We present <b>ReSkill</b>, a selective self-improvement framework that concentrates revision on capability gaps. A coding agent constructs an object-centric task graph from an instruction and a skill library, then uses node-level execution records to locate failures. At the <b>task level</b>, it revises stage organization, hand-off conditions, and recovery routes; at the <b>skill level</b>, it strengthens perception, motion, manipulation, and verification capabilities that repeatedly fail. Candidate revisions undergo full-task evaluation and paired comparisons before adoption, allowing local changes to accumulate into validated skills and an independently executable policy. The agent participates only during development; the deployed policy calls the retained skills without invoking the agent at run time. On the same development set, average success across ten RoboDojo tasks rises from 30.0% for the initial versions to 86.2% for the final adopted programs; retained programs achieve 83.6% in recorded robustness and model-selection evaluations. The median revision changes only three functions, approximately 0.5% of a program, while 39% of task-specific functions in later-added tasks directly reuse existing implementations.</p></div>
 </div></section>
 
 <section id="method"><div class="wrap">
@@ -279,11 +280,24 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
     <p>A coding agent edits the program during development. The deployed program is frozen and runs as ordinary code.</p></div>
   <figure class="fig wide"><img src="assets/fig/method.jpg" alt="ReSkill method overview" loading="lazy"></figure>
   <ol class="steps"><li><i>1</i><b>Build</b><p>From the instruction and the skill library, the agent composes an object-centric task graph. Each node calls a skill and runs an act&ndash;check&ndash;retry loop.</p></li><li><i>2</i><b>Locate</b><p>Trial runs record each node's status, cause, and visual evidence. The agent follows the graph to the earliest node that went wrong.</p></li><li><i>3</i><b>Revise</b><p>Task level: stages, hand-offs, recovery routes. Skill level: a new implementation of the failing skill behind the same interface.</p></li><li><i>4</i><b>Select</b><p>A candidate is screened, evaluated on the whole task and on robustness layouts, then compared with the incumbent on the same test layouts.</p></li><li><i>5</i><b>Reuse</b><p>Validated skills enter the library. The next task starts from the task with the closest skill needs, not from scratch.</p></li></ol>
-  <figure class="fig wide narrow-in"><img src="assets/fig/skill_gallery.jpg" alt="Examples of the four skill categories" loading="lazy">
-    <figcaption>The skill library holds four kinds of skills: perception, motion, manipulation, and verification. Images show inputs, execution stages, or inspected states of named skills in recorded simulation runs.</figcaption></figure>
 </div></section>
 
-<section id="case" class="band"><div class="wrap">
+<section id="skills" class="band"><div class="wrap">
+  <div class="head"><p class="eyebrow">Skill library</p><h2>A library of reusable skills</h2>
+    <p>Validated skills fall into four categories: perception, motion, manipulation, and verification. A later task calls them from the shared library or copies a validated implementation, with its parameters and checks, into its own program, either verbatim or with rewriting.</p></div>
+  <figure class="fig wide narrow-in" style="margin-top:0"><img src="assets/fig/skill_gallery.jpg" alt="Examples of the four skill categories" loading="lazy">
+    <figcaption>The skill library holds four kinds of skills: perception, motion, manipulation, and verification. Images show inputs, execution stages, or inspected states of named skills in recorded simulation runs.</figcaption></figure>
+  <div class="clips skillgrid"><figure class="clip"><video class="lazy" data-src="assets/skills/view_clearing.mp4" poster="assets/skills/view_clearing.jpg" muted loop playsinline preload="none" aria-label="View clearing"></video><figcaption><b>View clearing</b><span class="pill s">Perception</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/relocalization.mp4" poster="assets/skills/relocalization.jpg" muted loop playsinline preload="none" aria-label="Re-localization"></video><figcaption><b>Re-localization</b><span class="pill s">Perception</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/approach.mp4" poster="assets/skills/approach.jpg" muted loop playsinline preload="none" aria-label="Approach"></video><figcaption><b>Approach</b><span class="pill s">Motion</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/transfer.mp4" poster="assets/skills/transfer.jpg" muted loop playsinline preload="none" aria-label="Transfer"></video><figcaption><b>Transfer</b><span class="pill s">Motion</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/return_home.mp4" poster="assets/skills/return_home.jpg" muted loop playsinline preload="none" aria-label="Return home"></video><figcaption><b>Return home</b><span class="pill s">Motion</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/grasp.mp4" poster="assets/skills/grasp.jpg" muted loop playsinline preload="none" aria-label="Grasp"></video><figcaption><b>Grasp</b><span class="pill s">Manipulation</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/push.mp4" poster="assets/skills/push.jpg" muted loop playsinline preload="none" aria-label="Push"></video><figcaption><b>Push</b><span class="pill s">Manipulation</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/tabletop_drag.mp4" poster="assets/skills/tabletop_drag.jpg" muted loop playsinline preload="none" aria-label="Tabletop drag"></video><figcaption><b>Tabletop drag</b><span class="pill s">Manipulation</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/bimanual_relay.mp4" poster="assets/skills/bimanual_relay.jpg" muted loop playsinline preload="none" aria-label="Bimanual relay"></video><figcaption><b>Bimanual relay</b><span class="pill s">Manipulation</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/in_hand_check.mp4" poster="assets/skills/in_hand_check.jpg" muted loop playsinline preload="none" aria-label="In-hand check"></video><figcaption><b>In-hand check</b><span class="pill s">Verification</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/placement_check.mp4" poster="assets/skills/placement_check.jpg" muted loop playsinline preload="none" aria-label="Placement check"></video><figcaption><b>Placement check</b><span class="pill s">Verification</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/tilt_check.mp4" poster="assets/skills/tilt_check.jpg" muted loop playsinline preload="none" aria-label="Tilt check"></video><figcaption><b>Tilt check</b><span class="pill s">Verification</span></figcaption></figure></div>
+  <p class="muted" style="font-size:14px;margin:12px 0 0">Short segments of successful episodes from the retained programs, located with the node records and traces of each run; playback runs at 0.3&ndash;1.8&times; real time, mostly slowed down. Several recordings store about one frame per ten control steps, so some clips advance in steps.</p>
+  <div class="head" style="margin-top:56px"><h3>Skills carried across tasks</h3>
+    <p>Of the 611 task-specific functions in the ten benchmark programs, 19% are identical to a function in another task; in the four later-added tasks, 39% of 345 are (33&ndash;47% per task). Reuse follows clear lineages. The closed loop of the object-classification program (pose representation, forward kinematics, joint-limited inverse kinematics, joint unwrapping, and grasp planning) was carried over verbatim to box packing and to the bottle, egg-holder, and laptop tasks. The motion layer of language-conditioned block stacking (nearest-solution search, reachability checks, top-down grasps, arm selection, hand-overs, and return) was transplanted as a whole to the stacking toy.</p></div>
+  <div class="big2 reusegrid"><figure class="clip"><video class="lazy" data-src="assets/skills/reuse_release_retreat_stack_blocks_by_language.mp4" poster="assets/skills/reuse_release_retreat_stack_blocks_by_language.jpg" muted loop playsinline preload="none" aria-label="Release & retreat (source)"></video><figcaption><b>Stack blocks by language</b><span class="pill ">source</span><span>Release and retreat: <code>open_hand</code>, <code>lift_away</code></span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/reuse_release_retreat_play_stacking_toy.mp4" poster="assets/skills/reuse_release_retreat_play_stacking_toy.jpg" muted loop playsinline preload="none" aria-label="Release & retreat (reused)"></video><figcaption><b>Stacking toy (later task)</b><span class="pill g">reused, identical code</span><span>Release and retreat: <code>open_hand</code>, <code>lift_away</code></span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/reuse_tilted_chain_ik_pack_objects_into_box.mp4" poster="assets/skills/reuse_tilted_chain_ik_pack_objects_into_box.jpg" muted loop playsinline preload="none" aria-label="Tilted pick-and-place via chain IK (source)"></video><figcaption><b>Pack objects into box</b><span class="pill ">source</span><span>Tilted pick and place: <code>tilted</code>, <code>chain_ik</code>, <code>solve_near</code></span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/skills/reuse_tilted_chain_ik_fill_egg_holder.mp4" poster="assets/skills/reuse_tilted_chain_ik_fill_egg_holder.jpg" muted loop playsinline preload="none" aria-label="Tilted pick-and-place via chain IK (reused)"></video><figcaption><b>Eggs to holder (later task)</b><span class="pill g">reused, identical code</span><span>Tilted pick and place: <code>tilted</code>, <code>chain_ik</code>, <code>solve_near</code></span></figcaption></figure></div>
+    <p class="muted" style="font-size:14px;margin:0 0 28px">Each pair shows the same skill in an earlier task (left) and in a task added later (right). The listed functions are identical in both programs (same abstract syntax tree); 31 functions are shared verbatim between the language block-stacking and stacking-toy programs, and 24 between the box-packing and egg-holder programs.</p>
+<figure class="fig wide narrow-in"><img src="assets/fig/fig_reuse.jpg" alt="Function-level skill reuse" loading="lazy">
+    <figcaption>Function-level reuse in each adopted program: identical to another task, same name but rewritten, or task-specific; the number at right is the verbatim share. The bottom four tasks were added midway through development to examine reuse in new tasks.</figcaption></figure>
+</div></section>
+
+<section id="case"><div class="wrap">
   <div class="head"><p class="eyebrow">Case study</p><h2>Learning to seat a tilted tool</h2>
     <p>Tool storage, same layout, two versions of the program. The earlier version places the tape measure, finds it tilted, and re-grasps it, but the tool lands tilted again and the episode runs out of steps. The round-15 version estimates the tilt, presses the raised side, rechecks, and stores all four tools. Execution traces, one frame every ten control steps.</p></div>
   <div class="big2 case">
@@ -294,12 +308,16 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
     <figcaption>(a) Frames from one round-15 rollout. (b) Whole-task success over rounds 6&ndash;15 on the same 40 development layouts. The task graph stays the same; each round changes local skills. Rounds 11 and 12 lowered success and were rejected.</figcaption></figure>
 </div></section>
 
-<section id="robodojo"><div class="wrap">
+<section id="robodojo" class="band"><div class="wrap">
   <div class="head"><p class="eyebrow">RoboDojo</p><h2>Ten simulated tasks, one frozen program each</h2>
     <p>Bimanual ARX X5 in Isaac Sim. The controller sees only camera images, calibration, joint states, the robot model, and the instruction. Success is the benchmark's own criterion.</p></div>
   <div class="rd"><figure class="clip"><video class="lazy" data-src="assets/robodojo/stack_blocks.mp4" poster="assets/robodojo/stack_blocks.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Stack blocks, retained program (1x)"></video><figcaption><b>Stack blocks</b><span class="pill">1&times;</span><span class="pill g">31/32</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/stack_blocks_by_language.mp4" poster="assets/robodojo/stack_blocks_by_language.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Stack blocks by language, retained program (1x)"></video><figcaption><b>Stack blocks by language</b><span class="pill">1&times;</span><span class="pill g">27/27</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/general_pickup.mp4" poster="assets/robodojo/general_pickup.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, General pickup, retained program (1x)"></video><figcaption><b>General pickup</b><span class="pill">1&times;</span><span class="pill g">51/57</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/stack_bowls.mp4" poster="assets/robodojo/stack_bowls.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Stack bowls, retained program (2x)"></video><figcaption><b>Stack bowls</b><span class="pill">2&times;</span><span class="pill g">21/22</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/build_tower.mp4" poster="assets/robodojo/build_tower.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Build tower, retained program (2x)"></video><figcaption><b>Build tower</b><span class="pill">2&times;</span><span class="pill g">37/37</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/classify_objects.mp4" poster="assets/robodojo/classify_objects.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Classify objects, retained program (2x)"></video><figcaption><b>Classify objects</b><span class="pill">2&times;</span><span class="pill g">22/25</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/classify_objects_by_language.mp4" poster="assets/robodojo/classify_objects_by_language.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Classify by language, retained program (1x)"></video><figcaption><b>Classify by language</b><span class="pill">1&times;</span><span class="pill m">20/27</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/organize_table.mp4" poster="assets/robodojo/organize_table.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Organize table, retained program (2x)"></video><figcaption><b>Organize table</b><span class="pill">2&times;</span><span class="pill l">15/36</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/pack_objects_into_box.mp4" poster="assets/robodojo/pack_objects_into_box.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Pack objects into box, retained program (1x)"></video><figcaption><b>Pack objects into box</b><span class="pill">1&times;</span><span class="pill m">17/27</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo/store_tools_in_toolbox.mp4" poster="assets/robodojo/store_tools_in_toolbox.jpg" muted loop playsinline preload="none" aria-label="RoboDojo, Store tools in toolbox, retained program (2x)"></video><figcaption><b>Store tools in toolbox</b><span class="pill">2&times;</span><span class="pill g">41/47</span></figcaption></figure></div>
   <p class="muted" style="font-size:14px;margin:12px 0 0">One successful episode per task, recorded by the benchmark head camera, from the retained program reported in the table; seed 1, evaluation layouts 10&ndash;54. Pills: playback speed and the program&rsquo;s recorded successes. Click a video to enlarge it.</p>
-  <div class="bars" style="margin-top:40px"><div class="bar me"><span class="lab">ReSkill (retained)</span><span class="track"><i style="--v:83.6%"></i></span><span class="val">83.6%</span></div><div class="bar"><span class="lab">ReSkill initial graphs</span><span class="track"><i style="--v:30%"></i></span><span class="val">30.0%</span></div><div class="bar"><span class="lab">GPT-6 Astra<sup>&dagger;</sup></span><span class="track"><i style="--v:36%"></i></span><span class="val">36.0%</span></div><div class="bar"><span class="lab">&pi;<sub>0.5</sub><sup>&dagger;</sup></span><span class="track"><i style="--v:9.6%"></i></span><span class="val">9.6%</span></div></div>
+  <h3 style="margin:40px 0 6px">Later-added tasks</h3>
+  <p class="muted" style="font-size:14.5px;margin:0 0 16px;max-width:900px">Four tasks (bottles to bin, ring-stacking toy, eggs to tray, and laptop-and-headphone storage) were added midway through development to study skill reuse in new tasks; they are excluded from the ten-task benchmark numbers below.</p>
+  <div class="rd"><figure class="clip"><video class="lazy" data-src="assets/robodojo_new/put_bottles_into_dustbin.mp4" poster="assets/robodojo_new/put_bottles_into_dustbin.jpg" muted loop playsinline preload="none" aria-label="Bottles to dustbin"></video><figcaption><b>Bottles to dustbin</b><span class="pill">~2&times;</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo_new/play_stacking_toy.mp4" poster="assets/robodojo_new/play_stacking_toy.jpg" muted loop playsinline preload="none" aria-label="Stacking toy"></video><figcaption><b>Stacking toy</b><span class="pill">~2&times;</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo_new/fill_egg_holder.mp4" poster="assets/robodojo_new/fill_egg_holder.jpg" muted loop playsinline preload="none" aria-label="Eggs to holder"></video><figcaption><b>Eggs to holder</b><span class="pill">~2&times;</span></figcaption></figure><figure class="clip"><video class="lazy" data-src="assets/robodojo_new/store_laptop_and_headphones.mp4" poster="assets/robodojo_new/store_laptop_and_headphones.jpg" muted loop playsinline preload="none" aria-label="Laptop and headphones"></video><figcaption><b>Laptop and headphones</b><span class="pill">~2&times;</span></figcaption></figure></div>
+  <h3 style="margin:44px 0 18px">Ten-task benchmark results</h3>
+  <div class="bars"><div class="bar me"><span class="lab">ReSkill (retained)</span><span class="track"><i style="--v:83.6%"></i></span><span class="val">83.6%</span></div><div class="bar"><span class="lab">ReSkill initial graphs</span><span class="track"><i style="--v:30%"></i></span><span class="val">30.0%</span></div><div class="bar"><span class="lab">GPT-6 Astra<sup>&dagger;</sup></span><span class="track"><i style="--v:36%"></i></span><span class="val">36.0%</span></div><div class="bar"><span class="lab">&pi;<sub>0.5</sub><sup>&dagger;</sup></span><span class="track"><i style="--v:9.6%"></i></span><span class="val">9.6%</span></div></div>
   <p class="muted" style="max-width:900px;font-size:14px">Mean of the ten per-task success rates. Retained programs: recorded robustness and model-selection evaluations (seed 1, layouts 10&ndash;54), which include episodes used to select them. Initial graphs: development set. <sup>&dagger;</sup>Public RoboDojo report under its own inputs and protocol; shown for scale only, not a matched comparison.</p>
   <div class="tablewrap" style="margin-top:28px"><table class="res"><thead><tr><th>Task</th><th>Initial (%)</th><th>Successes</th><th>Success (%)</th><th>Median steps / limit</th><th>Astra<sup>&dagger;</sup> (%)</th><th>&pi;<sub>0.5</sub><sup>&dagger;</sup> (%)</th></tr></thead><tbody>
   <tr><th>Stack blocks</th><td>25.0</td><td>31/32</td><td style="--v:96.9">96.9</td><td class="k">178/550</td><td class="k">86.0</td><td class="k">6.7</td></tr>
@@ -311,59 +329,28 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
   <tr><th>Classify objects by language</th><td>12.5</td><td>20/27</td><td style="--v:74.1">74.1</td><td class="k">829/1100</td><td class="k">30.0</td><td class="k">0.0</td></tr>
   <tr><th>Organize table</th><td>0.0</td><td>15/36</td><td style="--v:41.7">41.7</td><td class="k">1000/1000</td><td class="k">0.0</td><td class="k">0.0</td></tr>
   <tr><th>Pack objects into box</th><td>12.5</td><td>17/27</td><td style="--v:63">63.0</td><td class="k">973/1300</td><td class="k">0.0</td><td class="k">2.7</td></tr>
-  <tr class="real"><th>Store tools in toolbox</th><td>0.0</td><td>41/47</td><td style="--v:87.2">87.2</td><td class="k">566/900</td><td class="k">0.0</td><td class="k">0.0</td></tr>
+  <tr class="sep"><th>Store tools in toolbox</th><td>0.0</td><td>41/47</td><td style="--v:87.2">87.2</td><td class="k">566/900</td><td class="k">0.0</td><td class="k">0.0</td></tr>
   <tr><th>Average</th><td class="mean">30.0</td><td class="mean">282/337</td><td class="mean">83.6</td><td class="k">&ndash;</td><td class="k">36.0</td><td class="k">9.6</td></tr>
   </tbody></table></div>
 </div></section>
 
-<section id="real" class="dark"><div class="wrap">
-  <div class="head"><p class="eyebrow">Real robot</p><h2>Eight real-world tasks on Xtrainer</h2>
-    <p>For each task, one teleoperated demonstration is used to rebuild the scene in MuJoCo. The program is developed in the rebuilt scene and then run on the real robot, frozen, with no agent calls. This real-to-sim step only supplies a development environment; it is not part of ReSkill.</p></div>
-  <h3 style="margin:0 0 6px">Real-robot execution</h3>
-  <p style="margin:0 0 18px;color:#a9b6c9;font-size:14.5px">Frozen ReSkill programs on the real robot, sped up as noted. These clips include multi-object variants; the scored task variants are listed in the table below. Click a video to enlarge it.</p>
-  <div class="clips">
-    <figure class="clip"><video class="lazy" data-src="assets/real/apple.mp4" poster="assets/real/apple.jpg" muted loop playsinline preload="none" aria-label="Real robot: apple to bowl (4x)"></video><figcaption><b>Apple to bowl</b><span class="pill">4&times;</span></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real/blocks.mp4" poster="assets/real/blocks.jpg" muted loop playsinline preload="none" aria-label="Real robot: collect blocks in a bowl (12x)"></video><figcaption><b>Collect blocks</b><span class="pill">12&times;</span></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real/drawer.mp4" poster="assets/real/drawer.jpg" muted loop playsinline preload="none" aria-label="Real robot: open drawer and store block (6x)"></video><figcaption><b>Open drawer, store block</b><span class="pill">6&times;</span></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real/bimanual.mp4" poster="assets/real/bimanual.jpg" muted loop playsinline preload="none" aria-label="Real robot: bimanual transfer via tabletop (6x)"></video><figcaption><b>Bimanual transfer</b><span class="pill">6&times;</span></figcaption></figure>
-  </div>
-  <h3 style="margin:44px 0 6px">Demonstration and rebuilt scene</h3>
-  <p style="margin:0 0 18px;color:#a9b6c9;font-size:14.5px">Left half: the teleoperated demonstration. Right half: the same motion replayed with torque control in the MuJoCo reconstruction. Some demonstrations handle more objects than the scored single-object variant.</p>
-  <div class="big2 r2s">
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/collect_apple.mp4" poster="assets/real2sim/collect_apple.jpg" muted loop playsinline preload="none" aria-label="Apple to bowl: demonstration and rebuilt scene"></video><figcaption><b>Apple to bowl</b></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/put_mug_on_box.mp4" poster="assets/real2sim/put_mug_on_box.jpg" muted loop playsinline preload="none" aria-label="Red cup to box: demonstration and rebuilt scene"></video><figcaption><b>Red cup to box</b></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/sort_two_spoon.mp4" poster="assets/real2sim/sort_two_spoon.jpg" muted loop playsinline preload="none" aria-label="Black spoon to plate: demonstration and rebuilt scene"></video><figcaption><b>Black spoon to plate</b></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/stack_cups.mp4" poster="assets/real2sim/stack_cups.jpg" muted loop playsinline preload="none" aria-label="Cup nesting: demonstration and rebuilt scene"></video><figcaption><b>Cup nesting</b></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/open_drawer_and_place_object.mp4" poster="assets/real2sim/open_drawer_and_place_object.jpg" muted loop playsinline preload="none" aria-label="Drawer: demonstration and rebuilt scene"></video><figcaption><b>Drawer</b></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/collect_cubes.mp4" poster="assets/real2sim/collect_cubes.jpg" muted loop playsinline preload="none" aria-label="Block to bowl: demonstration and rebuilt scene"></video><figcaption><b>Block to bowl</b></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/sorting_cube_bimanual.mp4" poster="assets/real2sim/sorting_cube_bimanual.jpg" muted loop playsinline preload="none" aria-label="Bimanual sorting: demonstration and rebuilt scene"></video><figcaption><b>Bimanual sorting</b></figcaption></figure>
-    <figure class="clip"><video class="lazy" data-src="assets/real2sim/sweep_objects.mp4" poster="assets/real2sim/sweep_objects.jpg" muted loop playsinline preload="none" aria-label="Sweep: demonstration and rebuilt scene"></video><figcaption><b>Sweep</b><span>rebuilt scene uses one block</span></figcaption></figure>
-  </div>
-  <div class="tablewrap dt" style="margin-top:36px"><table class="res"><thead><tr><th></th><th>Apple to bowl</th><th>Red cup to box</th><th>Black spoon to plate</th><th>Cup nesting</th><th>Drawer</th><th>Block to bowl</th><th>Bimanual sorting</th><th>Sweep</th><th>Total</th></tr></thead><tbody>
-  <tr><th>Rebuilt simulation</th><td style="--v:100">10/10</td><td style="--v:100">10/10</td><td style="--v:100">10/10</td><td style="--v:100">10/10</td><td style="--v:100">10/10</td><td style="--v:100">10/10</td><td style="--v:70">7/10</td><td style="--v:50">5/10</td><td class="mean">72/80</td></tr>
-  <tr><th>Real robot</th><td style="--v:90">9/10</td><td style="--v:90">9/10</td><td style="--v:80">8/10</td><td style="--v:80">8/10</td><td style="--v:90">9/10</td><td style="--v:90">9/10</td><td style="--v:60">6/10</td><td style="--v:40">4/10</td><td class="mean">62/80</td></tr>
-  </tbody></table></div>
-  <p class="center big">Of the 18 real-robot failures, 6 began in perception, 8 in local interaction, and 4 at stage hand-offs.</p>
-</div></section>
-
-<section id="analysis" class="band"><div class="wrap">
+<section id="analysis"><div class="wrap">
   <div class="head"><p class="eyebrow">Analysis</p><h2>Small changes, kept only when they help</h2>
     <p>Measured over 774 revisions and more than ten thousand verified simulation episodes.</p></div>
   <div class="reuse3">
     <div><b>3</b><span>functions changed by the median revision, out of a median 578; 90% of revisions change at most 1.9% of the functions</span></div>
     <div><b>+3.5</b><span>points of full-task success per revision on average, over 317 revisions with comparable evaluations; 47% of them raised success</span></div>
-    <div><b>39%</b><span>of task-specific functions in four later-added tasks are copied unchanged from earlier tasks (19% across the first ten)</span></div>
+    <div><b>39%</b><span>of task-specific functions in the four later-added tasks are identical to a function in another task (19% across the ten benchmark tasks)</span></div>
   </div>
   <div class="tablewrap"><table class="res"><thead><tr><th>Change type</th><th>Revisions</th><th>Median functions changed</th><th>Compared</th><th>Improved</th><th>Mean &Delta; success (pp)</th><th>Share of total gain</th></tr></thead><tbody>
   <tr><th>Skill level</th><td>303</td><td>2</td><td>119</td><td>58</td><td>+2.8</td><td>36%</td></tr>
   <tr><th>Task level</th><td>47</td><td>1</td><td>22</td><td>11</td><td>+3.3</td><td>4%</td></tr>
   <tr><th>Both levels</th><td>299</td><td>5</td><td>113</td><td>56</td><td>+5.6</td><td>48%</td></tr>
-  <tr class="real"><th>Parameters only</th><td>125</td><td>0</td><td>63</td><td>25</td><td>+1.2</td><td>12%</td></tr>
+  <tr class="sep"><th>Parameters only</th><td>125</td><td>0</td><td>63</td><td>25</td><td>+1.2</td><td>12%</td></tr>
   <tr><th>Total</th><td class="mean">774</td><td class="mean">3</td><td class="mean">317</td><td class="mean">150</td><td class="mean">+3.5</td><td class="mean">100%</td></tr>
   </tbody></table></div>
-  <div class="two">
+  <div class="one">
     <figure class="fig"><img src="assets/fig/failures.jpg" alt="Failure types during development" loading="lazy"><figcaption>Failure types over development, in four equal groups of episodes. In tool storage, most late failures pass the node checks but fail the benchmark: better checks matter as much as better skills.</figcaption></figure>
-    <figure class="fig"><img src="assets/fig/fig_reuse.jpg" alt="Function-level skill reuse" loading="lazy"><figcaption>Function-level reuse in each adopted program: identical to another task, same name but rewritten, or task-specific. The bottom four tasks were added during development.</figcaption></figure>
   </div>
   <div class="cards3">
     <div class="card"><h3>Most gains come from skills</h3><p>Once a task graph settles into a few coarse nodes, improvement moves inside them. Revisions that change both a node and its skills bring 48% of the total gain; skill-only revisions bring 36%.</p></div>
@@ -372,7 +359,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
   </div>
 </div></section>
 
-<section id="cite"><div class="wrap narrow">
+<section id="cite" class="band"><div class="wrap narrow">
   <div class="head"><p class="eyebrow">Citation</p><h2>BibTeX</h2></div>
   <div class="bib"><button class="copy" type="button">Copy</button><pre>@article{sun2026reskill,
   title   = {ReSkill: Selective Self-Improvement for Robot Manipulation},
@@ -381,7 +368,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
   year    = {2026}
 }</pre></div>
 </div></section>
-<footer><div class="wrap">ReSkill &middot; Zheng Sun, Zhihao Li, Zhuo Li, Wenrui Liu, Xin Wang, Fei Chen</div></footer>
+<footer><div class="wrap">ReSkill &middot; Zheng Sun, Zhihao Li, Zhuo Li, Wenrui Liu, Xin Wang, Fei Chen<br>Follow-up work: <a href="https://zainzh.github.io/RESET/" target="_blank" rel="noopener">RESET project page</a></div></footer>
 <div class="lb" hidden><button class="lb-x" type="button" aria-label="Close">&times;</button><div class="lb-in"><video controls loop playsinline muted></video><p class="lb-cap"></p></div></div>
 <script>(function () {
   var nav = document.querySelector('.nav');
@@ -429,7 +416,7 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
   var rio = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } });
   }, { threshold: 0.15 });
-  document.querySelectorAll('section .head, .fig, .steps, .big2, .clips, .rd, .two, .cards3, .reuse3, .tablewrap, .bars, .stat')
+  document.querySelectorAll('section .head, .fig, .steps, .big2, .clips, .rd, .two, .one, .cards3, .reuse3, .tablewrap, .bars, .stat')
     .forEach(function (el) { el.classList.add('reveal'); rio.observe(el); });
 
   // copy BibTeX

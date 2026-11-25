@@ -1,0 +1,1015 @@
+[
+ {
+  "id": "view_clearing",
+  "file": "assets/skills/view_clearing.mp4",
+  "poster": "assets/skills/view_clearing.jpg",
+  "title": "View clearing",
+  "category": "perception",
+  "task": "store_tools_in_toolbox",
+  "version_sha": "133f59b3",
+  "bundle_sha256": "133f59b339c421d1b8f80e28bdd309c506edc9fb9ef54ed21605a6f0cf1783a7",
+  "split": "dev3",
+  "layout": 2,
+  "native_success": true,
+  "native_actions": 595,
+  "run_dir": "<campaign>/runs/store_tools_in_toolbox/dev302/1021085236-store-dev302-526b_a1",
+  "source_video": "<campaign>/runs/store_tools_in_toolbox/dev302/1021085236-store-dev302-526b_a1/eval_result/RoboDojo/store_tools_in_toolbox/aspire_graph_opus/arx_x5/1_ag_v001/1021085236-store-dev302-526b_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "e7fca149bbf302e1c108ad00ba6245721d0677fd70e3d387a379e0fb94daba52",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   0,
+   6
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 4,
+  "crop_xyxy": null,
+  "step_range": [
+   0,
+   45
+  ],
+  "step_range_basis": "Exact anchor: source frame 4 is pixel-identical (MSE 5.5 at 160x120) to the controller's perception/frame_000001/rgb.png captured at step 33 (archived in skill_gallery/source/images); other frames interpolated from archived video_trace anchors (50->7, 60->8). Range is approximate (+/-5 steps).",
+  "clip_duration_s": 4.04,
+  "real_time_s": 1.8,
+  "playback_speed_vs_real_time": 0.45,
+  "evidence": {
+   "trace_jsonl": [
+    "line 4: step 33 event lean_clear_hands stage=survey moved=[left,right] near={left:0.0062,right:0.0003}; tool footprint dims change after clearing (dims_before -> dims_after)",
+    "line 5: step 33 event lean_scan stage=survey frame=1",
+    "line 6: step 33 node survey PASS actions=33"
+   ],
+   "code": "tasks/store_tools_in_toolbox/graph.py _clear_hands (l.127), _scan (l.150) in snapshot 133f59b339c421d1"
+  },
+  "bytes": 183915,
+  "description": "Both arms are moved out of the head camera's view before the toolbox survey; the tools are measured from the unoccluded image."
+ },
+ {
+  "id": "relocalization",
+  "file": "assets/skills/relocalization.mp4",
+  "poster": "assets/skills/relocalization.jpg",
+  "title": "Re-localization",
+  "category": "perception",
+  "task": "pack_objects_into_box",
+  "version_sha": "a9d7eb2c",
+  "bundle_sha256": "a9d7eb2c6afbd2d39f305e49afcfe9951ac4065b6ac79106d4ebea5f262e007a",
+  "split": "dev3",
+  "layout": 11,
+  "native_success": true,
+  "native_actions": 973,
+  "run_dir": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1",
+  "source_video": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1/eval_result/RoboDojo/pack_objects_into_box/aspire_graph_ps/arx_x5/1_ag_v001/1026065616-pack_-dev311-47c6_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "d985f95c34d1b3b1960a83ff7a9035ade7cb65ba05588548005baedc7d310a12",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   128,
+   166
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 142,
+  "crop_xyxy": null,
+  "step_range": [
+   116,
+   152
+  ],
+  "step_range_basis": "Dense recording: one frame per native action plus one extra frame per 10 actions from the video-trace hook (calibrated exactly on stack_blocks_by_language val250: frame = 1.1*step - 1); applied here as step ~= (frame+1)/1.1, approximate (+/-2 steps).",
+  "clip_duration_s": 3.28,
+  "real_time_s": 1.44,
+  "playback_speed_vs_real_time": 0.44,
+  "evidence": {
+   "trace_jsonl": [
+    "line 31: step 123 object_attempt hammer leg 0 kind=relay arm=right (relay leg ends)",
+    "line 35: step 131 relocalize name=hammer stage=relay_hammer frame=2 sam=0.848 src=sam center=[-0.047,-0.225]",
+    "line 36: step 131 relay_replan hammer ok=true box_moved=false tilt=10"
+   ],
+   "code": "tasks/pack_objects_into_box/graph.py _relocalize (l.1605) in snapshot a9d7eb2c6afbd2d3"
+  },
+  "bytes": 133950,
+  "description": "After the right arm sets the hammer down at the relay point and withdraws, the head camera re-measures the hammer (SAM 3 mask + depth) before the left arm re-grasps it."
+ },
+ {
+  "id": "approach",
+  "file": "assets/skills/approach.mp4",
+  "poster": "assets/skills/approach.jpg",
+  "title": "Approach",
+  "category": "motion",
+  "task": "stack_blocks_by_language",
+  "version_sha": "b8a26047",
+  "bundle_sha256": "b8a260478925a2559ff4d4662cec875b506120271408e140b27d82d0a57ca838",
+  "split": "val2",
+  "layout": 50,
+  "native_success": true,
+  "native_actions": 202,
+  "run_dir": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1",
+  "source_video": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1/eval_result/RoboDojo/stack_blocks_by_language/aspire_graph_ps/arx_x5/1_ag_v001/1025210008-stack-val250-e321_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "0c89f25b7a00ffe85597a47cbae48576f3ddd7e967a8ef8d08f4a18eb17bb907",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   0,
+   30
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 22,
+  "crop_xyxy": null,
+  "step_range": [
+   0,
+   28
+  ],
+  "step_range_basis": "Exact anchors: the run's video_trace (every 10 actions) matched to source frames (10->10, 20->21, 30->32 ...; frame = 1.1*step - 1).",
+  "clip_duration_s": 3.24,
+  "real_time_s": 1.12,
+  "playback_speed_vs_real_time": 0.35,
+  "evidence": {
+   "trace_jsonl": [
+    "line 10: step 0 direct_plan tag=stack_1 arm=left collision_relaxed=false",
+    "line 11: step 0 stack_plan tag=stack_1 arm=left closing=159 tilt=35",
+    "line 14: step 87 node stack_1 PASS actions=87"
+   ],
+   "code": "tasks/stack_blocks_by_language/graph.py pick_and_place (l.869) -> approach (l.823) in snapshot b8a260478925a255"
+  },
+  "bytes": 92854,
+  "description": "The left arm moves from its start pose to the pre-grasp pose above the blue block (first stacking stage)."
+ },
+ {
+  "id": "grasp",
+  "file": "assets/skills/grasp.mp4",
+  "poster": "assets/skills/grasp.jpg",
+  "title": "Grasp",
+  "category": "manipulation",
+  "task": "stack_blocks_by_language",
+  "version_sha": "b8a26047",
+  "bundle_sha256": "b8a260478925a2559ff4d4662cec875b506120271408e140b27d82d0a57ca838",
+  "split": "val2",
+  "layout": 50,
+  "native_success": true,
+  "native_actions": 202,
+  "run_dir": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1",
+  "source_video": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1/eval_result/RoboDojo/stack_blocks_by_language/aspire_graph_ps/arx_x5/1_ag_v001/1025210008-stack-val250-e321_a1/episode_0000000_cam_left_wrist_success.mp4",
+  "source_video_sha256": "27aca75f6829cc8a27fda0b930b117f03182736b14088c0626a4a5e45b5d2a8b",
+  "source_video_sha256_matches_server": true,
+  "camera": "left_wrist",
+  "source_frame_range": [
+   16,
+   56
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 36,
+  "crop_xyxy": null,
+  "step_range": [
+   15,
+   52
+  ],
+  "step_range_basis": "Exact anchors from the run's video_trace (frame = 1.1*step - 1).",
+  "clip_duration_s": 3.48,
+  "real_time_s": 1.48,
+  "playback_speed_vs_real_time": 0.43,
+  "evidence": {
+   "trace_jsonl": [
+    "line 11: step 0 stack_plan tag=stack_1 arm=left closing=159 tilt=35 mover=blue block",
+    "line 14: step 87 node stack_1 PASS (block released on the green block)"
+   ],
+   "code": "tasks/stack_blocks_by_language/graph.py pick_and_place (l.869-941; plan_pick l.633) in snapshot b8a260478925a255",
+   "note": "No per-phase trace event exists for the grasp itself; the segment was identified visually inside the stack_1 node window (descent and closure are visible in the wrist camera)."
+  },
+  "bytes": 232804,
+  "description": "Left-wrist view: straight descent onto the blue block, gripper closure, and lift with the block held."
+ },
+ {
+  "id": "transfer",
+  "file": "assets/skills/transfer.mp4",
+  "poster": "assets/skills/transfer.jpg",
+  "title": "Transfer",
+  "category": "motion",
+  "task": "stack_blocks_by_language",
+  "version_sha": "b8a26047",
+  "bundle_sha256": "b8a260478925a2559ff4d4662cec875b506120271408e140b27d82d0a57ca838",
+  "split": "val2",
+  "layout": 50,
+  "native_success": true,
+  "native_actions": 202,
+  "run_dir": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1",
+  "source_video": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1/eval_result/RoboDojo/stack_blocks_by_language/aspire_graph_ps/arx_x5/1_ag_v001/1025210008-stack-val250-e321_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "0c89f25b7a00ffe85597a47cbae48576f3ddd7e967a8ef8d08f4a18eb17bb907",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   40,
+   96
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 70,
+  "crop_xyxy": null,
+  "step_range": [
+   37,
+   88
+  ],
+  "step_range_basis": "Exact anchors from the run's video_trace (frame = 1.1*step - 1).",
+  "clip_duration_s": 3.88,
+  "real_time_s": 2.04,
+  "playback_speed_vs_real_time": 0.53,
+  "evidence": {
+   "trace_jsonl": [
+    "line 11: step 0 stack_plan tag=stack_1 arm=left closing=159 tilt=35 target=green block",
+    "line 13: step 87 placed_check dxy=0.0045 dz=0.0030",
+    "line 14: step 87 node stack_1 PASS actions=87"
+   ],
+   "code": "tasks/stack_blocks_by_language/graph.py pick_and_place (l.869) -> carry_plan (l.652) in snapshot b8a260478925a255"
+  },
+  "bytes": 144265,
+  "description": "The held blue block is lifted, carried across the table and lowered onto the green block with the planned 35-degree tilt."
+ },
+ {
+  "id": "return_home",
+  "file": "assets/skills/return_home.mp4",
+  "poster": "assets/skills/return_home.jpg",
+  "title": "Return home",
+  "category": "motion",
+  "task": "stack_blocks_by_language",
+  "version_sha": "b8a26047",
+  "bundle_sha256": "b8a260478925a2559ff4d4662cec875b506120271408e140b27d82d0a57ca838",
+  "split": "val2",
+  "layout": 50,
+  "native_success": true,
+  "native_actions": 202,
+  "run_dir": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1",
+  "source_video": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1/eval_result/RoboDojo/stack_blocks_by_language/aspire_graph_ps/arx_x5/1_ag_v001/1025210008-stack-val250-e321_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "0c89f25b7a00ffe85597a47cbae48576f3ddd7e967a8ef8d08f4a18eb17bb907",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   185,
+   222
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 210,
+  "crop_xyxy": null,
+  "step_range": [
+   169,
+   202
+  ],
+  "step_range_basis": "Exact anchors from the run's video_trace (190->208, 200->219, 202->222 end).",
+  "clip_duration_s": 3.28,
+  "real_time_s": 1.32,
+  "playback_speed_vs_real_time": 0.4,
+  "evidence": {
+   "trace_jsonl": [
+    "line 18: step 182 node stack_2 PASS actions=95",
+    "line 19: step 201 node home status=UNKNOWN cause=native_budget_exhausted actions=19"
+   ],
+   "code": "tasks/stack_blocks_by_language/graph.py _home (l.1214) -> go_home (l.774) in snapshot b8a260478925a255",
+   "note": "The home node (steps 182-201) is cut off by native episode termination, so it is not independently verified as PASS. Clip starts ~13 steps earlier (release/retreat of stack_2)."
+  },
+  "bytes": 111367,
+  "description": "After releasing the yellow block (end of stack_2) the right arm returns to its start pose; the episode ends when the native evaluator detects success."
+ },
+ {
+  "id": "push",
+  "file": "assets/skills/push.mp4",
+  "poster": "assets/skills/push.jpg",
+  "title": "Push",
+  "category": "manipulation",
+  "task": "organize_table",
+  "version_sha": "92e4230a",
+  "bundle_sha256": "92e4230a4149b37b793f964f88f4c69cbf7cccb83fd032640b92a3b7a141e738",
+  "split": "val",
+  "layout": 47,
+  "native_success": true,
+  "native_actions": 708,
+  "run_dir": "<campaign>/runs/organize_table/val47/1022135117-organ-val47-970c_a1",
+  "source_video": "<campaign>/runs/organize_table/val47/1022135117-organ-val47-970c_a1/eval_result/RoboDojo/organize_table/aspire_graph_opus/arx_x5/1_ag_v001/1022135117-organ-val47-970c_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "9e2bab2f9c752448ad7e1dff99b04755e97bb61e7f72924c3e3e2042e805624a",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   43,
+   57
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 47,
+  "crop_xyxy": null,
+  "step_range": [
+   345,
+   465
+  ],
+  "step_range_basis": "Exact anchors: archived video_trace frames (action 370->frame 46, 380->47, 440->54) matched to source frames at MSE<5; ends interpolated (approximate +/-10 steps).",
+  "clip_duration_s": 4.6,
+  "real_time_s": 4.8,
+  "playback_speed_vs_real_time": 1.04,
+  "evidence": {
+   "trace_jsonl": [
+    "line 55-56: step 350 lean_keyboard round 0 err=[0.090,0.165]; lean_push arm=left start=[-0.179,-0.164] end=[-0.089,-0.164]",
+    "line 57: step 383 lean_stroke actions=33 done=6/6 stalled=false",
+    "line 63: step 409 lean_push arm=right start=[0.142,-0.268] end=[0.142,-0.102]",
+    "line 64: step 452 lean_stroke actions=43 done=12/12",
+    "step 479: lean_keyboard round 2 err=[-0.029,0.012]; node keyboard PASS actions=129 history=[push_x_left, push_y_right]"
+   ],
+   "code": "tasks/organize_table/graph.py _push (l.2305), _stroke (l.2278) in snapshot 92e4230a4149b37b"
+  },
+  "bytes": 137221,
+  "description": "Two gripper pushes move the keyboard to its goal: a left-arm push along +x, then a right-arm push along +y."
+ },
+ {
+  "id": "tabletop_drag",
+  "file": "assets/skills/tabletop_drag.mp4",
+  "poster": "assets/skills/tabletop_drag.jpg",
+  "title": "Tabletop drag",
+  "category": "manipulation",
+  "task": "store_tools_in_toolbox",
+  "version_sha": "133f59b3",
+  "bundle_sha256": "133f59b339c421d1b8f80e28bdd309c506edc9fb9ef54ed21605a6f0cf1783a7",
+  "split": "dev3",
+  "layout": 2,
+  "native_success": true,
+  "native_actions": 595,
+  "run_dir": "<campaign>/runs/store_tools_in_toolbox/dev302/1021085236-store-dev302-526b_a1",
+  "source_video": "<campaign>/runs/store_tools_in_toolbox/dev302/1021085236-store-dev302-526b_a1/eval_result/RoboDojo/store_tools_in_toolbox/aspire_graph_opus/arx_x5/1_ag_v001/1021085236-store-dev302-526b_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "e7fca149bbf302e1c108ad00ba6245721d0677fd70e3d387a379e0fb94daba52",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   25,
+   33
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 30,
+  "crop_xyxy": [
+   240,
+   60,
+   640,
+   360
+  ],
+  "step_range": [
+   206,
+   280
+  ],
+  "step_range_basis": "Exact anchors: archived video_trace frames 250->30 and 260->31 (MSE<6); ends interpolated (approximate +/-10 steps).",
+  "clip_duration_s": 4.0,
+  "real_time_s": 2.96,
+  "playback_speed_vs_real_time": 0.74,
+  "evidence": {
+   "trace_jsonl": [
+    "line 14: step 346 lean_attempt (attempt started at step 203, actions=143) arm=right contact=true slide={dist:0.181 m, actions:59, held_after_drag:true}, held_after_lift=true, held_at_place=true"
+   ],
+   "code": "tasks/store_tools_in_toolbox/graph.py _slide_carry (l.917) in snapshot 133f59b339c421d1",
+   "note": "The gallery still A3 (action 250) lies in this window."
+  },
+  "bytes": 206143,
+  "description": "The right gripper holds a tool (~15 x 6 cm footprint) on the table and drags it 18 cm toward the toolbox before lifting it in (crop of the head view)."
+ },
+ {
+  "id": "bimanual_relay",
+  "file": "assets/skills/bimanual_relay.mp4",
+  "poster": "assets/skills/bimanual_relay.jpg",
+  "title": "Bimanual relay",
+  "category": "manipulation",
+  "task": "pack_objects_into_box",
+  "version_sha": "a9d7eb2c",
+  "bundle_sha256": "a9d7eb2c6afbd2d39f305e49afcfe9951ac4065b6ac79106d4ebea5f262e007a",
+  "split": "dev3",
+  "layout": 11,
+  "native_success": true,
+  "native_actions": 973,
+  "run_dir": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1",
+  "source_video": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1/eval_result/RoboDojo/pack_objects_into_box/aspire_graph_ps/arx_x5/1_ag_v001/1026065616-pack_-dev311-47c6_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "d985f95c34d1b3b1960a83ff7a9035ade7cb65ba05588548005baedc7d310a12",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   14,
+   232
+  ],
+  "source_frame_stride": 2,
+  "poster_source_frame": 196,
+  "crop_xyxy": null,
+  "step_range": [
+   12,
+   212
+  ],
+  "step_range_basis": "Dense recording; step ~= (frame+1)/1.1 (same video-trace hook pattern as the calibrated sbl run), approximate +/-3 steps. Every second frame used.",
+  "clip_duration_s": 4.44,
+  "real_time_s": 8.0,
+  "playback_speed_vs_real_time": 1.8,
+  "evidence": {
+   "trace_jsonl": [
+    "lines 20/27: step 14 high_first stage=direct found=false; direct_all_first found=false; line 28: relay found=true tilt=10",
+    "line 30: step 14 object_plan hammer legs=[[relay,right,162,0],[box,left,0,10]]",
+    "line 31: step 123 object_attempt hammer leg 0 kind=relay arm=right dest=[-0.05,-0.22]",
+    "line 35-36: step 131 relocalize hammer at relay point; relay_replan ok=true",
+    "line 37: step 191 in_hand (left wrist) ok=true slip=0.010 m"
+   ],
+   "code": "tasks/pack_objects_into_box/graph.py _plan_relay_leg (l.1173), _relay_points (l.1247), _execute (l.2191) in snapshot a9d7eb2c6afbd2d3",
+   "note": "The relay hands the object over via the table, not in the air."
+  },
+  "bytes": 307588,
+  "description": "No direct single-arm plan was found for the hammer, so the right arm carries it to a relay point on the table and the left arm re-grasps it and lifts it toward the box."
+ },
+ {
+  "id": "in_hand_check",
+  "file": "assets/skills/in_hand_check.mp4",
+  "poster": "assets/skills/in_hand_check.jpg",
+  "title": "In-hand check",
+  "category": "verification",
+  "task": "pack_objects_into_box",
+  "version_sha": "a9d7eb2c",
+  "bundle_sha256": "a9d7eb2c6afbd2d39f305e49afcfe9951ac4065b6ac79106d4ebea5f262e007a",
+  "split": "dev3",
+  "layout": 11,
+  "native_success": true,
+  "native_actions": 973,
+  "run_dir": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1",
+  "source_video": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1/eval_result/RoboDojo/pack_objects_into_box/aspire_graph_ps/arx_x5/1_ag_v001/1026065616-pack_-dev311-47c6_a1/episode_0000000_cam_left_wrist_success.mp4",
+  "source_video_sha256": "bea33bfd4e5e18c9852beea3ce49e37906233ae0e731d6445ca7ccdbf2dab86e",
+  "source_video_sha256_matches_server": true,
+  "camera": "left_wrist",
+  "source_frame_range": [
+   176,
+   232
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 214,
+  "crop_xyxy": null,
+  "step_range": [
+   161,
+   212
+  ],
+  "step_range_basis": "Dense recording; step ~= (frame+1)/1.1, approximate +/-2 steps (in_hand at step 191 ~ frame 209).",
+  "clip_duration_s": 4.08,
+  "real_time_s": 2.04,
+  "playback_speed_vs_real_time": 0.5,
+  "evidence": {
+   "trace_jsonl": [
+    "line 37: step 191 in_hand sam=0.742 mask_px=52170 frame=3 pitch_deg=3.4 ok=true top_meas=0.939 slip=0.0102 extra_hang=0.0102"
+   ],
+   "code": "tasks/pack_objects_into_box/graph.py _measure_in_hand (l.1425, docstring: 'One wrist-camera frame after the lift (SAM + depth, no Claude)') called from _execute (l.2273) in snapshot a9d7eb2c6afbd2d3"
+  },
+  "bytes": 334375,
+  "description": "Left-wrist view: after the regrasp and lift, one wrist-camera frame is segmented (SAM 3 + depth) to measure how the hammer hangs in the gripper (slip 1.0 cm) before insertion."
+ },
+ {
+  "id": "placement_check",
+  "file": "assets/skills/placement_check.mp4",
+  "poster": "assets/skills/placement_check.jpg",
+  "title": "Placement check",
+  "category": "verification",
+  "task": "stack_blocks_by_language",
+  "version_sha": "b8a26047",
+  "bundle_sha256": "b8a260478925a2559ff4d4662cec875b506120271408e140b27d82d0a57ca838",
+  "split": "val2",
+  "layout": 50,
+  "native_success": true,
+  "native_actions": 202,
+  "run_dir": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1",
+  "source_video": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1/eval_result/RoboDojo/stack_blocks_by_language/aspire_graph_ps/arx_x5/1_ag_v001/1025210008-stack-val250-e321_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "0c89f25b7a00ffe85597a47cbae48576f3ddd7e967a8ef8d08f4a18eb17bb907",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   84,
+   112
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 104,
+  "crop_xyxy": null,
+  "step_range": [
+   77,
+   103
+  ],
+  "step_range_basis": "Exact anchors from the run's video_trace (80->87, 90->98, 100->109).",
+  "clip_duration_s": 3.32,
+  "real_time_s": 1.04,
+  "playback_speed_vs_real_time": 0.31,
+  "evidence": {
+   "trace_jsonl": [
+    "line 12: step 87 ground_local stage=after_stack_1 frame=1 sam3 accepted=3",
+    "line 13: step 87 placed_check dxy=0.0045 dz=0.0030 seen=[0.170,-0.077] expected=[0.172,-0.081]",
+    "line 14: step 87 node stack_1 PASS"
+   ],
+   "code": "tasks/stack_blocks_by_language/graph.py _stack (l.1123; placed_check logged at l.1199) in snapshot b8a260478925a255"
+  },
+  "bytes": 128016,
+  "description": "The blue block is released on the green block and the arm withdraws; the head camera re-grounds the blocks and checks the placement offset (4.5 mm in xy, 3.0 mm in z)."
+ },
+ {
+  "id": "tilt_check",
+  "file": "assets/skills/tilt_check.mp4",
+  "poster": "assets/skills/tilt_check.jpg",
+  "title": "Tilt check",
+  "category": "verification",
+  "task": "store_tools_in_toolbox",
+  "version_sha": "133f59b3",
+  "bundle_sha256": "133f59b339c421d1b8f80e28bdd309c506edc9fb9ef54ed21605a6f0cf1783a7",
+  "split": "dev3",
+  "layout": 2,
+  "native_success": true,
+  "native_actions": 595,
+  "run_dir": "<campaign>/runs/store_tools_in_toolbox/dev302/1021085236-store-dev302-526b_a1",
+  "source_video": "<campaign>/runs/store_tools_in_toolbox/dev302/1021085236-store-dev302-526b_a1/eval_result/RoboDojo/store_tools_in_toolbox/aspire_graph_opus/arx_x5/1_ag_v001/1021085236-store-dev302-526b_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "e7fca149bbf302e1c108ad00ba6245721d0677fd70e3d387a379e0fb94daba52",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   17,
+   26
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 19,
+  "crop_xyxy": [
+   120,
+   60,
+   520,
+   360
+  ],
+  "step_range": [
+   140,
+   215
+  ],
+  "step_range_basis": "Exact anchor: source frame 19 is pixel-identical (MSE 5.8) to perception/frame_000003/rgb.png (stage verify_0, step 155); others from video_trace anchors (160->20, 170->21) and interpolation, approximate +/-10 steps.",
+  "clip_duration_s": 3.76,
+  "real_time_s": 3.0,
+  "playback_speed_vs_real_time": 0.8,
+  "evidence": {
+   "trace_jsonl": [
+    "line 9: step 155 lean_scan stage=verify_0 frame=3",
+    "line 12: step 203 lean_place_fix tool=3 rounds=[{tilt:27.6, why:[margin,tilt]}, {fix:{tilt:30, arm:right, d:0.018}}, {tilt:1.2, why:[]}]",
+    "line 11: step 203 lean_scan stage=fix_0_0 frame=4"
+   ],
+   "code": "tasks/store_tools_in_toolbox/graph.py _tool_tilt (l.1498), _place_check (l.1535), _fix_after_place (l.1679) in snapshot 133f59b339c421d1"
+  },
+  "bytes": 154819,
+  "description": "After the compact tool (index 3, ~6 x 5.5 cm footprint) is placed, a depth check finds it tilted 27.6 degrees in its slot; the right gripper presses it flat and the re-check reads 1.2 degrees (crop of the head view)."
+ },
+ {
+  "id": "reuse_release_retreat_stack_blocks_by_language",
+  "file": "assets/skills/reuse_release_retreat_stack_blocks_by_language.mp4",
+  "poster": "assets/skills/reuse_release_retreat_stack_blocks_by_language.jpg",
+  "title": "Release & retreat (source)",
+  "category": "reuse",
+  "task": "stack_blocks_by_language",
+  "version_sha": "b8a26047",
+  "bundle_sha256": "b8a260478925a2559ff4d4662cec875b506120271408e140b27d82d0a57ca838",
+  "split": "val2",
+  "layout": 50,
+  "native_success": true,
+  "native_actions": 202,
+  "run_dir": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1",
+  "source_video": "<campaign>/runs/stack_blocks_by_language/val250/1025210008-stack-val250-e321_a1/eval_result/RoboDojo/stack_blocks_by_language/aspire_graph_ps/arx_x5/1_ag_v001/1025210008-stack-val250-e321_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "0c89f25b7a00ffe85597a47cbae48576f3ddd7e967a8ef8d08f4a18eb17bb907",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   0,
+   100
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 100,
+  "crop_xyxy": null,
+  "step_range": [
+   0,
+   92
+  ],
+  "step_range_basis": "Exact anchors from the run's video_trace (frame = 1.1*step - 1).",
+  "clip_duration_s": 4.64,
+  "real_time_s": 3.68,
+  "playback_speed_vs_real_time": 0.79,
+  "evidence": {
+   "trace_jsonl": [
+    "line 11: step 0 stack_plan stack_1 arm=left",
+    "line 13: step 87 placed_check",
+    "line 14: step 87 node stack_1 PASS actions=87"
+   ],
+   "code": "pick_and_place (l.869-941) calls open_hand + lift_away after release"
+  },
+  "bytes": 190265,
+  "description": "One complete pick-and-place cycle (stack_1) in language-conditioned block stacking; it ends with the shared release-and-retreat skill (open_hand, then lift_away).",
+  "shared_functions": [
+   "open_hand",
+   "lift_away"
+  ],
+  "identity_verification": "AST of each function (ast.dump, annotate_fields=False, MD5) parsed from tasks/stack_blocks_by_language/graph.py (snapshot b8a260478925a255; open_hand l.770, lift_away l.794) and tasks/play_stacking_toy/motion.py (snapshot af7068a1a5bc7c0f; open_hand l.723, lift_away l.754) - identical hashes. Same method as figures/make_reuse.py. Both are called at the end of each cycle: sbl pick_and_place l.930-931; toy place_piece l.589-590. In total 31 functions are AST-identical between these two snapshots (motion layer incl. plan_pick, cart_qs, servo_q, go_home).",
+  "reuse_pair": "release_retreat"
+ },
+ {
+  "id": "reuse_release_retreat_play_stacking_toy",
+  "file": "assets/skills/reuse_release_retreat_play_stacking_toy.mp4",
+  "poster": "assets/skills/reuse_release_retreat_play_stacking_toy.jpg",
+  "title": "Release & retreat (reused)",
+  "category": "reuse",
+  "task": "play_stacking_toy",
+  "version_sha": "af7068a1",
+  "bundle_sha256": "af7068a1a5bc7c0f1ce6270e1c3f91b8e3ae1d448ccab8111e35ef2099b858ee",
+  "split": "val",
+  "layout": 43,
+  "native_success": true,
+  "native_actions": 776,
+  "run_dir": "<campaign>/runs/play_stacking_toy/val43/1022155632-play_-val43-71e4_a1",
+  "source_video": "<campaign>/runs/play_stacking_toy/val43/1022155632-play_-val43-71e4_a1/eval_result/RoboDojo/play_stacking_toy/aspire_graph_opus/arx_x5/1_ag_v001/1022155632-play_-val43-71e4_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "7617da1e4b592980ae7e9717cd1e13db1f8c0d778f5e2be5e44dd16b77012aaa",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   3,
+   12
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 11,
+  "crop_xyxy": null,
+  "step_range": [
+   17,
+   82
+  ],
+  "step_range_basis": "Step window from trace events (piece_plan at step 17 -> piece_result at step 82); the matching source frames were identified visually (yellow piece picked and dropped onto its peg). Sparse recording, frame-to-step mapping approximate.",
+  "clip_duration_s": 3.56,
+  "real_time_s": 2.6,
+  "playback_speed_vs_real_time": 0.73,
+  "evidence": {
+   "trace_jsonl": [
+    "line 9: step 17 piece_plan piece=yellow2 pole=3 arm=right closing=45 tilt=0",
+    "line 12: step 82 piece_result PASS piece=yellow2",
+    "line 13: step 82 node work PASS actions=65"
+   ],
+   "code": "tasks/play_stacking_toy/graph.py place_piece (l.382-603)"
+  },
+  "bytes": 88955,
+  "description": "One complete piece cycle (yellow piece onto peg 3) in the later-added stacking-toy task, ending with the same release-and-retreat functions copied verbatim from language-conditioned block stacking.",
+  "shared_functions": [
+   "open_hand",
+   "lift_away"
+  ],
+  "identity_verification": "See paired source clip: identical AST hashes; called in place_piece (graph.py l.589-590, snapshot af7068a1a5bc7c0f).",
+  "reuse_pair": "release_retreat"
+ },
+ {
+  "id": "reuse_lean_motion_classify_objects",
+  "file": "assets/skills/reuse_lean_motion_classify_objects.mp4",
+  "poster": "assets/skills/reuse_lean_motion_classify_objects.jpg",
+  "title": "Lean pick motion layer (source)",
+  "category": "reuse",
+  "task": "classify_objects",
+  "version_sha": "da2d0bb4",
+  "bundle_sha256": "da2d0bb4724e22d032e703a39f60ea388dc7a4b714ccc4a3e6910351fb92c0fa",
+  "split": "val",
+  "layout": 42,
+  "native_success": true,
+  "native_actions": 562,
+  "run_dir": "<campaign>/runs/classify_objects/val42/1019232408-class-val42-73d4_a1",
+  "source_video": "<campaign>/runs/classify_objects/val42/1019232408-class-val42-73d4_a1/eval_result/RoboDojo/classify_objects/aspire_graph_opus/arx_x5/1_ag_v001/1019232408-class-val42-73d4_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "eaea740789e3bfed7c81ffe7d28b485c590bd96ca559cdfd73d168c12817ed73",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   3,
+   12
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 11,
+  "crop_xyxy": null,
+  "step_range": [
+   12,
+   100
+  ],
+  "step_range_basis": "Step window from trace lean_phase events (pregrasp at 12 ... release at 94, lean_item logged at 100); source frames identified visually (black watch picked by the left arm and dropped into the white basket). Sparse recording, mapping approximate.",
+  "clip_duration_s": 4.28,
+  "real_time_s": 3.52,
+  "playback_speed_vs_real_time": 0.82,
+  "evidence": {
+   "trace_jsonl": [
+    "line 10: step 12 lean_phase pregrasp",
+    "line 11: step 31 lean_phase descend",
+    "line 12: step 37 lean_phase close",
+    "line 13: step 47 lean_phase lift",
+    "line 14: step 58 lean_phase carry",
+    "line 15: step 94 lean_phase release",
+    "line 16: step 100 lean_item black watch -> container 0"
+   ],
+   "code": "Lean.do_item (graph.py l.873-980)",
+   "note": "This run (val42) recorded 2 runtime semantic calls (lean_survey, lean_rescan) for object binding; the clipped motion is code-only."
+  },
+  "bytes": 221345,
+  "description": "First item of object classification: joint-space move to pre-grasp, straight-line descent, close, straight lift, carry and release.",
+  "shared_functions": [
+   "drive",
+   "line",
+   "hold",
+   "phase",
+   "lift_clear",
+   "jaw_contact"
+  ],
+  "identity_verification": "AST-identical (MD5 of ast.dump) between tasks/classify_objects/graph.py (snapshot da2d0bb4724e22d0) and tasks/put_bottles_into_dustbin/graph.py (snapshot c5eb4a9ce31f620f): 40 identical functions in total. The calling routine do_item was rewritten for bottles (side grasps, roll), but its pregrasp/descend/close/lift phases call these identical primitives (classify l.889-921, bottles l.1753-1827). Note: da2d0bb4 is the classify_objects version used by the paper's reuse analysis (figures/make_reuse.py REP), not the Table-1 retained version 9950b112, which shares only 'guard' with the bottle task. Their IK helpers (ik, dls, solve_seeds, wrap, fk, pose, down_frame) are also AST-identical.",
+  "reuse_pair": "lean_motion"
+ },
+ {
+  "id": "reuse_lean_motion_put_bottles_into_dustbin",
+  "file": "assets/skills/reuse_lean_motion_put_bottles_into_dustbin.mp4",
+  "poster": "assets/skills/reuse_lean_motion_put_bottles_into_dustbin.jpg",
+  "title": "Lean pick motion layer (reused)",
+  "category": "reuse",
+  "task": "put_bottles_into_dustbin",
+  "version_sha": "c5eb4a9c",
+  "bundle_sha256": "c5eb4a9ce31f620f3981755bc8d5fa5f4d0e04eb58a654bec40b323a65dd1c37",
+  "split": "val",
+  "layout": 45,
+  "native_success": true,
+  "native_actions": 444,
+  "run_dir": "<campaign>/runs/put_bottles_into_dustbin/val45/1022162112-put_b-val45-3340_a1",
+  "source_video": "<campaign>/runs/put_bottles_into_dustbin/val45/1022162112-put_b-val45-3340_a1/eval_result/RoboDojo/put_bottles_into_dustbin/aspire_graph_opus/arx_x5/1_ag_v001/1022162112-put_b-val45-3340_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "cb6cdbd4d0154cc53856842f5bf042edf37404339a8c5408ca3af3b61d2c9ccc",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   4,
+   20
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 15,
+  "crop_xyxy": null,
+  "step_range": [
+   17,
+   88
+  ],
+  "step_range_basis": "Step window from trace lean_phase events (pregrasp at 17 ... release at 81, lean_item logged at 88); source frames identified visually (green bottle picked and carried to the dustbin at the left edge). Sparse recording, mapping approximate.",
+  "clip_duration_s": 3.36,
+  "real_time_s": 2.84,
+  "playback_speed_vs_real_time": 0.85,
+  "evidence": {
+   "trace_jsonl": [
+    "line 29: step 17 lean_phase pregrasp",
+    "line 30: step 33 lean_phase descend",
+    "line 31: step 41 lean_phase close",
+    "line 32: step 49 lean_phase lift",
+    "line 33: step 55 lean_phase carry",
+    "line 37: step 81 lean_phase release",
+    "line 38: step 88 lean_item bottle -> container 0 (dustbin)"
+   ],
+   "code": "Lean.do_item (graph.py l.1729-1913)"
+  },
+  "bytes": 95289,
+  "description": "First bottle in the later-added dustbin task, executed with the same lean motion primitives as object classification.",
+  "shared_functions": [
+   "drive",
+   "line",
+   "hold",
+   "phase",
+   "lift_clear",
+   "jaw_contact"
+  ],
+  "identity_verification": "See paired source clip.",
+  "reuse_pair": "lean_motion"
+ },
+ {
+  "id": "reuse_tilted_chain_ik_pack_objects_into_box",
+  "file": "assets/skills/reuse_tilted_chain_ik_pack_objects_into_box.mp4",
+  "poster": "assets/skills/reuse_tilted_chain_ik_pack_objects_into_box.jpg",
+  "title": "Tilted pick-and-place via chain IK (source)",
+  "category": "reuse",
+  "task": "pack_objects_into_box",
+  "version_sha": "a9d7eb2c",
+  "bundle_sha256": "a9d7eb2c6afbd2d39f305e49afcfe9951ac4065b6ac79106d4ebea5f262e007a",
+  "split": "dev3",
+  "layout": 11,
+  "native_success": true,
+  "native_actions": 973,
+  "run_dir": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1",
+  "source_video": "<campaign>/runs/pack_objects_into_box/dev311/1026065616-pack_-dev311-47c6_a1/eval_result/RoboDojo/pack_objects_into_box/aspire_graph_ps/arx_x5/1_ag_v001/1026065616-pack_-dev311-47c6_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "d985f95c34d1b3b1960a83ff7a9035ade7cb65ba05588548005baedc7d310a12",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   592,
+   730
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 660,
+  "crop_xyxy": null,
+  "step_range": [
+   539,
+   665
+  ],
+  "step_range_basis": "Dense recording; step ~= (frame+1)/1.1, approximate +/-3 steps. Window = car leg (object_plan at step 539 -> object_attempt at step 660) plus withdrawal.",
+  "clip_duration_s": 5.16,
+  "real_time_s": 5.04,
+  "playback_speed_vs_real_time": 0.98,
+  "evidence": {
+   "trace_jsonl": [
+    "line 74: step 539 object_plan car legs=[[box,left,5,10]] (direct leg, tilt 10)",
+    "line 76: step 660 object_attempt car leg 0 kind=box arm=left tilt=10 (logged at leg end)"
+   ],
+   "code": "graph.py _plan_box_leg (l.1094), _execute (l.2191)"
+  },
+  "bytes": 260157,
+  "description": "The left arm grasps the car and lowers it into the box with a 10-degree forward tilt; Cartesian waypoints are solved as one IK chain and executed as capped joint steps.",
+  "shared_functions": [
+   "tilted",
+   "chain_ik",
+   "solve_near",
+   "_pieces",
+   "joints_to"
+  ],
+  "identity_verification": "AST-identical (MD5 of ast.dump) between tasks/pack_objects_into_box/lean.py (snapshot a9d7eb2c6afbd2d3, the Table-1 retained version) and tasks/fill_egg_holder/motion.py (snapshot 0c13e5d480ecb37e): 24 identical functions in total. Call paths: pack _plan_box_leg -> Mover.chain_ik, _execute -> tilted + Mover.run_pieces -> joints_to; eggs _pick_cands/_place_spin -> tilted + Mover.chain_ik, execution via Mover.line -> solve_near/_pieces/joints_to.",
+  "reuse_pair": "tilted_chain_ik"
+ },
+ {
+  "id": "reuse_tilted_chain_ik_fill_egg_holder",
+  "file": "assets/skills/reuse_tilted_chain_ik_fill_egg_holder.mp4",
+  "poster": "assets/skills/reuse_tilted_chain_ik_fill_egg_holder.jpg",
+  "title": "Tilted pick-and-place via chain IK (reused)",
+  "category": "reuse",
+  "task": "fill_egg_holder",
+  "version_sha": "0c13e5d4",
+  "bundle_sha256": "0c13e5d480ecb37e3b2223f04fb2df435891740267d4123f3ead6f94810c9ec1",
+  "split": "val",
+  "layout": 42,
+  "native_success": true,
+  "native_actions": 592,
+  "run_dir": "<campaign>/runs/fill_egg_holder/val42/1022082052-fill_-val42-dfa2_a1",
+  "source_video": "<campaign>/runs/fill_egg_holder/val42/1022082052-fill_-val42-dfa2_a1/eval_result/RoboDojo/fill_egg_holder/aspire_graph_opus/arx_x5/1_ag_v001/1022082052-fill_-val42-dfa2_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "fb25297bd25f2142409b858ccb74a7dc8d6d0d08fa999ddb5ba772fb06d55653",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   3,
+   16
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 13,
+  "crop_xyxy": null,
+  "step_range": [
+   8,
+   126
+  ],
+  "step_range_basis": "Step window from trace (plan_found at step 8 -> egg_attempt logged at step 126); source frames identified visually (first egg taken from the basket and set in the holder). Sparse recording, mapping approximate.",
+  "clip_duration_s": 5.04,
+  "real_time_s": 4.72,
+  "playback_speed_vs_real_time": 0.94,
+  "evidence": {
+   "trace_jsonl": [
+    "line 11: step 8 plan_found arm=left pick_rank=1 tilt=0 pitch=85",
+    "line 12: step 126 egg_attempt arm=left cup=2"
+   ],
+   "code": "graph.py _pick_cands (l.286), _place_spin (l.477)"
+  },
+  "bytes": 127943,
+  "description": "First egg in the later-added egg-holder task: the pick and the pitched placement into the cup are planned with the same tilted-frame and chain-IK functions as box packing.",
+  "shared_functions": [
+   "tilted",
+   "chain_ik",
+   "solve_near",
+   "_pieces",
+   "joints_to"
+  ],
+  "identity_verification": "See paired source clip.",
+  "reuse_pair": "tilted_chain_ik"
+ },
+ {
+  "id": "put_bottles_into_dustbin",
+  "file": "assets/robodojo_new/put_bottles_into_dustbin.mp4",
+  "poster": "assets/robodojo_new/put_bottles_into_dustbin.jpg",
+  "title": "Bottles to dustbin",
+  "category": "task",
+  "task": "put_bottles_into_dustbin",
+  "version_sha": "c5eb4a9c",
+  "bundle_sha256": "c5eb4a9ce31f620f3981755bc8d5fa5f4d0e04eb58a654bec40b323a65dd1c37",
+  "split": "val",
+  "layout": 45,
+  "native_success": true,
+  "native_actions": 444,
+  "run_dir": "<campaign>/runs/put_bottles_into_dustbin/val45/1022162112-put_b-val45-3340_a1",
+  "source_video": "<campaign>/runs/put_bottles_into_dustbin/val45/1022162112-put_b-val45-3340_a1/eval_result/RoboDojo/put_bottles_into_dustbin/aspire_graph_opus/arx_x5/1_ag_v001/1022162112-put_b-val45-3340_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "cb6cdbd4d0154cc53856842f5bf042edf37404339a8c5408ca3af3b61d2c9ccc",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   0,
+   52
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 24,
+  "crop_xyxy": null,
+  "step_range": [
+   0,
+   444
+  ],
+  "step_range_basis": "Whole episode (all recorded frames).",
+  "clip_duration_s": 8.83,
+  "real_time_s": 17.76,
+  "playback_speed_vs_real_time": 2.01,
+  "evidence": {
+   "RESULT.json": "success=true native_score=100 status=verified"
+  },
+  "bytes": 227868
+ },
+ {
+  "id": "play_stacking_toy",
+  "file": "assets/robodojo_new/play_stacking_toy.mp4",
+  "poster": "assets/robodojo_new/play_stacking_toy.jpg",
+  "title": "Stacking toy",
+  "category": "task",
+  "task": "play_stacking_toy",
+  "version_sha": "af7068a1",
+  "bundle_sha256": "af7068a1a5bc7c0f1ce6270e1c3f91b8e3ae1d448ccab8111e35ef2099b858ee",
+  "split": "val",
+  "layout": 43,
+  "native_success": true,
+  "native_actions": 776,
+  "run_dir": "<campaign>/runs/play_stacking_toy/val43/1022155632-play_-val43-71e4_a1",
+  "source_video": "<campaign>/runs/play_stacking_toy/val43/1022155632-play_-val43-71e4_a1/eval_result/RoboDojo/play_stacking_toy/aspire_graph_opus/arx_x5/1_ag_v001/1022155632-play_-val43-71e4_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "7617da1e4b592980ae7e9717cd1e13db1f8c0d778f5e2be5e44dd16b77012aaa",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   0,
+   105
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 105,
+  "crop_xyxy": null,
+  "step_range": [
+   0,
+   776
+  ],
+  "step_range_basis": "Whole episode (all recorded frames).",
+  "clip_duration_s": 15.14,
+  "real_time_s": 31.04,
+  "playback_speed_vs_real_time": 2.05,
+  "evidence": {
+   "RESULT.json": "success=true native_score=100 status=verified"
+  },
+  "bytes": 506325
+ },
+ {
+  "id": "fill_egg_holder",
+  "file": "assets/robodojo_new/fill_egg_holder.mp4",
+  "poster": "assets/robodojo_new/fill_egg_holder.jpg",
+  "title": "Eggs to holder",
+  "category": "task",
+  "task": "fill_egg_holder",
+  "version_sha": "0c13e5d4",
+  "bundle_sha256": "0c13e5d480ecb37e3b2223f04fb2df435891740267d4123f3ead6f94810c9ec1",
+  "split": "val",
+  "layout": 42,
+  "native_success": true,
+  "native_actions": 592,
+  "run_dir": "<campaign>/runs/fill_egg_holder/val42/1022082052-fill_-val42-dfa2_a1",
+  "source_video": "<campaign>/runs/fill_egg_holder/val42/1022082052-fill_-val42-dfa2_a1/eval_result/RoboDojo/fill_egg_holder/aspire_graph_opus/arx_x5/1_ag_v001/1022082052-fill_-val42-dfa2_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "fb25297bd25f2142409b858ccb74a7dc8d6d0d08fa999ddb5ba772fb06d55653",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   0,
+   72
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 72,
+  "crop_xyxy": null,
+  "step_range": [
+   0,
+   592
+  ],
+  "step_range_basis": "Whole episode (all recorded frames).",
+  "clip_duration_s": 12.17,
+  "real_time_s": 23.68,
+  "playback_speed_vs_real_time": 1.95,
+  "evidence": {
+   "RESULT.json": "success=true native_score=100 status=verified"
+  },
+  "bytes": 383259
+ },
+ {
+  "id": "store_laptop_and_headphones",
+  "file": "assets/robodojo_new/store_laptop_and_headphones.mp4",
+  "poster": "assets/robodojo_new/store_laptop_and_headphones.jpg",
+  "title": "Laptop and headphones",
+  "category": "task",
+  "task": "store_laptop_and_headphones",
+  "version_sha": "454785c7",
+  "bundle_sha256": "454785c7653e24933836cf4cfcce3bb079ea0d8f34dea833cc7889dbbb7f2a72",
+  "split": "dev3",
+  "layout": 10,
+  "native_success": true,
+  "native_actions": 757,
+  "run_dir": "<campaign>/runs/store_laptop_and_headphones/dev310/1024170145-store-dev310-dde4_a1",
+  "source_video": "<campaign>/runs/store_laptop_and_headphones/dev310/1024170145-store-dev310-dde4_a1/eval_result/RoboDojo/store_laptop_and_headphones/aspire_graph_opus/arx_x5/1_ag_v001/1024170145-store-dev310-dde4_a1/episode_0000000_cam_head_success.mp4",
+  "source_video_sha256": "f453ddebae82c27d19326449b29b4589c82fbf856c71df54dc048b8e9924c8a7",
+  "source_video_sha256_matches_server": true,
+  "camera": "head",
+  "source_frame_range": [
+   0,
+   82
+  ],
+  "source_frame_stride": 1,
+  "poster_source_frame": 82,
+  "crop_xyxy": null,
+  "step_range": [
+   0,
+   757
+  ],
+  "step_range_basis": "Whole episode (all recorded frames).",
+  "clip_duration_s": 16.6,
+  "real_time_s": 30.28,
+  "playback_speed_vs_real_time": 1.82,
+  "evidence": {
+   "RESULT.json": "success=true native_score=100 status=verified"
+  },
+  "bytes": 418405
+ }
+]
