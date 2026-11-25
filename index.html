@@ -367,6 +367,13 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
   journal = {arXiv preprint arXiv:2611.10510},
   year    = {2026}
 }</pre></div>
+  <p class="muted" style="margin:28px 0 10px">Follow-up work: <a href="https://zainzh.github.io/RESET/" target="_blank" rel="noopener">RESET</a></p>
+  <div class="bib"><button class="copy" type="button">Copy</button><pre>@article{sun2026reset,
+  title   = {RESET: One Demonstration, One Verified World, Self-Improved Skills Across Embodiments},
+  author  = {Sun, Zheng and Li, Zhuo and Li, Zhihao and Sim, Heng Yi and Wang, Ge and Zhu, Ziyue and Jia, Mingkai and Chen, Fei},
+  journal = {arXiv preprint arXiv:2611.31894},
+  year    = {2026}
+}</pre></div>
 </div></section>
 <footer><div class="wrap">ReSkill &middot; Zheng Sun, Zhihao Li, Zhuo Li, Wenrui Liu, Xin Wang, Fei Chen<br>Follow-up work: <a href="https://zainzh.github.io/RESET/" target="_blank" rel="noopener">RESET project page</a></div></footer>
 <div class="lb" hidden><button class="lb-x" type="button" aria-label="Close">&times;</button><div class="lb-in"><video controls loop playsinline muted></video><p class="lb-cap"></p></div></div>
@@ -420,12 +427,11 @@ footer{padding:36px 0;color:var(--ink3);font-size:13.5px;border-top:1px solid va
     .forEach(function (el) { el.classList.add('reveal'); rio.observe(el); });
 
   // copy BibTeX
-  var cp = document.querySelector('.copy');
-  if (cp) cp.addEventListener('click', function () {
-    var txt = document.querySelector('.bib pre').innerText;
+  document.querySelectorAll('.copy').forEach(function (cp) { cp.addEventListener('click', function () {
+    var txt = cp.parentNode.querySelector('pre').innerText;
     (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () {
       cp.textContent = 'Copied'; setTimeout(function () { cp.textContent = 'Copy'; }, 1500);
-    }, function () {});
+    }, function () {}); });
   });
 })();
 // click a small clip to watch it large, with a seek bar
