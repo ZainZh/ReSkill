@@ -160,6 +160,13 @@ The deployed programs make no language-model or other remote API calls at run ti
 ## Citation
 
 ```bibtex
+@article{sun2026reset,
+  title   = {RESET: One Demonstration, One Verified World, Self-Improved Skills Across Embodiments},
+  author  = {Sun, Zheng and Li, Zhuo and Li, Zhihao and Sim, Heng Yi and Wang, Ge and Zhu, Ziyue and Jia, Mingkai and Chen, Fei},
+  journal = {arXiv preprint arXiv:2611.31894},
+  year    = {2026}
+}
+
 @article{sun2026reskill,
   title   = {ReSkill: Selective Self-Improvement for Robot Manipulation},
   author  = {Sun, Zheng and Li, Zhihao and Li, Zhuo and Liu, Wenrui and Wang, Xin and Chen, Fei},
