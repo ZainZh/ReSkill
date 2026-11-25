@@ -1,0 +1,81 @@
+{
+  "_note": "Task tunables for general_pickup (r3R_dev3 from r2R_robust it3). ctx.params. Native step_lim 200 is not set here. Values are untuned guesses unless stated; jaw span 0.0888 m comes from the URDF (POSTMORTEM).",
+  "max_stagnant_visits": 6,
+  "max_transitions": 14,
+  "max_perceive": 2,
+  "max_pick_attempts": 4,
+  "min_actions_for_pick": 35,
+  "table_z_fallback": 0.74,
+  "grasp": {
+    "tilts": [
+      0,
+      20,
+      35,
+      50
+    ],
+    "pre_height": 0.08,
+    "lift_height": 0.15,
+    "max_depth_below_top": 0.04,
+    "min_depth_below_top": 0.008,
+    "depth_fraction": 0.65,
+    "hand_floor_clearance": 0.004,
+    "jaw_margin": 0.012,
+    "slice_width": 0.02,
+    "max_slices": 8,
+    "scene_radius": 0.2,
+    "scene_min_above_table": 0.006,
+    "collision_points_ok": 6,
+    "plan_wall_s": 40,
+    "plans_wanted": 1,
+    "low_slice_weight": 0.5,
+    "jaw_margin_relaxed": 0.004,
+    "tall_height": 0.07,
+    "tall_max_depth": 0.065,
+    "tall_depth_fraction": 0.5,
+    "flat_height": 0.025,
+    "flat_floor_clearance": 0.001,
+    "centre_bucket": 0.03,
+    "empty_lower_step": 0.006,
+    "empty_lower_max": 0.012,
+    "blocked_close_tol": 0.015,
+    "slip_alternate_depth": true,
+    "slip_deeper_step": 0.02,
+    "slip_depth_tol": 0.012,
+    "group_fail_skip": 1,
+    "group_memory_radius": 0.03
+  },
+  "approach_max_actions": 70,
+  "close_settle_actions": 10,
+  "open_settle_actions": 6,
+  "lift_hold_actions": 4,
+  "extra_lift": 0.05,
+  "skills": {},
+  "perception": {},
+  "scene_max_above_table": 0.3,
+  "scene_hand_exclusion": 0.03,
+  "regrasp_settle_actions": 6,
+  "max_target_bottom_above_table": 0.06,
+  "max_total_lift": 0.32,
+  "extra_lift_steps": 4,
+  "release_above_grasp": 0.03,
+  "slow_lift_height": 0.04,
+  "slow_lift_step": 0.005,
+  "slow_lift_actions_per_step": 2,
+  "slow_lift_tol": 0.002,
+  "descent_chunk_actions": 4,
+  "descent_min_progress": 0.002,
+  "pre_joint_envelope": {
+    "0": [
+      -1.5,
+      1.5
+    ],
+    "2": [
+      0.0,
+      3.4
+    ],
+    "3": [
+      -2.15,
+      1.0
+    ]
+  }
+}

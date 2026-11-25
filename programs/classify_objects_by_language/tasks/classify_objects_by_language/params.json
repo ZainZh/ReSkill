@@ -1,0 +1,42 @@
+{
+  "_note": "r0B_lean tunables (ctx.params). 'lean' = graph.py knobs; all values are guesses to be tuned on DEV probes. table_z_guess is only used for the park-pose occlusion heuristic (grasp heights use the live depth support plane).",
+  "max_stagnant_visits": 30,
+  "max_transitions": 200,
+  "lean": {
+    "transit_step": 0.15,
+    "fine_step": 0.07,
+    "pre_height": 0.12,
+    "grasp_depth": 0.022,
+    "lift_height": 0.14,
+    "close_actions": 8,
+    "open_actions": 8,
+    "drop_clearance": 0.05,
+    "home_reserve": 25,
+    "min_actions_per_object": 85,
+    "max_attempts_per_spot": 3,
+    "max_survey_fail": 6,
+    "table_z_guess": 0.765,
+    "retry_grasp_depth": 0.035,
+    "carry_step": 0.1,
+    "max_attempts_misplaced": 2,
+    "carry_detour": false,
+    "held_acc": 0.05,
+    "pair_conflict": "full",
+    "zero_api": true,
+    "remove_misplaced": false,
+    "verify": false,
+    "sam3_client": {
+      "endpoint": "http://127.0.0.1:18891",
+      "timeout": 60
+    },
+    "local_ground": {},
+    "drop_min_gain": 0.1,
+    "wrist_obj": true,
+    "wrist_table_h": 0.06
+  },
+  "skills": {},
+  "perception": {
+    "max_instances": 14
+  },
+  "_note_z0": "z0_local: zero-API track. Survey grounding = local SAM3 (agraph/sam3_raw_client.py -> tasks/.../local_ground.py); remote semantic calls refused."
+}

@@ -1,0 +1,7 @@
+{
+  "_note": "Task tunables for store_tools_in_toolbox; frozen with the bundle and exposed as ctx.params. Keys under \"skills\" / \"perception\" override runtime_params.json for this task. The native action limit is not set here.",
+  "max_stagnant_visits": 4,
+  "max_transitions": 50,
+  "skills": {},
+  "perception": {}
+}

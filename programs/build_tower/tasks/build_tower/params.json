@@ -1,0 +1,59 @@
+{
+  "_note": "Task tunables for build_tower (r0B_lean). Values are geometric choices or probe depth measurements (head depth: cube top - table = 0.038 m, boards 0.020 m thick, long board 0.374 m, short board 0.244 m); none come from demos.",
+  "max_stagnant_visits": 2,
+  "max_transitions": 24,
+  "lean": {
+    "joint_speed": 0.1,
+    "carry_speed": 0.07,
+    "settle_actions": 2,
+    "close_actions": 10,
+    "open_actions": 5,
+    "pre_height": 0.08,
+    "lift_height": 0.07,
+    "retreat": 0.06,
+    "carry_clear": 0.05,
+    "release_gap": 0.006,
+    "held_ratio": 0.12,
+    "tip_clear": 0.004,
+    "grasp_depth": {
+      "cube": 0.02,
+      "board0": 0.012,
+      "board7": 0.012,
+      "plank": 0.009,
+      "wedge": 0.02
+    },
+    "tilts_deg": [
+      15,
+      30
+    ],
+    "pillar_offset": 0.13,
+    "top_offset": 0.08,
+    "pref_y": -0.19,
+    "y_min": -0.22,
+    "y_max": -0.08,
+    "cube_h": 0.038,
+    "verify_tol": 0.012,
+    "home_reserve": 40,
+    "link_radius": 0.055,
+    "hand_radius": 0.02,
+    "above_table": 0.007,
+    "min_blob_px": 60,
+    "layout_reach_candidates": 12,
+    "dims": {
+      "board0": 0.02,
+      "board7": 0.02,
+      "cube": 0.038,
+      "plank": 0.014,
+      "wedge": 0.037
+    },
+    "free_speed": 0.1,
+    "edge_jump": 0.006,
+    "wedge_ridge_across": true,
+    "_wedge_note": "wedge_ridge_across: native check aligns wedge x with short-board x; both start near identity yaw with ridge along world y and board long axis along world x, so the ridge is kept perpendicular to the board (inference from initial head-depth yaw, unverified).",
+    "parallel_cubes": true,
+    "_parallel_note": "r2R_robust_np: pillars and top cubes placed by both arms simultaneously (one shared survey/verify); falls back to sequential per side. top_pair_long_grasp: in the top-cube pair close bricks across the long side so the open fingers spread across the board, not toward the other hand (it1 screen: short-side pairs left 6-10 mm release error, long-side 0.1 mm).",
+    "top_pair_long_grasp": true
+  },
+  "skills": {},
+  "perception": {}
+}

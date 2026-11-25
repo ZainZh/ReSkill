@@ -1,0 +1,17 @@
+{
+  "origin": "gsa_pickup_nopriv_20261017 validation_r1 frozen source (read-only copy, unmodified)",
+  "files": {
+    "robot_io.py": {
+      "source": "/root/github/RoboDojo/.rs/gsa_pickup_nopriv_20261017/runs/validation_r1/source/robot_io.py",
+      "sha256": "8429fa899fa969ac136cd4e0493ad7dc36f7da7abc2a943c2e60e1657c53cabb"
+    },
+    "perception_geometry.py": {
+      "source": "/root/github/RoboDojo/.rs/gsa_pickup_nopriv_20261017/runs/validation_r1/source/perception_geometry.py",
+      "sha256": "d6ba31ba209bd59b7d892d9729c61208b12a615588a27cf277bd2b79f8161dbd"
+    },
+    "sam_service.py": {
+      "source": "/root/github/RoboDojo/.rs/gsa_pickup_nopriv_20261017/runs/validation_r1/source/sam_service.py",
+      "sha256": "f7cd60eb8ff32fccaa93c4acbb5586a0c6e26c5db876439e634ff80b74fd85cd"
+    }
+  }
+}

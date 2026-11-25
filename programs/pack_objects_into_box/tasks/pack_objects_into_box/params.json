@@ -1,0 +1,462 @@
+{
+ "_note": "z0 md11b: md10 + tilt passes 10/20/0 (tilt-0 placements refound on the table 16% vs 8% at tilt 10); tilt_cap 0.04 (slower wall crossing). z0_local it4: it3 + r4F_tidy it15-it17d ports (lean.unwrap_max 5.85, drag.lateral edge rule + min_lat 0.06, fix_axis with in-box heading from depth templates instead of Claude, extra_attempt min_remaining 200). z0_local it1: ZERO API - survey = SAM3 text prompts (local service via agraph.local_vision) + depth size check + mutual exclusion; where from box footprint; front/back from depth-profile templates (heading_templates.json); no Claude front_check. Controller otherwise = r4F_tidy it9 5a392819. r4F_tidy it9: it6 + push_resurvey (from it7) + drag.lateral (no-plan drag may also pull the box along its long axis toward one arm: diagonal/lateral pull of the front-wall pinch, so a centred box or one with an object right in front can still come within reach); max_drags 3. r4F_tidy it6: it5 + high_first (direct plans with slide_extra>=3.5cm at any tilt/arm tried before the original height; 1cm step dropped). r4F_tidy it5: controller copied from sibling r5F_wall it2 (0e2e00f8) + high slide-in (slide_extra: cross the near wall up to 5 cm higher (5/3.5/2/1 cm), then vertical descent; original height as fallback). Sibling note: r1F_lowrelease it11: it9 + pinch-pull of the box front wall (from r1F_dragbox) when an object has no plan and the box is >0.45 m from both bases; grasp-arrival check (blocked >8 mm: back up, shift 1.5 cm toward centre, retry once). palm_wall check present but off. it11: thin objects first, each in a side lane on the box floor (order hammer, toothbrush, car, shoe). it12: hammer slide height +2 cm (droop allowance), pitch extra 1.5x|slip| (<=4 cm), hammer in the middle lane (toothbrush takes a side lane). Loaded hammer motion at 0.6x joint speed. it14: hammer grasp at measured CoM (com_grasp). it16: zoomed front/back re-check (Claude, crop with A/B end markers) for car/toothbrush/hammer on the table; cached per object position.",
+ "max_stagnant_visits": 6,
+ "max_transitions": 30,
+ "skills": {},
+ "perception": {},
+ "lean": {
+  "home_reserve_actions": 70,
+  "joint_cap": 0.18,
+  "unwrap_max": 5.85,
+  "park_cap": 0.2,
+  "park_swing": 1.35,
+  "ready_raise": 0.08,
+  "cart_piece": 0.05,
+  "yaw_piece_deg": 25,
+  "carry_yaw_piece_deg": 45,
+  "table_z_prior": 0.765,
+  "max_rounds": 3,
+  "max_attempts_per_object": 2,
+  "min_actions_per_object": 110,
+  "order": [
+   "hammer",
+   "electric_toothbrush",
+   "car",
+   "shoe"
+  ],
+  "grasp_depth": 0.028,
+  "min_grasp_above_table": 0.008,
+  "finger_table_clearance": 0.004,
+  "hover": 0.1,
+  "close_actions": 9,
+  "open_actions": 6,
+  "held_gap": 0.003,
+  "carry_margin": 0.03,
+  "relay_lift": 0.05,
+  "relay_release_gap": 0.012,
+  "relay_x": [
+   0.0,
+   -0.05,
+   0.05,
+   -0.1,
+   0.1
+  ],
+  "relay_y": [
+   -0.2,
+   -0.16,
+   -0.24,
+   -0.12
+  ],
+  "tilt_passes": [
+   [
+    10
+   ],
+   [
+    20
+   ],
+   [
+    0
+   ]
+  ],
+  "wall_margin": 0.02,
+  "release_below_rim": 0.02,
+  "entry_gap": 0.03,
+  "lane": 0.035,
+  "su_max": 0.02,
+  "held_cap": 0.08,
+  "tilt_cap": 0.04,
+  "release_grip": 0.85,
+  "relay_front": [
+   0.075,
+   0.11,
+   0.15
+  ],
+  "relay_side": [
+   0.0,
+   0.06,
+   -0.06,
+   0.12,
+   -0.12,
+   0.18,
+   -0.18
+  ],
+  "relay_radius": 0.08,
+  "max_relay_points": 24,
+  "measure_in_hand": true,
+  "in_hand_min_points": 60,
+  "in_hand_max_off": 0.03,
+  "grasp_depth_by": {
+   "shoe": 0.04,
+   "car": 0.04,
+   "electric_toothbrush": 0.04
+  },
+  "controller_seconds": 1900,
+  "max_piece_jump": 1.2,
+  "relay_grasp_tilts": [
+   0,
+   15,
+   30
+  ],
+  "grasp_tilt_max_dot": 0.8,
+  "relay_reach": 0.47,
+  "grasp_shift_by": {
+   "hammer": 0.045,
+   "electric_toothbrush": -0.02
+  },
+  "plan_native": false,
+  "relocalize_relay": true,
+  "release_open": 0.01,
+  "wall_inner": 0.012,
+  "finger_reach": 0.03,
+  "carry_radius": 0.08,
+  "coll_margin": 0.02,
+  "coll_finger_margin": 0.006,
+  "coll_min_hits": 2,
+  "out_clear": 0.03,
+  "top_open_actions": 3,
+  "box_check": true,
+  "regrasp": true,
+  "collision_check": true,
+  "coll_shifts": [
+   0.03,
+   -0.03,
+   0.055,
+   -0.055
+  ],
+  "shift_end_keep": 0.03,
+  "relay_up": 0.08,
+  "box_move_tol": 0.008,
+  "box_check_pad": 0.06,
+  "coll_grasp_margin": 0.008,
+  "defer_flap_objects": true,
+  "standoff": [
+   0.1,
+   0.14
+  ],
+  "dogleg_gain": 0.01,
+  "box_rim_tol": 0.012,
+  "shoe_heel_check": false,
+  "shoe_peak_frac": 0.06,
+  "box_check_window": 0.06,
+  "depth_window": 0.03,
+  "depth_len_range": [
+   0.8,
+   1.15
+  ],
+  "late_if_steep": [
+   "shoe"
+  ],
+  "steep_tilt": 20,
+  "length_floor": {
+   "shoe": 0.145,
+   "hammer": 0.145,
+   "electric_toothbrush": 0.14
+  },
+  "_length_floor_note": "class length floors (m) from our own survey measurements over DEV/dev3 runs (shoe 0.142-0.163, hammer 0.148-0.155, toothbrush 0.144-0.165); not from assets",
+  "drag": {
+   "enabled": true,
+   "target_r": 0.42,
+   "trigger_r": 0.45,
+   "min_front_y": -0.17,
+   "max_d": 0.16,
+   "min_d": 0.04,
+   "overlap": 0.035,
+   "wall": 0.004,
+   "offsets": [
+    0.0,
+    0.03
+   ],
+   "close_actions": 14,
+   "pinch_min": 0.0007,
+   "cap": 0.012,
+   "max_drags": 3,
+   "lateral": {
+    "enabled": true,
+    "max_lat": 0.2,
+    "min_lat": 0.06,
+    "max_norm": 0.2,
+    "max_abs_x": 0.3,
+    "min_gain": 0.02,
+    "lane_pad": 0.03,
+    "z_margin": 0.0,
+    "finger_band": 0.05,
+    "finger_halfwidth": 0.05,
+    "offsets": [
+     0.0,
+     0.03,
+     -0.03,
+     0.06,
+     -0.06
+    ],
+    "edge_r": 0.55,
+    "edge_max_off": 0.045,
+    "land_pad": 0.06
+   },
+   "reobserve": true
+  },
+  "palm_wall_margin": 0.0,
+  "palm_wall_min_hits": 3,
+  "grasp_block_tol": 0.008,
+  "block_shift": 0.015,
+  "block_rise": 0.04,
+  "thin_lanes": true,
+  "entry_droop": {
+   "hammer": 0.02
+  },
+  "pitch_gain": 1.5,
+  "pitch_extra_max": 0.04,
+  "middle_lane": [
+   "hammer"
+  ],
+  "slow_carry": {
+   "hammer": 0.6,
+   "shoe": 0.6
+  },
+  "com_grasp": [
+   "hammer"
+  ],
+  "com_bias": {
+   "hammer": 0.0
+  },
+  "_com_note": "it14: hammer grasp at the measured uniform-density CoM along the heading (height-weighted 5 mm columns of the survey cloud) instead of +4.5 cm toward the head; video dev303 it13: neck grasp let the handle swing ~30-60 deg down in the pinch",
+  "front_check": [],
+  "front_zoom_px": 400,
+  "front_cache_r": 0.03,
+  "wall_roll": {
+   "enabled": true,
+   "near": 0.12,
+   "margin": 0.005,
+   "stride": 2,
+   "phis": [
+    0,
+    10,
+    15,
+    20,
+    25,
+    30
+   ],
+   "extras": [
+    0.02,
+    0.012,
+    0.007
+   ],
+   "max_rise": 0.012,
+   "front_gap": 0.075,
+   "min_hits": 1,
+   "names": [
+    "electric_toothbrush",
+    "hammer"
+   ]
+  },
+  "wall_shove": {
+   "enabled": false,
+   "per_object": 1,
+   "max_total": 3,
+   "center_gap": 0.075,
+   "edge_gap": 0.045,
+   "top_margin": 0.015,
+   "target_gap": 0.095,
+   "min_d": 0.03,
+   "max_d": 0.07
+  },
+  "wall_clear": 0.02,
+  "slide_extra": [
+   0.05,
+   0.035,
+   0.02,
+   0.0
+  ],
+  "high_first": {
+   "enabled": true,
+   "min_extra": 0.035,
+   "tilt_passes": [
+    [
+     10
+    ],
+    [
+     20
+    ],
+    [
+     0
+    ]
+   ]
+  },
+  "push_resurvey": {
+   "enabled": true,
+   "min_move": 0.03,
+   "min_turn": 10.0,
+   "max_breaks": 2
+  },
+  "fix_axis": {
+   "enabled": true,
+   "min_angle": 45.0,
+   "max_per_object": 1,
+   "max_per_round": 2,
+   "rim_clear": 0.03,
+   "drop": 0.03,
+   "min_actions": 90,
+   "block_tol_gain": 1.5,
+   "tilts": [
+    0,
+    10,
+    20
+   ],
+   "rim_clears": [
+    0.03,
+    0.0,
+    -0.03
+   ],
+   "extra_round": true,
+   "min_vis_len": {
+    "car": 0.06,
+    "shoe": 0.1,
+    "hammer": 0.1,
+    "electric_toothbrush": 0.1
+   },
+   "min_points": 150,
+   "_note": "r4F it17: after nothing is left on the table, turn an in-box object whose head-camera axis is >=60 deg off the box long axis; tilts/rim_clears: leaned hand and lower turn heights for far boxes; extra_round: one extra survey after the round cap, fix only; it17b: skip objects whose visible length (length_raw before the class floor) or point count is small (hidden under another object)",
+   "exclude": [
+    "hammer"
+   ],
+   "worst_first": true,
+   "_note_md16": "z0 md16: hammer excluded (in-box axis unreliable), min_angle 60->45 (scored within 45), worst angle first, up to 2 per round"
+  },
+  "extra_attempt": {
+   "enabled": true,
+   "extra": 1,
+   "min_remaining": 200,
+   "_note": "r4F it17c: one extra attempt per table object while >=250 actions above the reserve remain (final survey often said nothing_left with an object on the table at step 780-1050)"
+  },
+  "box_prior": {
+   "enabled": true,
+   "erode_px": 2,
+   "length": 0.196,
+   "width": 0.17,
+   "height": 0.109,
+   "height_tol": 0.006,
+   "search": 0.12,
+   "ang": 30.0,
+   "band": 0.01,
+   "min_frac": 0.4,
+   "height_hi": 0.111,
+   "track_seed": true,
+   "track_search": 0.08,
+   "track_ang": 20.0,
+   "track_margin": 0.05,
+   "rewhere": "to_in_box",
+   "keep_tracked": true,
+   "world_seed": {
+    "enabled": true,
+    "ang": 36.0,
+    "max_dev": 40.0,
+    "margin": 0.02,
+    "max_dev_tracked": 45.0
+   }
+  },
+  "rgb_heading": [
+   "car",
+   "shoe",
+   "hammer"
+  ],
+  "local_table": {
+   "enabled": true,
+   "ring_in": 0.05,
+   "ring_w": 0.08,
+   "band": 0.02,
+   "min_h": 0.009,
+   "erode_px": 1
+  },
+  "depth_scale": {
+   "enabled": true,
+   "table_z": 0.766,
+   "min_points": 2000,
+   "max_dev": 0.04,
+   "wide_fallback": true,
+   "wide_range": [
+    0.45,
+    1.6
+   ]
+  },
+  "_note_md5": "z0 md5: md3 + grasp_depth_by car/electric_toothbrush 0.04 (ft7 reads their top a few mm high, top_local-0.028 then lifts the grasp above the finger-clearance floor: md car fail 38% at hang>18 mm vs 15% at the floor, toothbrush 46% vs 3%).",
+  "_note_md6": "z0 md6: md5 + silver car front/back from the dark-cabin centroid (localsurvey.heading_rgb, cue rgb_dark).",
+  "flap_outside": {
+   "enabled": true,
+   "margin": 0.012,
+   "min_h": 0.03,
+   "lift": [
+    0.0,
+    0.02
+   ]
+  },
+  "grasp_hang_max": {
+   "shoe": 0.025
+  },
+  "hover_transit": {
+   "enabled": false,
+   "clear": 0.1
+  },
+  "direct_all_first": true,
+  "car_windshield": {
+   "enabled": true,
+   "min_dist": 40.0,
+   "max_margin": 0.05,
+   "min_score": 0.2,
+   "pad_px": 30,
+   "min_off_px": 1.0
+  },
+  "local_geom": {
+   "enabled": true,
+   "band": 0.03,
+   "min_dz": 0.003,
+   "max_dz": 0.03
+  },
+  "rotate": {
+   "enabled": true,
+   "thr": 28.0,
+   "max_rot": 2,
+   "min_actions": 90,
+   "max_turn": 50.0,
+   "target": 0.0,
+   "margin": 8.0,
+   "sweep_pad": 0.015,
+   "end_in": 0.035,
+   "step_deg": 6.0,
+   "tilts": [
+    0,
+    15,
+    30
+   ],
+   "cap": 0.012,
+   "min_frac": 0.4
+  },
+  "link_solid": {
+   "enabled": true,
+   "pad": 0.01,
+   "above_rim": 0.05,
+   "links": [
+    "link2",
+    "link3"
+   ]
+  },
+  "car_rtemplate": {
+   "enabled": true,
+   "max_margin": 0.05,
+   "min_dist": 40.0,
+   "min_margin": 0.03,
+   "plane_dz": 0.02
+  }
+ },
+ "_note_md7": "z0 md7: md6 + flap_outside (box points outside the wall rectangle >3 cm over the table, plus a 2 cm raised copy, join the hand flap tree: ft7 reads outward flaps 2-6 cm low so they fell under rim+5 mm and the hand pressed them, dev3 18 box flipped) + box_prior.height_hi 0.111 (rim clamp upper bound, was +0.115) + drag.reobserve (fresh head-frame box fit before the pinch).",
+ "_note_md8": "z0 md8: md7 + grasp_hang_max shoe 0.025 (shoe grasps with hang >=0.035 lose the shoe on lift: md 74% of 46, sim 26%, floor grasps 6%).",
+ "_note_md9": "z0 md9: md8 + box_prior track_seed (later surveys also fit the known-size box seeded at the tracked box_check pose; take it unless the SAM3-seeded fit has frac >0.05 higher) + rewhere (in_box/table judged against the fitted box). md6-8: 16% of md episodes had a later survey box >5 cm off the tracked pose (SAM3 mask of a filled box = back flap), 6/42 success vs 112/217. keep_tracked: if neither fit reaches min_frac on a later survey, keep the tracked pose instead of the raw measured footprint.",
+ "_note_md10": "z0 md10: md9 with rewhere only table->in_box (md9 flipped in-box hammers to table 23x; re-found-on-table after release rose to 20%).",
+ "_note_md13": "z0 md13: md11b + drag.lateral.land_pad 0.06 (graph = md12: lateral drag target rejected when >=10 table-object points fall inside the box footprint +6 cm; DEV 6). hover_transit off.",
+ "_note_md16": "z0 md16: md13 (md11b + drag land_pad 0.06) + fix_axis exclude hammer / min_angle 45 / worst first / 2 per round",
+ "_note_md23": "z0 md23: md16 + speed: joint_cap .12->.18, park_cap .15->.2 (unloaded moves), close 12->9, open 8->6, top_open 5->3. Successful runs use ~1041/1300 actions; all failures hit 1300",
+ "_note_md25": "z0 md25: md23 + direct_all_first: all direct tilt passes before any relay (relays ~110 actions more)",
+ "_note_psrnd_r1": "psrnd r1 (random): depth_scale.wide_fallback (ratio-mode start when the +-3 cm fit fails; random tables put ft7 5-16 cm off) + localsurvey size priors (hammer H<=.07, car H>=.008) + robot-zone reject (y<-0.33).",
+ "_note_psrnd_r2": "psrnd r2: r1 + car_windshield (cars whose rgb template fits poorly - unknown model - take front = long axis toward the SAM3 'windshield' mask; offline random 6->10/13, base 30->29/30).",
+ "_note_psrnd_r3": "psrnd r3: r2 + depth_scale.wide_range [0.45,1.6] (glossy tables need s=0.57) + local_geom (object geometry retried against a local ring table height when the global plane fails; scaled ft7 tables undulate 1-2 cm) + shoe H<=.25.",
+ "_note_psrnd_r4": "psrnd r4: r3 + robot-zone candidates (y<-0.33) only as a last resort per class (r1 hard reject hid a shoe dropped at y -0.35, random L20).",
+ "_note_psrnd_r5": "psrnd r5: r4 + slow_carry shoe 0.6 (random shoes 0.5-0.65 kg; lost_in_carry 11/58 shoe attempts vs ~2/58 base; video random dev313: shoe pitches out of the pinch mid-carry)."
+}

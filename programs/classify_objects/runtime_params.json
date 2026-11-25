@@ -1,0 +1,72 @@
+{
+  "_note": "Shared runtime parameters, frozen with every candidate. Task params.json may override skill keys under 'skills'.",
+  "unsupported_skills": {
+    "handover": "v1 runtime returns FAIL cause=skill_unsupported_v1 with 0 actions; graphs must route to another recovery. No physical handover controller exists yet."
+  },
+  "untested_physically": [
+    "pick",
+    "transport",
+    "place",
+    "push",
+    "release",
+    "retreat",
+    "home",
+    "verify_held",
+    "reachable",
+    "RGBDPerception",
+    "HeadCamera",
+    "deploy/bootstrap in Isaac",
+    "plan_carry",
+    "execute_carry",
+    "refresh_attachment",
+    "clear_arm",
+    "plan_route",
+    "CarryPlanner joint-interpolation checks"
+  ],
+  "skills": {
+    "table_z_prior": 0.74,
+    "_table_z_prior_note": "prior: fixed RoboDojo table top height (m) declared once; identical to the framework constant table_height=0.74 the native cuRobo IK already uses. Used only as travel-height floor and support-plane fallback, never as an object observation.",
+    "pos_tol": 0.006,
+    "rot_tol": 0.06,
+    "final_pos_tol": 0.004,
+    "segment_max_actions": 40,
+    "cart_step": 0.04,
+    "approach_height": 0.1,
+    "grasp_depth_below_top": 0.03,
+    "plane_clearance": 0.003,
+    "jaw_margin": 0.004,
+    "tilt_degrees": [
+      0,
+      20,
+      -20,
+      35,
+      -35
+    ],
+    "close_settle_actions": 8,
+    "open_settle_actions": 6,
+    "lift_height": 0.12,
+    "held_radius": 0.1,
+    "held_min_rise": 0.03,
+    "jaw_gap_min": 0.002,
+    "travel_height_above_table": 0.22,
+    "push_step": 0.02,
+    "retreat_height": 0.12,
+    "home_joint_step": 0.1,
+    "home_tol": 0.02
+  },
+  "perception": {
+    "sam_endpoint": "http://127.0.0.1:18873",
+    "sam_min_score": 0.5,
+    "sam_min_pixels": 30,
+    "max_instances": 12,
+    "hand_exclusion_radius": 0.012,
+    "held_exclusion_radius": 0.08,
+    "table_z_prior": 0.74
+  },
+  "semantic": {
+    "requested_model": "claude-opus-5-5-cc",
+    "timeout_seconds": 900,
+    "poll_seconds": 0.5
+  },
+  "depth_source": "model"
+}

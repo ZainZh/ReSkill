@@ -1,0 +1,334 @@
+{
+  "_note": "r0B_lean organize_table params. Engineering guesses unless noted; no layout/asset/config values.",
+  "order": [
+    "mouse",
+    "alarm",
+    "keyboard",
+    "figurine"
+  ],
+  "only": null,
+  "survey_tries": 1,
+  "table_z_default": 0.765,
+  "jaw_max_object_m": 0.078,
+  "tilts": {
+    "mouse": [
+      0,
+      20,
+      35
+    ],
+    "figurine": [
+      50,
+      65,
+      35,
+      80
+    ],
+    "alarm": [
+      0,
+      20,
+      35,
+      50,
+      57,
+      65,
+      72
+    ]
+  },
+  "attempts": {
+    "mouse": 3,
+    "figurine": 5,
+    "alarm": 4
+  },
+  "reserve_actions": {
+    "mouse": 330,
+    "alarm": 260,
+    "figurine": 130
+  },
+  "close_actions": 10,
+  "open_actions": 8,
+  "figurine_xy_tol_m": 0.02,
+  "drawer_margin_m": 0.07,
+  "drawer_front_inset_m": 0.075,
+  "keyboard_rounds": 7,
+  "keyboard_reserve": 80,
+  "kb_tol_x_m": 0.025,
+  "kb_tol_y_m": 0.015,
+  "push_tilts": [
+    0,
+    25,
+    45,
+    60
+  ],
+  "push_clearance_m": 0.006,
+  "push_standoff_m": 0.04,
+  "finger_face_m": 0.04,
+  "push_step_m": 0.015,
+  "lift_m": {
+    "mouse": 0.08,
+    "figurine": 0.025,
+    "alarm": 0.08
+  },
+  "_finger_face_note": "probe B dev00/dev01: keyboard ended 3.5-4.5 cm beyond the commanded TCP stroke end in both x and y pushes",
+  "push_piece_actions": 6,
+  "push_stall_m": 0.03,
+  "kb_tol_yaw_deg": 10,
+  "kb_rot_inset_m": 0.03,
+  "kb_rot_gain": 0.8,
+  "reach_grasp_roles": [
+    "figurine"
+  ],
+  "reach_grasp_height": [
+    0.35,
+    0.035,
+    0.07
+  ],
+  "_figurine_note": "probe C: top grasp 4.5 cm below the top of tall figurines (cactus, iron-man style) dropped/toppled them 2/2; now a tilted grasp along the reach direction at 35% of the height",
+  "stall_actions": 5,
+  "kb_wide_grip": 1,
+  "_kb_note": "probe D: dual closed-gripper y push rotated the keyboard 12-20 deg 2/2 and its approach took ~200 actions (arms likely interfere); now one arm at the keyboard centre with the jaws OPEN across the push (two contact points ~9 cm apart)",
+  "_figurine_tol_note": "probe E dev00: native counted the figurine with my head-camera centre 2.4-3.2 cm from the stand centre",
+  "retreat_back_m": 0.08,
+  "retreat_clear_m": 0.06,
+  "kb_cover_margin_m": 0.0,
+  "frame_shrink_m": 0.01,
+  "kb_y_push_x_offset_m": 0.02,
+  "_kb_note2": "probe F: single open-jaw y push at the keyboard centre still turned it -10..-15 deg (left end leads) -> push point +2 cm in x; stop as soon as the observed footprint covers the observed frame (native latched the keyboard in probe F dev0 at a 15 deg yaw, later rotation pushes moved it out)",
+  "figurine_drop_m": 0.005,
+  "stand_max_height_m": 0.03,
+  "stand_max_extent_m": 0.09,
+  "base_band_m": 0.03,
+  "wrist_snapshots": true,
+  "_it2_note": "it1 screen: a 'stand' at the figurine's own pot (dev0) and figurines toppling after release; base-centred grasp/place, 5 mm drop, stand sanity, no retries on a toppled figurine",
+  "view_bias_frac": 0.25,
+  "kb_x_margin_m": 0.012,
+  "_order_note": "it1 full DEV dev3: a toppled figurine ended inside the keyboard target zone (score 50 with keyboard 'covered'); keyboard now before figurine unless the figurine stands in the keyboard sweep",
+  "finger_face_small_m": 0.01,
+  "_face_small_note": "it1 dev5: a 2.4 cm corrective y push with the 4 cm offset never touched the keyboard; the 4 cm is mostly post-push sliding of long pushes",
+  "pre_back_m": {
+    "figurine": 0.14
+  },
+  "place_yaws_deg": {
+    "mouse": [
+      0
+    ]
+  },
+  "joint_jump_rad": 1.5,
+  "ik_retries": 4,
+  "fig_band_grasp": true,
+  "fig_band_margin_m": 0.025,
+  "fig_upper_margin_m": 0.012,
+  "fig_band_half_m": 0.008,
+  "high_approach_roles": [
+    "figurine"
+  ],
+  "slow_place_roles": [
+    "alarm",
+    "alarm_stage",
+    "figurine"
+  ],
+  "slow_place_m": 0.03,
+  "settle_actions": 3,
+  "_it3_note": "it2 figurines (cactus 18cm, Iron-Man 19cm on 7cm disc, Hulk 19cm with 15cm torso) were all grasped at table+6-7cm, below their centre of mass: Iron-Man pivoted in the grip, cactus knocked over on approach, Hulk 3x empty (jaws across its 15cm width). it3: cloud-band grasp just above the CoM with Claude-named kind as height prior, farther/higher pre-grasp, slow contact descent; alarm dev06 plan cost 14.5 rad -> IK solutions wrapped to nearest 2pi equivalent, servo jumps >1.5 rad re-solved/rejected, place pose may yaw about world z so the pick tilt need not serve the drawer-top place.",
+  "fig_lean_min_m": 1.0,
+  "_fig_lean_note": "offline replay on it2 survey clouds: foot-vs-grasp-band offset estimates of 2-3 cm even for the cylindrical cactus pot (one-sided view noise) -> ignore leans below 4 cm",
+  "figurine_windows": {
+    "plant": [
+      0.3,
+      0.85,
+      0.6
+    ],
+    "slim": [
+      0.5,
+      0.88,
+      0.78
+    ],
+    "bulky": [
+      0.3,
+      0.8,
+      0.5
+    ],
+    "other": [
+      0.3,
+      0.85,
+      0.6
+    ]
+  },
+  "alarm_sweep_m": 0.12,
+  "_it4_note": "it3 screen 75/50/75: dev01 Iron-Man grasped at 0.58h (10.9cm, 1.2cm waist) pivoted ~90deg in the grip during carry (wrist preopen frame) -> CoM higher than estimated, slim pref 0.78h (chest); dev02 cactus was swept over by the left arm reaching the alarm (video_trace ~action 130) -> figurine before alarm when it is near the base->alarm corridor; Claude called the cactus 'bulky figure' -> concrete kind names; dev02 got a 3cm place offset from a noisy lean estimate -> offsets off; dev00 cactus band grasp at 0.49h worked (placed upright 2.3cm).",
+  "fig_band_margin_by_kind": {
+    "plant": 0.014
+  },
+  "_it5_note": "it4 screen invalid for dev01/02: controller crashed in the new alarm-sweep log (kwarg 't' collides with the logger's timestamp) -> renamed. it4 dev00: cactus stem grasp at 7.9cm (tilt 50) tipped the cactus over while the jaws closed (video 360-370): a push high on a pot-heavy body tilts it instead of sliding it -> cactus grasp on the pot (0.12-0.40h, pref 0.20h, width up to 6.4cm).",
+  "mouse_yaw_tol_deg": 30,
+  "_it6_note": "it5 screen 100/75/50 (dev00 first native success). dev01 75: Iron-Man chest grasp worked (2nd place 1.8cm, upright) but the mouse ended ~45 deg yawed (also it3 dev01): survey long axis read ~10 deg off y because the home right gripper occludes the mouse -> the head check of the placed mouse now also requires its long axis within 30 deg of world y, else the retry re-grasps from the pad with the new axis.",
+  "fig_correct_gain": 0.8,
+  "fig_correct_max_m": 0.06,
+  "_it6_note2": "figurine head-check tolerance 3 -> 1.5 cm with offset correction of the next place (gain 0.8, |corr|<=4cm): it3 dev00 cactus 2.3 cm and it5 dev01 Iron-Man 1.8 cm both upright but not counted natively (native limit 2-4.5 cm by asset); native full success ends the episode, so a retry only happens when something is still not counted.",
+  "_it6_note3": "it5 dev04: mouse pad cloud had stray high points (z up to 0.93, right gripper edge) -> top_rect's 'top band' became a 10x1 cm sliver at y=-0.24 and the mouse went off the pad; flat fixtures now use points <= table+2.5cm. The mouse re-check then matched the flat stand -> movable items must stand >1.5 cm above the table.",
+  "joint_limits_deg": [
+    [
+      -180,
+      180
+    ],
+    [
+      0,
+      180
+    ],
+    [
+      0,
+      180
+    ],
+    [
+      -90,
+      90
+    ],
+    [
+      -90,
+      90
+    ],
+    [
+      -180,
+      180
+    ]
+  ],
+  "_joint_limits_note": "r1F it1: physical X5 joint limits (robot description; LESSONS.md #16 from classify/r0B_lean). cuRobo/URDF allow +-10 rad; out-of-range solutions are not followed (parent it6 dev07 alarm: 11 servo stalls, 107 actions, empty grasp). IK answers are wrapped into this range or re-solved (ik_limit_tries).",
+  "ik_limit_tries": 3,
+  "alarm_depth_first": true,
+  "alarm_upright_rise_m": 0.042,
+  "alarm_relay": true,
+  "wide_figure_m": 0.12,
+  "top_grasp_depth_m": 0.035,
+  "top_grasp_tilts": [
+    0,
+    20,
+    35,
+    50,
+    65
+  ],
+  "hang_settle_actions": 8,
+  "_r1F_it1_note": "r1F it1 (fork of r0B_lean 0f3f2268): (1) physical joint limits on every IK answer; (2) alarm held across its depth (short axis) first at any tilt, width hold only as fallback; placed-clock check requires top 4.2 cm above the drawer top (upright 5.8 vs lying 2.5), a lying clock stops retries; slow contact descent for the alarm; (3) no drawer plan -> self-relay: put the clock down at a staging spot 0.38-0.46 m in front of the left base from which the drawer plan is IK-feasible; (4) figures wider than 12 cm (Hulk, survey extent ~16 cm; others <= 9 cm) are grasped across the narrow axis of their top 2.5 cm (head/hunched back) and hang from the grip, 8-action settle above the stand.",
+  "_r1F_it1_note2": "probes B/G: re-orienting relay made the alarm upright on dev03 and dev06 (native 25 each); Hulk top grasp at top-2.5cm slipped off the head on lift (dev07) and has no IK pre-grasp near the base (dev05, falls back to the band grasp) -> top grasp 3.5 cm deep (fingers below the head/shoulder bulge).",
+  "stage_depth_only": true,
+  "relay_replan_tries": 2,
+  "stuck_abort_m": 0.04,
+  "drawer_clear_m": 0.03,
+  "detour_roles": [
+    "figurine"
+  ],
+  "_r1F_it2_note": "it1 full DEV J=93.75 (100/100/50/75/50/50/50/75). it2: relay stage pick only across the clock depth (it1 dev02/04/05 stage width holds: shallow grip / lying drop); replan twice after a relay; wide-figure decision fixed from the first observation (it1 dev06 re-observed Iron-Man >12 cm -> wrong top grasp); carry/lift legs abort when an arm is >4 cm behind its piece (it1 dev03 ~150 actions pinned on the drawer); figurine carry detours along x first when the straight line passes within 3 cm of the drawer top footprint; plant window = other window (pot grasp 0/4: parent it6 dev02 x2, r1F it1 dev02 x2; cactus at 0.6h 2/2 on dev00).",
+  "pre_back_steps_m": [
+    0.06,
+    0.03
+  ],
+  "pre_ik_retries": 1,
+  "alarm_max_relays": 2,
+  "stand_patch_fallback": true,
+  "_it4_flush_note": "flush it4 (dev3-driven): pre-grasp back-off 0.10/0.14 -> 0.06 -> 0.03 m with an extra IK seed, alarm tilts +57/72; relay replans from fresh views and may relay twice; joint-space fallback to the planned pre-grasp when a Cartesian piece has no IK; stand fallback = head RGB-D light-grey flat patch (stand is ~1 mm high, depth alone cannot see it); clock half hidden by the home gripper -> raise arm and re-ground; figurine slow lift (1 cm), release 6 mm low with 5 mm steps, gradual open, slow back-out; figurine tol 1.5 -> 1.2 cm, 5 attempts (dev307: upright 1.8-3.1 cm off, not counted).",
+  "carry_dq": {
+    "figurine": 0.05,
+    "alarm": 0.07
+  },
+  "post_lift_hold": {
+    "figurine": 3
+  },
+  "above_hold_actions": {
+    "figurine": 8
+  },
+  "lift_verify_roles": [
+    "figurine"
+  ],
+  "lift_verify_m": 0.025,
+  "hold_min_finger_m": 0.0045,
+  "inhand_correct_roles": [
+    "figurine"
+  ],
+  "inhand_iters": 3,
+  "inhand_tol_m": 0.006,
+  "inhand_max_shift_m": 0.045,
+  "inhand_settle_actions": 4,
+  "carry_check_roles": [
+    "figurine"
+  ],
+  "semantic_retry_waits_s": [
+    30,
+    60,
+    120,
+    240
+  ],
+  "_r2F_it1_note": "r2F it1 closed loop: semantic-outage waits; figurine lift-verify (3 cm slow lift, head-depth foot footprint empty?) -> put back + exclude height; finger-gap hold check; slow carry 0.05 rad/action with drop checks per leg; above-stand settle + in-hand head-depth foot correction (port of r0B it11) before lowering; retreat from actual release pose; figurine tol 1.2->2 cm (in-hand correction replaces destructive re-grasps on the stand).",
+  "fig_thin_m": 0.02,
+  "fig_thin_penalty": 0.04,
+  "safe_home_roles": [
+    "figurine"
+  ],
+  "_r2F_it3_note": "r2F it3: Cartesian safe homing over the home TCP after figurine release (it1 dev309 swept the placed figure); bands <2 cm penalised +0.04 (it1 dev300 1.5 cm cactus stem slipped in carry; DEV dev00 success band is 2.5 cm); carry-dropped grasp heights excluded.",
+  "inhand_max_spread_m": 0.09,
+  "inhand_max_dev_m": 0.035,
+  "inhand_gain": 0.7,
+  "stand_patch_min_fill": 0.3,
+  "lift_look_min_actions": 200,
+  "slow_release_roles": [
+    "alarm",
+    "alarm_stage",
+    "figurine"
+  ],
+  "contact_press_m": 0.004,
+  "fig_place_az_deg": [
+    140,
+    130,
+    150,
+    120,
+    160
+  ],
+  "fig_turn_step_deg": 20,
+  "fig_box_margin_m": 0.004,
+  "_it14_note": "r2F it14: stand sits right against the drawer's right side; left-arm jaws closing along x put the palm housing (+-8.7 cm along closing) on/into the drawer (URDF FK offline: approach azimuth 30-110 deg -> hundreds of points inside the drawer box, 120-140 deg at tilt 50-80 -> 0). Figurine place yaw chosen so the place approach azimuth is ~130 deg (hand front-right of the figure), wrist turned in <=20 deg steps during the carry, whole-arm FK vs observed drawer box checked at turn end/above/place/retreat; min-hit fallback.",
+  "low_carry_roles": [
+    "figurine"
+  ],
+  "_it16_note": "r2F it16 = it15 85e1800f + r3F_nudge low carry (route-specific corridor height, hover correction at carry height) + in-hand correction stops when the error does not decrease",
+  "nudge_max_m": 0.12,
+  "_it17_note": "r2F it17 = it16 85361f86 + push an upright-but-off figurine (1.2-12 cm) along the table onto the stand in fig_final (closed gripper, 6 mm pieces, drawer-box checked)",
+  "_kb_drag_note": "it18: 825 logged y pushes: keyboard ends 2.9+-1.5 cm past the finger, any contact moves it >=4.5 cm; natively failing 75-score episodes (all self-checks ok) ended err_y +0.9..+2.6 cm or -1.3..-6.6 cm, successes |err_y|<=0.8 cm -> pass needs err_y in [-0.8,+0.7] cm; pushes only for err_y>4.5 cm, finer/overshoot fixes by a pressed-fingertip drag",
+  "nudge_tilts": [
+    0,
+    25,
+    45,
+    60
+  ],
+  "nudge_tries": 3,
+  "_nudge_note_it19": "it19: push-back also right after a failed figurine check inside the node; radial hand lean (tilt 25-60) and single-axis pushes when the direct push has no plan; fig_final re-finds a stand hidden at the survey",
+  "kb_drag_press_m": 0.007,
+  "_kb_drag_note2": "it20: it18/19 screens: a drag moved the keyboard 40-60% of the command (dev304, dev314) -> gain 1.3, press 7 mm; near-half contacts + tilt 60 for IK when it lies far; rotate only when err_y > 3 cm",
+  "fig_release_open_m": 0.02,
+  "fig_flat_retreat": true,
+  "fig_flat_back_m": 0.08,
+  "fig_flat_min_tilt_deg": 30,
+  "fig_flat_step_m": 0.006,
+  "fig_flat_stuck_m": 0.015,
+  "fig_rise_m": 0.06,
+  "kb_drag_max": 2,
+  "_it21_note": "r2F it21: figurine release opens +2 cm/finger (was 1.2); tilted (>=30 deg) figurine hands back out horizontally 8 cm at constant height (stop on 1.5 cm lag -> open fully), then rise 6 cm, instead of backing out along the approach (which rises into the head/arms above the grasp band); keyboard drags capped at 2. Pure +y keyboard drags use gain 0.75 (was 1.3; a drag that holds moves the keyboard ~1.5x the hand).",
+  "kb_drag_gain_fwd": 0.75,
+  "fig_release_min_g": 0.9,
+  "alarm_thin_finger_m": 0.01,
+  "thin_grasp_roles": [
+    "alarm",
+    "alarm_stage"
+  ],
+  "_it22_note": "r2F it22: alarm/alarm_stage picks lifted with < 1 cm per finger are set back down, opened and re-observed (history: 1/23 such grasps reached the drawer, 15/23 ended lying on the table); figurine release opens to g >= 0.9.",
+  "_it23_note": "r2F it23: the alarm thin-grasp check (< 1 cm per finger) runs right after closing, before the lift (it22 checked after the lift; the clock was already tipped over).",
+  "z0_local": true,
+  "z0_sam3_endpoint": "http://127.0.0.1:18897",
+  "_z0_note": "z0_local zero-API: all grounding = node-local raw SAM3 + agraph/z0_ground.py selector (gt_tuned_perception offline); alarm_top_dir disabled; no semantic calls.",
+  "thin_shut_lift_roles": [
+    "alarm_stage"
+  ],
+  "thin_shut_m": 0.002,
+  "_it34_note": "ported from r2F it34: relay stage grasp with jaws fully shut (<2 mm) lifts closed instead of opening in place.",
+  "fig_fit": true,
+  "fig_fit_band_m": 0.015,
+  "fig_nudge_trigger_m": 0.015,
+  "_it35_note": "ported from r2F it35: figurine foot xy from a circle fit of its lowest 1.5 cm; nudge trigger 1.2 -> 1.5 cm.",
+  "kb_pass_y_lo_m": 0.025,
+  "kb_pass_y_hi_m": 0.025,
+  "_z0c_note": "z0c: keyboard y pass band +-2.5 cm (was -0.8/+0.7). Native check (organize_table.py): keyboard bbox covers [0,-.03]-[.2,.03] around the frame, 45 deg yaw; in every z0a keyboard FAIL (drag_noprogress) the last measurement already covered it with >=2.4 cm margin, so the drags only spent budget."
+}

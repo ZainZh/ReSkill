@@ -1,0 +1,101 @@
+{
+ "_note": "Task tunables for stack_blocks_by_language (r2R_robust, from r0A_r6 it2). ctx.params. Native action limit 400 is not set here. Values are untuned guesses unless stated.",
+ "max_stagnant_visits": 4,
+ "max_transitions": 20,
+ "max_perceive": 2,
+ "max_stack_attempts": 3,
+ "min_actions_for_stack": 90,
+ "reobserve_after_first": true,
+ "table_z_fallback": 0.74,
+ "grasp": {
+  "max_depth_below_top": 0.02,
+  "depth_fraction": 0.5,
+  "pre_height": 0.08,
+  "hand_floor_clearance": 0.004
+ },
+ "place": {
+  "release_gap": 0.006,
+  "carry_clearances": [
+   0.055,
+   0.045,
+   0.035
+  ]
+ },
+ "travel_above_top": 0.1,
+ "approach_max_actions": 70,
+ "transport_max_actions": 60,
+ "close_settle_actions": 8,
+ "release_settle_actions": 8,
+ "open_settle_actions": 6,
+ "skills": {},
+ "perception": {},
+ "retreat_heights": [
+  0.08,
+  0.06,
+  0.04
+ ],
+ "joint_limits_deg": [
+  [
+   -180,
+   180
+  ],
+  [
+   0,
+   180
+  ],
+  [
+   0,
+   180
+  ],
+  [
+   -90,
+   90
+  ],
+  [
+   -90,
+   90
+  ],
+  [
+   -180,
+   180
+  ]
+ ],
+ "_joint_limits_note": "Physical joint limits of the ARX X5 articulation (robot description; the URDF declares +-10 rad). Robot prior, not scene state (LESSONS.md #16).",
+ "joint_limit_tol_deg": 2,
+ "ik_tries": 2,
+ "joint_step": 0.1,
+ "cart": {
+  "step": 0.04,
+  "rot_step_deg": 20,
+  "max_jump": 0.6
+ },
+ "relay": {
+  "wall_s": 90
+ },
+ "collision": {
+  "enabled": true,
+  "link_radius": 0.035,
+  "block_half": 0.02,
+  "_note": "link-axis points (URDF FK of planned joints) vs observed block columns; untuned guess"
+ },
+ "approach": {
+  "safe_above_top": 0.07,
+  "direct_xy": 0.03,
+  "extra_heights": [
+   0.0,
+   0.05
+  ]
+ },
+ "servo_stall_actions": 8,
+ "other_arm_home_tol": 0.15,
+ "relocate": {
+  "enabled": true,
+  "wall_s": 60,
+  "max_pick_plans": 6
+ },
+ "max_pick_plans": 12,
+ "dls": {
+  "enabled": true,
+  "_note": "r3R: URDF-chain damped least squares IK for local solves; cuRobo for first solves"
+ }
+}

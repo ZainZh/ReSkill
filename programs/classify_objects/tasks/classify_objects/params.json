@@ -1,0 +1,218 @@
+{
+  "_note": "r0C_demo lean controller (privileged_demo_assisted). Values tagged 'demo' come from OFFLINE statistics of the public demos (demos/analysis/task_stats.json, grasp_cycles.csv, classify_objects 100 episodes 200-299); the runtime never reads demo files. Native action limit is never set here.",
+  "max_stagnant_visits": 40,
+  "max_transitions": 400,
+  "motion": {
+    "free_cap_rad": 0.1,
+    "loaded_cap_rad": 0.08,
+    "fine_cap_rad": 0.05,
+    "cart_step_m": 0.04,
+    "settle_actions": 6,
+    "settle_tol_rad": 0.02,
+    "max_branch_jump_rad": 1.2,
+    "_note": "0.10 rad/action = the R6/RobotIO cap that worked natively. Cartesian segments solve IK once per waypoint (seeded from measured joints) instead of once per action, to cut wall time.",
+    "min_joint_above_table_m": 0.03,
+    "_local_ik_note": "it3: seeded DLS IK on the URDF chain (tasks/classify_objects/kin.py) first, native IK as fallback; min_joint_above_table_m keeps joint3..6 origins above the table",
+    "natural_seeds": [
+      [
+        0,
+        1.8,
+        1.3,
+        -1.0,
+        0,
+        0
+      ],
+      [
+        0,
+        1.8,
+        1.3,
+        -1.0,
+        0,
+        1.57
+      ],
+      [
+        0,
+        1.8,
+        1.3,
+        -1.0,
+        0,
+        -1.57
+      ]
+    ],
+    "_seed_note": "natural elbow-up seeds for local IK reachability checks (from offline URDF FK study, debug/kin_offline.py)"
+  },
+  "survey": {
+    "offsets": [
+      [
+        0.15,
+        -0.05,
+        0.05
+      ],
+      [
+        0.12,
+        -0.03,
+        0.08
+      ],
+      [
+        0.08,
+        0.0,
+        0.1
+      ]
+    ],
+    "_note": "TCP offsets from the home TCP; x is applied outward (sign of the arm base x). Clears the home-pose grippers out of the head view (POSTMORTEM 3.1 #1: 41/81 plans undercounted, objects hidden under the parked grippers)."
+  },
+  "grasp": {
+    "tilts_deg": [
+      11,
+      0,
+      22,
+      35
+    ],
+    "_tilts_demo": "demo approach tilt from vertical p10/p50/p90 = 3.8/11.2/22.2 deg; median tried first",
+    "pregrasp_dist_m": 0.1,
+    "_pregrasp_demo": "demo pregrasp height above grasp point p50 0.112 m (p10 0.043, p90 0.167)",
+    "depth_below_top_m": 0.02,
+    "max_depth_frac": 0.5,
+    "min_tcp_above_table_m": 0.012,
+    "_height_demo": "demo grasp TCP above table p10/p50/p90 = 0.022/0.035/0.059 m; we grasp 2 cm below the observed top (at most half the height), then raise until the URDF hand clears the table",
+    "hand_table_clearance_m": 0.004,
+    "close_actions": 9,
+    "_close_demo": "demo n_grasp (close command to settled) p50 9 frames",
+    "lift_m": 0.06,
+    "max_attempts": 2,
+    "_attempt_demo": "demo: 11.7% of grasp cycles were empty/near-closed (<0.03) and were regrasped",
+    "finger_scale": [
+      -0.01,
+      0.044
+    ],
+    "preshape_margin_m": 0.018,
+    "preshape_min_cmd": 0.45,
+    "wide_margin_m": 0.012,
+    "wide_min_finger_m": 0.026,
+    "_preshape_note": "it4: approach with jaws opened to width/2+1.8 cm per finger (finger = g*0.054-0.01, X5 gripper_scale); closed fingers > max(width/2+1.2 cm, 2.6 cm) = blocked grasp (it3 dev04 pen: 0.039/0.031 vs normal 0.005-0.008)",
+    "relocate_consistency": false,
+    "_consistency_note": "off: in the dev02 swap the two objects had similar heights; a strict check would mostly turn noisy relocations into lost objects",
+    "basket_exclude_margin_m": 0.005
+  },
+  "carry": {
+    "transit_tcp_above_table_m": 0.16,
+    "_transit_demo": "demo carry peak EE z p50 1.065 m = TCP ~0.925 = table(0.765)+0.16; peak 0.128 m above grasp point",
+    "min_clear_above_rim_m": 0.05,
+    "plan_step_m": 0.04,
+    "plan_step_rad": 0.2,
+    "path_jump_rad": 0.6,
+    "transit_options_m": [
+      0.16,
+      0.12
+    ],
+    "rim_xy_margin_m": 0.03,
+    "rim_z_clear_m": 0.01,
+    "_plan_note": "it3: whole grasp->release joint path planned before moving (local IK, each waypoint seeded from the previous); shapes lift-then-travel and diagonal; release rotations = held, held rotated pi about the approach axis, pitch fan; min joint travel wins"
+  },
+  "release": {
+    "above_rim_m": 0.015,
+    "_release_demo": "demo releases as soon as the hand is over the basket (place descent p50 0.0 m) with the TCP 0.087 m above table (~rim height 0.843 + hanging object). We release with the object bottom 1.5 cm above the observed rim.",
+    "open_actions": 3,
+    "retreat_m": 0.06,
+    "y_offset_m": -0.014,
+    "center_basket_x_offset_m": 0.04,
+    "side_basket_x_offset_m": {
+      "left": 0.011,
+      "right": 0.0
+    },
+    "_offset_demo": "demo release xy: y ~ 0.033 vs basket centre y ~0.047 (-0.014); left arm into left basket +0.011 x; right arm into right basket 0.0; centre basket: left arm -0.039, right arm +0.041 (each arm stays on its own half)",
+    "pitch_deg": [
+      0,
+      20,
+      35,
+      50,
+      65
+    ],
+    "_pitch_note": "release hand orientation fan: pitched forward along the arm radial direction. Straight-down release over the baskets (y~0.03, ~0.48 m from the bases) was IK-infeasible for all 6 arm/basket pairs on DEV0 probe (it1). Demo ep200 keyframes show the hand pitched forward over the far baskets.",
+    "elongated_ratio": 3.0,
+    "hang_frac": 0.5,
+    "side_divider_offset_m": 0.035,
+    "_it5_note": "it5: elongated objects (length/width>=3) released with half their length of clearance below the TCP; side-basket release 3.5 cm off the centre line towards the arm (dev03 it4: white basket has a central divider; a vertical pen lowered onto it was ejected off the table)"
+  },
+  "relay": {
+    "spots": [
+      [
+        0.0,
+        -0.12
+      ],
+      [
+        0.07,
+        -0.13
+      ],
+      [
+        -0.07,
+        -0.13
+      ],
+      [
+        0.0,
+        -0.19
+      ],
+      [
+        0.08,
+        -0.2
+      ],
+      [
+        -0.08,
+        -0.2
+      ],
+      [
+        0.0,
+        -0.26
+      ],
+      [
+        0.12,
+        -0.25
+      ],
+      [
+        -0.12,
+        -0.25
+      ],
+      [
+        0.15,
+        -0.15
+      ],
+      [
+        -0.15,
+        -0.15
+      ]
+    ],
+    "min_spot_clearance_m": 0.12,
+    "drop_above_table_m": 0.012,
+    "_relay_demo": "demo ep200: an object on the far side was set down on the table centre by its own-side arm and re-grasped by the other arm (no in-air handover, no simultaneous holds in 100/100 episodes)",
+    "min_basket_gap_m": 0.07,
+    "_spot_note": "candidate table spots near the centre line (demo ep200 relay used the table centre); a spot must be >=0.08 m from pending objects and >=0.07 m in front of the basket row; both arms must have IK there",
+    "yaw_deg": [
+      0,
+      30,
+      60,
+      90,
+      120,
+      150
+    ],
+    "_yaw_note": "it5: vertical drop yaw candidates; the first yaw whose resulting object pose has a whole-path route for the receiving arm is used",
+    "relocate_radius_m": 0.06,
+    "hard_min_clearance_m": 0.07
+  },
+  "plan": {
+    "max_asks": 2,
+    "dedupe_radius_m": 0.03,
+    "_category_demo": "demo ep200: a black pen and a white pen went to the same basket (same type, different colour); 6-10 grasp cycles per episode (6-9 objects)",
+    "cross_reach_max_abs_x_m": 0.22,
+    "_cross_demo": "demo grasp x by arm: left-arm grasps at x>0 max +0.142 (52/367), right-arm grasps at x<0 min -0.162 (23/335); farther cross-side objects use the table relay",
+    "cross_direct_cost": 0.4,
+    "_cross_note_it4": "it4: raised 0.15 -> 0.22 because every direct route is now whole-path IK-checked; fewer table relays (relay relocation swapped two objects on dev02 it3)"
+  },
+  "budget": {
+    "home_reserve_actions": 45,
+    "min_actions_per_object": 70,
+    "final_check_min_actions": 150,
+    "_demo": "demo actions per object p50 100 (cycle p25 79); episode p50 686 of 1100; tail after last release ~25 frames"
+  },
+  "table_z_default": 0.765,
+  "_table_demo": "demo-measured table top z = 0.765 (DEMO_SUMMARY 2); runtime uses the median measured support plane, this is only the fallback"
+}

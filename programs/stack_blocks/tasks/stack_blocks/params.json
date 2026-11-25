@@ -1,0 +1,90 @@
+{
+  "_note": "stack_blocks r0C_demo (privileged_demo_assisted). Values under 'demo' and 'fallback_site' are offline statistics of the public scripted demos (HF RoboDojo-Benchmark/RoboDojo rev 35efbc7d, episodes 2900-2999, demos/analysis/summary_stdout.txt); they are plain numbers here, demo files are never read at runtime. Provenance per value in NOTES.md. Native action limit is not set here.",
+  "max_stagnant_visits": 10,
+  "max_transitions": 30,
+  "max_survey_retries": 3,
+  "max_transfer_failures": 4,
+  "reserve_for_home": 45,
+  "min_actions_per_transfer": 45,
+  "site_match_radius": 0.03,
+  "tol_pos": 0.008,
+  "tol_rot": 0.06,
+  "tol_fine_pos": 0.003,
+  "fine_max_actions": 25,
+  "vertical_step": 0.025,
+  "travel_step": 0.06,
+  "blocks": {
+    "stride": 1,
+    "workspace_xy": [
+      -0.62,
+      0.62,
+      -0.45,
+      0.16
+    ],
+    "min_above_table": 0.007,
+    "max_above_table": 0.075,
+    "grid_m": 0.004,
+    "min_points": 40,
+    "min_side": 0.015,
+    "max_side": 0.075,
+    "top_band": 0.006,
+    "max_window": 0.132,
+    "robot_front_margin": 0.1,
+    "_window_note": "probe1: parked fingers are >=13.9 cm above the table in the head view, robot bases/mount behind y=-0.35; first survey window 7.5 cm (one block ~3.5 cm), later 3h+1 cm capped at 13.2 cm"
+  },
+  "demo": {
+    "closing_axis": [
+      -1.0,
+      0.0,
+      0.0
+    ],
+    "_closing_axis_src": "demo grasp EE quaternion (w,x,y,z)=(0.5,-0.5,0.5,0.5) in every grasp: approach -z, jaw closing axis (EE y) = world -x; yaw constant",
+    "pregrasp_height": 0.088,
+    "_pregrasp_src": "demo pre-grasp 6-14 cm above grasp point, median 8.8 cm",
+    "grasp_below_top": 0.008,
+    "_grasp_src": "demo grasp TCP 2.5 cm above table (p10 2.0, p90 2.8); release-minus-grasp per layer ~3.3 cm => block ~3.3 cm tall => grasp ~0.8 cm below top. Applied to the MEASURED top here.",
+    "grasp_min_above_table": 0.012,
+    "hand_table_clearance": 0.002,
+    "close_hold_actions": 8,
+    "_close_src": "demo closes for 8 frames before lifting",
+    "open_hold_actions": 4,
+    "_open_src": "demo opens in 1 frame and immediately moves up; 4 here to let the jaws clear",
+    "carry_peak_above_grasp": 0.087,
+    "_carry_src": "demo carry peak 8.7 cm above grasp (p10 5.6, p90 12.9)",
+    "carry_clearance": 0.035,
+    "release_clearance": 0.006,
+    "_release_src": "demo releases ~0.5-0.7 cm above seating (order-0 release minus grasp 0.7 cm)",
+    "retreat_height": 0.05
+  },
+  "fallback_site": {
+    "enabled": true,
+    "xy": [
+      0.0,
+      -0.201
+    ],
+    "_src": "demo stacks 100% at world (0.000,-0.201). NOT a task requirement (native reward is pairwise stacking only); used only if no observed block can serve as an IK-feasible base. The point lies inside the config ProhibitedArea, so layouts should keep it clear; checked against observed blocks anyway.",
+    "min_clear": 0.07
+  },
+  "skills": {},
+  "perception": {},
+  "grasp": {
+    "tilts": [
+      0,
+      20,
+      35
+    ],
+    "_tilts_note": "0 = demo top-down. Tilted approaches (pitched away from the arm base about the closing axis) extend reach: it1 dev02 had a block at ~0.52 m from both bases, beyond the demo's max top-down grasp distance (0.49 m).",
+    "carry_above_grasp": [
+      0.087,
+      0.05
+    ],
+    "_carry_note": "0.087 = demo carry peak above grasp; 0.05 lower option for reach",
+    "open_margin": 0.03,
+    "_open_note": "pre-shaped jaw gap = block side + 3 cm (it1 dev01: full 8.8 cm opening shoved the neighbouring base block)",
+    "finger_thickness": 0.012,
+    "finger_width": 0.02,
+    "neighbour_margin": 0.005,
+    "max_ik_solves_per_plan": 160
+  },
+  "refresh_radius": 0.035
+}
