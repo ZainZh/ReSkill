@@ -1,0 +1,233 @@
+{
+ "build_tower": [
+  {
+   "qid": "all_blocks",
+   "label": "*all*",
+   "kind": "multi",
+   "sam3_prompts": {
+    "short": "wooden block",
+    "alt": "block"
+   }
+  },
+  {
+   "qid": "rel:leftmost_cube",
+   "label": "*first*",
+   "kind": "relational",
+   "sam3_prompts": {
+    "short": "leftmost white cube",
+    "alt": "the leftmost white block"
+   }
+  },
+  {
+   "qid": "kind:board",
+   "label": "board",
+   "kind": "kind",
+   "sam3_prompts": {
+    "short": "long flat wooden board"
+   }
+  },
+  {
+   "qid": "kind:cube",
+   "label": "cube",
+   "kind": "kind",
+   "sam3_prompts": {
+    "short": "white cube block"
+   }
+  },
+  {
+   "qid": "kind:plate",
+   "label": "plate",
+   "kind": "kind",
+   "sam3_prompts": {
+    "short": "small thin flat wooden block"
+   }
+  },
+  {
+   "qid": "kind:prism",
+   "label": "prism",
+   "kind": "kind",
+   "sam3_prompts": {
+    "short": "green triangular block"
+   }
+  }
+ ],
+ "organize_table": [
+  {
+   "qid": "keyboard",
+   "label": "keyboard",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "computer keyboard",
+    "alt": "keyboard"
+   }
+  },
+  {
+   "qid": "mouse",
+   "label": "mouse",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "computer mouse",
+    "alt": "mouse"
+   }
+  },
+  {
+   "qid": "alarm clock",
+   "label": "alarm clock",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "alarm clock",
+    "alt": "clock"
+   }
+  },
+  {
+   "qid": "figurine",
+   "label": "figurine",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "figurine",
+    "alt": "toy figure"
+   }
+  },
+  {
+   "qid": "drawer",
+   "label": "drawer",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "white drawer cabinet",
+    "alt": "drawer"
+   }
+  },
+  {
+   "qid": "mouse pad",
+   "label": "mouse pad",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "mouse pad",
+    "alt": "black mat"
+   }
+  },
+  {
+   "qid": "keyboard frame",
+   "label": "keyboard frame",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "rectangular frame outline on the table",
+    "alt": "rectangle outline"
+   }
+  },
+  {
+   "qid": "stand",
+   "label": "stand",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "small square cushion",
+    "alt": "small square pad"
+   }
+  }
+ ],
+ "pack_objects_into_box": [
+  {
+   "qid": "box",
+   "label": "box",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "cardboard box",
+    "alt": "box"
+   }
+  },
+  {
+   "qid": "car",
+   "label": "car",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "toy car",
+    "alt": "car"
+   }
+  },
+  {
+   "qid": "electric_toothbrush",
+   "label": "electric_toothbrush",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "electric toothbrush",
+    "alt": "toothbrush"
+   }
+  },
+  {
+   "qid": "hammer",
+   "label": "hammer",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "hammer",
+    "alt": "tool"
+   }
+  },
+  {
+   "qid": "shoe",
+   "label": "shoe",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "shoe",
+    "alt": "sneaker"
+   }
+  }
+ ],
+ "stack_blocks": [
+  {
+   "qid": "all_blocks",
+   "label": "*all*",
+   "kind": "multi",
+   "sam3_prompts": {
+    "short": "toy block",
+    "alt": "block"
+   }
+  }
+ ],
+ "store_tools_in_toolbox": [
+  {
+   "qid": "hammer",
+   "label": "hammer",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "hammer",
+    "alt": "hammer tool"
+   }
+  },
+  {
+   "qid": "wrench",
+   "label": "wrench",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "wrench",
+    "alt": "spanner"
+   }
+  },
+  {
+   "qid": "pliers",
+   "label": "pliers",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "pliers",
+    "alt": "plier"
+   }
+  },
+  {
+   "qid": "tape_measure",
+   "label": "tape_measure",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "tape measure",
+    "alt": "measuring tape"
+   }
+  },
+  {
+   "qid": "toolbox",
+   "label": "toolbox",
+   "kind": "single",
+   "sam3_prompts": {
+    "short": "toolbox",
+    "alt": "tool box"
+   }
+  }
+ ]
+}

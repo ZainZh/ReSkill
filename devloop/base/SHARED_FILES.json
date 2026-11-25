@@ -1,0 +1,145 @@
+{
+ "note": "Shared harness and skill-library files of the seed workspace base/ (agraph/, runner/, runtime_params.json). Each is byte-identical to the file of the same path in the listed frozen program; base/materialize.py copies them into place and verifies the sha256.",
+ "files": {
+  "agraph/__init__.py": {
+   "sha256": "ae70ee5bed4dbfc58b35ad7384403da244794f6da6be401ff27455bfd1d2039e",
+   "source": "programs/build_tower/agraph/__init__.py"
+  },
+  "agraph/agent_bridge.py": {
+   "sha256": "5a17b7c68e8f92daee69dd7c06fc0cec290d6b03464d5bc3d10db6a3c3db06f9",
+   "source": "programs/build_tower/agraph/agent_bridge.py"
+  },
+  "agraph/attachment_temporal.py": {
+   "sha256": "cefee6a7e9ed0cafb1b6a76c85d5f9b475c2b3968f4537f9501c7da944e0213c",
+   "source": "programs/build_tower/agraph/attachment_temporal.py"
+  },
+  "agraph/candidates.py": {
+   "sha256": "2d26f912ecd6564ecb5eb81428172316d176b1977fef8c548c7102ffbfa14be0",
+   "source": "programs/build_tower/agraph/candidates.py"
+  },
+  "agraph/carry.py": {
+   "sha256": "386c8d917a40e5e2a3712fb94a9bf2e5e575a1a775df95f9dcb6e076f60f0abf",
+   "source": "programs/build_tower/agraph/carry.py"
+  },
+  "agraph/cloud_filter.py": {
+   "sha256": "bd31d6253d8cae381f9f1fa53393af2924c6accd9ab5b722922ec0a57e714e99",
+   "source": "programs/build_tower/agraph/cloud_filter.py"
+  },
+  "agraph/contract.py": {
+   "sha256": "7afea86e78935e960d9afe7249d870a7af905455b7c4740b3bc8c1f5ebb1288d",
+   "source": "programs/build_tower/agraph/contract.py"
+  },
+  "agraph/diagnostics.py": {
+   "sha256": "270a8c48dbb1976698c621ac32b4a3fa12dce80b32ffcc08407d2418c25fdbce",
+   "source": "programs/build_tower/agraph/diagnostics.py"
+  },
+  "agraph/fakes.py": {
+   "sha256": "d50563ae28339ef396ed901881f8e21f34f4718702f51926112cc5ff5aec134c",
+   "source": "programs/build_tower/agraph/fakes.py"
+  },
+  "agraph/grasp_client.py": {
+   "sha256": "5b06fe6e4e99424f116e2d4f5d5d086d3bfcdddf686379aec3cf2cfba6c576be",
+   "source": "programs/organize_table/agraph/grasp_client.py"
+  },
+  "agraph/grasp_geometry.py": {
+   "sha256": "d7261a3f375e652f856c67a74f0795cfb7693faddaab1f8924f86fcffff8300c",
+   "source": "programs/build_tower/agraph/grasp_geometry.py"
+  },
+  "agraph/kernel_hash_cache.py": {
+   "sha256": "bcfd07701b1969da162bc935d61a3da1ac167024039792e5dc62a7f6ea0e2aa5",
+   "source": "programs/build_tower/agraph/kernel_hash_cache.py"
+  },
+  "agraph/kinematics.py": {
+   "sha256": "b174234cd005db9f4f19cd85b1fd47cbd2667c374c1ae59b01a500f410bf4412",
+   "source": "programs/build_tower/agraph/kinematics.py"
+  },
+  "agraph/local_vision.py": {
+   "sha256": "1b93600bb771239f657bf9a86ef4bd67be3f38bcc77a8efadffe060776bf0bcb",
+   "source": "programs/classify_objects/agraph/local_vision.py"
+  },
+  "agraph/mailbox.py": {
+   "sha256": "d207d6af0fe9547687c3d95f663dc0aa5d833b6a0e845b6cfc1093a585cb427e",
+   "source": "programs/build_tower/agraph/mailbox.py"
+  },
+  "agraph/perception.py": {
+   "sha256": "2faed80b71ba7a17383ab362cd056b71f1a029ab28c368e5fd9b0470a41a549b",
+   "source": "programs/build_tower/agraph/perception.py"
+  },
+  "agraph/preshape.py": {
+   "sha256": "1e55a9c6bc74e465ffda252bf3f86c204861da904416a7d65210983a57133ef6",
+   "source": "programs/build_tower/agraph/preshape.py"
+  },
+  "agraph/search_budget.py": {
+   "sha256": "1532aa43ed5ddd4a44fdef50280e23295eb98bc51f36c3203478cd75ecbeb97c",
+   "source": "programs/build_tower/agraph/search_budget.py"
+  },
+  "agraph/semantic_views.py": {
+   "sha256": "810294e4715d2887953715e74da1a53322835b06114f2664ab11a23dcd86a39c",
+   "source": "programs/build_tower/agraph/semantic_views.py"
+  },
+  "agraph/skills.py": {
+   "sha256": "5ef3489343c255200d1edcf27f104804cf9cb5f8956ea1f16caee9572c64432d",
+   "source": "programs/build_tower/agraph/skills.py"
+  },
+  "agraph/vendor/VENDOR.json": {
+   "sha256": "305e3fec28a585f4742eb16319ef5a3fc40410ad81be6c26e9ab94483785e6cf",
+   "source": "programs/build_tower/agraph/vendor/VENDOR.json"
+  },
+  "agraph/vendor/__init__.py": {
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "source": "programs/build_tower/agraph/vendor/__init__.py"
+  },
+  "agraph/vendor/perception_geometry.py": {
+   "sha256": "d6ba31ba209bd59b7d892d9729c61208b12a615588a27cf277bd2b79f8161dbd",
+   "source": "programs/build_tower/agraph/vendor/perception_geometry.py"
+  },
+  "agraph/vendor/robot_io.py": {
+   "sha256": "8429fa899fa969ac136cd4e0493ad7dc36f7da7abc2a943c2e60e1657c53cabb",
+   "source": "programs/build_tower/agraph/vendor/robot_io.py"
+  },
+  "agraph/vendor/sam_service.py": {
+   "sha256": "214c2b80070805cafc421fd6a75d687be7c6d350372ca6b989bb0ba5085000c6",
+   "source": "programs/build_tower/agraph/vendor/sam_service.py"
+  },
+  "runner/__init__.py": {
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "source": "programs/build_tower/runner/__init__.py"
+  },
+  "runner/audit.py": {
+   "sha256": "3f9ae82c6f6bdde5cad072b59ced3b652f29bfa9845d01de19ebd66965221e09",
+   "source": "programs/build_tower/runner/audit.py"
+  },
+  "runner/bootstrap.py": {
+   "sha256": "3d9688cb0ffe79bebf3cc3d68c8f0ff9c464f008df6241c324dfa058e6aac994",
+   "source": "programs/classify_objects/runner/bootstrap.py"
+  },
+  "runner/controller.py": {
+   "sha256": "42c4efd699c52c885c372cd4fe062ab3a6f2daa22603f33fa07b08c3643a16a3",
+   "source": "programs/build_tower/runner/controller.py"
+  },
+  "runner/deploy.py": {
+   "sha256": "00f01b92079e0dc89adbafba40e3631328b6e247dd4d9c763478a4938defa819",
+   "source": "programs/classify_objects/runner/deploy.py"
+  },
+  "runner/episode.py": {
+   "sha256": "1a956771b5c1401027b595a6d1dcb6619ba5e8300fcb5fd5e53e9e10a3380c1b",
+   "source": "programs/build_tower/runner/episode.py"
+  },
+  "runner/lifecycle_gc.py": {
+   "sha256": "0102a9fd58ecc69e2d8ecd878f9807a6e1b6fe87c89dddf75db48a4553f1e5c1",
+   "source": "programs/build_tower/runner/lifecycle_gc.py"
+  },
+  "runner/rs_semantic_service.py": {
+   "sha256": "8704dcaaa3e02752bd36a8ff19b227aa5a901a808b57c8e5ab280d276e3480dd",
+   "source": "programs/build_tower/runner/rs_semantic_service.py"
+  },
+  "runner/sim_io.py": {
+   "sha256": "46229041120b952057b015fd12a04ccdec502c9384573fe680b308a7986e0ed7",
+   "source": "programs/classify_objects/runner/sim_io.py"
+  },
+  "runtime_params.json": {
+   "sha256": "d3aa1695ae0f77f8809b781cf3855d5920d666f678c40ac48bb7f99a6426e743",
+   "source": "programs/build_tower/runtime_params.json"
+  }
+ }
+}

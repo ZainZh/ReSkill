@@ -45,7 +45,6 @@
     "tasks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "tasks/pack_objects_into_box/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "tasks/pack_objects_into_box/graph.py": "6d4374d7e24c7a8eebbefac6a012ce2b2bc17b7a2d04d62d0dfecc47ffb60538",
-    "tasks/pack_objects_into_box/graph.py.orig": "5758e1e3445fd870cb248ae301d995f40ef8862c096f8e7406fad939f28ba825",
     "tasks/pack_objects_into_box/heading_templates.json": "be1d6719a5f5d420ad29a95c97fb59ca2be4e205811e5c40a117dfedceea243c",
     "tasks/pack_objects_into_box/lean.py": "faaf3e71ae9566da74d9fc2b37840d8f18c6f856515090395412d6b816563156",
     "tasks/pack_objects_into_box/localsurvey.py": "7803eaf00f2a53ddd96f1a75f443c7200cbf4aa3e8171b4ffe72ca4b938a38d9",
@@ -53,7 +52,7 @@
     "tasks/pack_objects_into_box/rcar_templates.json": "22921176f3fc2cd4f728fc3d6b33ab7e44e75f0c528dfc161f18bb68824dc8b3",
     "tasks/pack_objects_into_box/rgb_templates.json": "07676c580fbde243622b7ac35752943bd9efb82d44bbbfb6f98075fa6f3dd11f"
   },
-  "source_sha256": "1b3334e36066224113e907c4dd56d23149167a7a3492e52f3becb089eb7732ce",
+  "source_sha256": "48c66515cd0cd76f9a8a91ef9668ba10ae3ba131b4122ed1ba98fa2601952f45",
   "task": "pack_objects_into_box",
   "version": 1
 }

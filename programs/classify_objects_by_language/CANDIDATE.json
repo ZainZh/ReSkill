@@ -45,11 +45,10 @@
     "tasks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "tasks/classify_objects_by_language/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "tasks/classify_objects_by_language/graph.py": "268f7c6b70b6312f6118fb85fb98f80573ae475949eda4ff151f137f8c8419cf",
-    "tasks/classify_objects_by_language/graph.py.orig": "81115556d11ac939c1ad89a5323d89346ff809890d2b53f682787749bd4b495f",
     "tasks/classify_objects_by_language/local_ground.py": "5f1f7167d2fa9cf140e201cc7158f6d2b123a4e108957842f4d7532fcd2983ff",
     "tasks/classify_objects_by_language/params.json": "136725778acd78160e37e8527e12c88c81ad7eeb2730e6b0b1ede7944ddee13a"
   },
-  "source_sha256": "4abfdcf9e3832fd0503585b5ecac1930b42470375c25167d822524712273d7c3",
+  "source_sha256": "8ce7887d9136dce4348d24584bd6afe647b627cc8a38f868dfd3c7d7fd504ec7",
   "task": "classify_objects_by_language",
   "version": 1
 }
