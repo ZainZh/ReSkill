@@ -168,11 +168,9 @@ class Model:
         self.rm = PlannerManager(self.specs, planner)
         self.result['planner_init_s'] = round(time.monotonic() - t0, 1)
         runtime = json.loads((self.candidate / 'runtime_params.json').read_text())
-        self.depth_source = os.environ.get('AR_DEPTH_SOURCE') or runtime.get('depth_source') or 'model'
-        if self.depth_source != 'model':
-            raise ValueError(f'policy server supports depth_source=model only, got {self.depth_source!r}')
+        self.depth_source = 'sim'
         self.finger_kind = os.environ.get('AR_PS_FINGERS') or runtime.get('ps_fingers') or 'command'
-        self.link = self.io = self.model_depth = self.thread = None
+        self.link = self.io = self.depth_rig = self.thread = None
         self.wrists, self.resets, self.done = {}, 0, False
         self.finalized = threading.Event()
         self._write()
@@ -269,7 +267,7 @@ class Model:
         from agraph.vendor.robot_io import RobotIO
         from runner.controller import run_controller
         from runner.ps_fingers import make_source
-        from runner.sim_io import ModelDepth, ObsCamera, hand_exclusion, wrist_cameras
+        from runner.sim_io import ObsDepth, ObsCamera, hand_exclusion, wrist_cameras
         import torch
 
         result = self.result
@@ -283,12 +281,10 @@ class Model:
             self.io = RobotIO(self.link, self.specs, self.rm,
                               make_source(self.finger_kind, log=self.out / 'FINGERS.jsonl'))
             result['finger_source'] = self.finger_kind
-            self.model_depth = ModelDepth(self.io, port=int(os.environ.get('AR_DEPTH_PORT', 18765)),
-                                          log_path=self.out / 'DEPTH_MODEL.jsonl')
-            print(f'[depth_source] model rd_depth port {self.model_depth.port} {self.model_depth.model}', flush=True)
-            result['depth_source'] = self.model_depth.summary()
-            camera = ObsCamera(self.model_depth, 'cam_head')
-            self.wrists, result['wrist_cameras'] = wrist_cameras(self.io, self.model_depth)
+            self.depth_rig = ObsDepth(self.io)
+            result['depth_source'] = self.depth_rig.summary()
+            camera = ObsCamera(self.depth_rig, 'cam_head')
+            self.wrists, result['wrist_cameras'] = wrist_cameras(self.io, self.depth_rig)
             result['status'] = 'controller_running'
             self._write()
             returned = run_controller(self.io, camera, instruction, self.out, self.candidate, self.task,
@@ -318,9 +314,9 @@ class Model:
             if self.thread.is_alive():
                 self.result['status'] = 'controller_still_running_at_finalize'
         try:
-            if self.model_depth is not None:
-                self.result['depth_source'] = self.model_depth.summary()
-                self.model_depth.close()
+            if self.depth_rig is not None:
+                self.result['depth_source'] = self.depth_rig.summary()
+                self.depth_rig.close()
         except Exception:
             self.result['depth_close_error'] = traceback.format_exc()
         self.audit.evaluator_phase()

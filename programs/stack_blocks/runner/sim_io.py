@@ -25,16 +25,10 @@ class HeadCamera:
     cross-check of the rendered camera pose: dict(link=..., fk=() -> 4x4 world pose of the
     URDF mount link, tol=metres)."""
 
-    def __init__(self, env, camera='cam_head', mount=None, model_depth=None):
+    def __init__(self, env, camera='cam_head', mount=None):
         self.env = env
         self.name = camera
         self.mount = mount
-        self.model_depth = model_depth
-        if model_depth is not None:
-            # AR_DEPTH_SOURCE=model: RGB, K, pose and depth come from the shared ModelDepth rig; no
-            # distance_to_image_plane annotator is attached to this camera at all.
-            model_depth.index_of(camera)
-            return
         import omni.replicator.core as rep
         self.cm = env.camera_manager
         self.index = self.cm.camera_names[0].index(camera)
@@ -45,11 +39,6 @@ class HeadCamera:
         self.depth_ann.attach(self.path)
 
     def __call__(self):
-        if self.model_depth is not None:
-            frame = self.model_depth.frame(self.name)
-            if self.mount is not None:
-                frame['mount_check'] = mount_check(frame['T_world_camera'], self.mount)
-            return frame
         for _ in range(8):
             self.env.get_obs()
             rgb, depth = self.rgb_ann.get_data(), self.depth_ann.get_data()
@@ -71,101 +60,8 @@ class HeadCamera:
         return frame
 
     def close(self):
-        if self.model_depth is not None:
-            return
         self.rgb_ann.detach(self.path)
         self.depth_ann.detach(self.path)
-
-
-class ModelDepth:
-    """Opt-in depth source (``AR_DEPTH_SOURCE=model`` or runtime_params ``depth_source: model``): every
-    depth image the controller sees comes from the rd_depth service (``tools/services.sh start depth``).
-    Per native step (``take_action_cnt``) it renders once, reads the RGB annotator of all three cameras
-    plus their K / camera pose (same calibration source as the sim-depth path) and asks the model for
-    the three depth maps together; head and wrist frames of one step share that prediction. The
-    simulator depth annotator is never attached. Each prediction is logged to ``log_path`` (jsonl)."""
-    CAMS = ('cam_head', 'cam_left_wrist', 'cam_right_wrist')
-    USD_TO_CV = np.diag([1., -1., -1., 1.])
-
-    def __init__(self, env, port=18765, log_path=None):
-        import omni.replicator.core as rep
-        from runner.rd_depth_client import DepthClient
-        self.env, self.cm = env, env.camera_manager
-        names = list(self.cm.camera_names[0])
-        self.index = {c: names.index(c) for c in self.CAMS}
-        self.paths = {c: env.capture_manager.tiled_render_products[i].path for c, i in self.index.items()}
-        self.rgb_ann = {}
-        for c in self.CAMS:
-            self.rgb_ann[c] = rep.AnnotatorRegistry.get_annotator('rgb')
-            self.rgb_ann[c].attach(self.paths[c])
-        self.port = int(port)
-        self.client = DepthClient(port=self.port)
-        self.model = self.client.info()
-        self.log_path = log_path
-        self.step, self.frames, self.calls, self.ms = None, {}, 0, []
-
-    def index_of(self, camera):
-        return self.index[camera]
-
-    def _capture(self):
-        import time
-        t0 = time.monotonic()
-        for _ in range(8):
-            self.env.get_obs()
-            rgbs = {}
-            for c in self.CAMS:
-                rgb = self.rgb_ann[c].get_data()
-                rgbs[c] = _np(rgb['data'] if isinstance(rgb, dict) else rgb)
-            if all(r.ndim == 3 and r.shape[2] >= 3 and r[:, :, :3].any() for r in rgbs.values()):
-                break
-        else:
-            raise RuntimeError('native RGB annotators returned no fresh frame')
-        Ks, Ts = {}, {}
-        for c, i in self.index.items():
-            Ks[c] = _np(self.cm.get_camera_intrinsics(i, 0)).astype(float)
-            p, q = self.cm.cameras[0][i].get_world_pose(camera_axes='usd')
-            Ts[c] = np.eye(4)
-            Ts[c][:3, :3], Ts[c][:3, 3] = quat2mat(_np(q).reshape(4)), _np(p).reshape(3)
-        images = [np.ascontiguousarray(rgbs[c][:, :, :3]).astype(np.uint8) for c in self.CAMS]
-        t1 = time.monotonic()
-        try:
-            depth = self.client.predict_views(images, [Ks[c] for c in self.CAMS],
-                                              [Ts[c] @ self.USD_TO_CV for c in self.CAMS])
-        except (EOFError, OSError):
-            from runner.rd_depth_client import DepthClient
-            self.client = DepthClient(port=self.port)          # one reconnect, never a sim-depth fallback
-            depth = self.client.predict_views(images, [Ks[c] for c in self.CAMS],
-                                              [Ts[c] @ self.USD_TO_CV for c in self.CAMS])
-        t2 = time.monotonic()
-        self.frames = {c: dict(rgb=images[k], depth=np.asarray(depth[k], np.float32), K=Ks[c], T_world_camera=Ts[c],
-                               camera=c, depth_source='model') for k, c in enumerate(self.CAMS)}
-        self.calls += 1
-        self.ms.append((t2 - t0) * 1000)
-        if self.log_path:
-            import json
-            with open(self.log_path, 'a') as stream:
-                stream.write(json.dumps(dict(step=self.step, depth_source='model', render_ms=round((t1 - t0) * 1000, 1),
-                                             model_ms=round((t2 - t1) * 1000, 1),
-                                             weights_sha256=self.model.get('weights_sha256'))) + '\n')
-
-    def frame(self, camera):
-        step = int(np.asarray(_np(self.env.take_action_cnt)).reshape(-1)[0])
-        if step != self.step or camera not in self.frames:
-            self.step = step
-            self._capture()
-        f = self.frames[camera]
-        return dict(f, rgb=f['rgb'].copy(), depth=f['depth'].copy(), K=f['K'].copy(), T_world_camera=f['T_world_camera'].copy())
-
-    def summary(self):
-        ms = np.asarray(self.ms) if self.ms else np.zeros(1)
-        return dict(depth_source='model', sim_depth_annotator_attached=False, port=self.port, **self.model,
-                    predictions=self.calls, latency_ms_mean=round(float(ms.mean()), 1),
-                    latency_ms_p90=round(float(np.percentile(ms, 90)), 1))
-
-    def close(self):
-        for c, ann in self.rgb_ann.items():
-            ann.detach(self.paths[c])
-        self.client.close()
 
 
 def mount_check(T_world_camera, mount):
@@ -180,7 +76,7 @@ def mount_check(T_world_camera, mount):
     return check
 
 
-def wrist_cameras(env, io, tol=.05, model_depth=None):
+def wrist_cameras(env, io, tol=.05):
     """Native wrist RGB-D views keyed by arm. Names follow RobotManager._load_camera_cfg for two
     target arms (``cam_wrist`` -> ``cam_left_wrist`` / ``cam_right_wrist``) and must be present in
     ``camera_manager.camera_names``; the mount link is the robot config's camera ``link``.
@@ -201,7 +97,7 @@ def wrist_cameras(env, io, tol=.05, model_depth=None):
         if links and links[0]:
             mount = dict(link=links[0], tol=tol, fk=lambda arm=arm, link=links[0]: io.link_transforms(arm)[link])
         try:
-            views[arm] = HeadCamera(env, camera=name, mount=mount, model_depth=model_depth)
+            views[arm] = HeadCamera(env, camera=name, mount=mount)
         except Exception as exc:
             report['views'][name] = dict(arm=arm, available=False, reason=repr(exc))
             continue

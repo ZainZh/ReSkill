@@ -64,7 +64,7 @@ if _visible and _visible.strip() != str(args.gpu):
 ISOLATED = bool(_visible)
 CUDA_INDEX = 0 if ISOLATED else args.gpu      # CUDA ordinal of the assigned GPU inside this process
 CANDIDATE = Path(args.candidate).resolve()
-ROOT = Path(os.environ.get('ROBODOJO_ROOT', '/root/github/RoboDojo'))
+ROOT = Path(os.environ.get('ROBODOJO_ROOT', str(Path.home() / 'RoboDojo')))
 sys.path[:0] = [str(CANDIDATE), str(ROOT), str(ROOT / 'XPolicyLab')]
 out = Path(args.out).resolve()
 out.mkdir(parents=True, exist_ok=True)

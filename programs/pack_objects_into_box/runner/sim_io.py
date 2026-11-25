@@ -2,7 +2,7 @@
 
 Every frame is built from what the env client sends in ``obs`` plus public calibration:
 
-* RGB: ``obs['vision'][<cam>]['color']`` (arx_x5 observation config: color only, no depth/K/extrinsics).
+* RGB: ``obs['vision'][<cam>]['color']`` (observation config with ``vision.depth: true``).
 * K: pinhole from the public sensor templates ``env_cfg/camera/template.py`` (640x480; head ``Gemini_345Lg`` focal
   10 / horizontal aperture 22.212, wrists ``d435`` focal 13 / 20.955), fx = fy = W * focal / aperture, centre (W/2, H/2).
 * Head pose: constant from ``env_cfg/camera/camera_config.yml`` (pos [0, -0.41, 1.308], ori [30, 0, 0] deg).
@@ -10,9 +10,9 @@ Every frame is built from what the env client sends in ``obs`` plus public calib
   the robot-config offset (pos [0, 0, 0.001], ori [0, -80, -90] deg) of ``Assets/Robots/x5/robot_config.yml``.
   ``mount_check`` cross-checks it against the official ``obs['state']['<side>_ee_pose']`` (link6 pose) composed with
   the URDF link6 -> camera chain (5 cm tolerance, as before).
-  Rotation convention (intrinsic XYZ Euler, USD camera axes) as in rd_depth/cameras.py, which reproduces the
-  simulator's camera matrices to < 5e-7.
-* Depth: rd_depth ft7 only (``ModelDepth``); there is no simulator depth path at all.
+  Rotation convention: intrinsic XYZ Euler, USD camera axes (reproduces the simulator's camera matrices).
+* Depth: the simulator depth image carried by the observation (``ObsDepth``; observation config
+  ``vision.depth: true``).
 
 ``hand_exclusion`` removes depth points on the robot's own hands using encoder FK of the URDF collision meshes.
 """
@@ -84,18 +84,18 @@ def mount_check(io, arm, T_world_camera, tol=.05):
 
 
 class ObsCamera:
-    """RGB-D view for ONE camera (head or wrist) on the shared ModelDepth rig. ``arm``: wrist views only (FK pose +
+    """RGB-D view for ONE camera (head or wrist) on the shared ObsDepth rig. ``arm``: wrist views only (FK pose +
     ``mount_check``)."""
 
-    def __init__(self, model_depth, camera='cam_head', arm=None, tol=.05):
+    def __init__(self, rig, camera='cam_head', arm=None, tol=.05):
         self.name, self.arm, self.tol = camera, arm, tol
-        self.model_depth = model_depth
-        model_depth.index_of(camera)
+        self.rig = rig
+        rig.index_of(camera)
 
     def __call__(self):
-        frame = self.model_depth.frame(self.name)
+        frame = self.rig.frame(self.name)
         if self.arm is not None:
-            frame['mount_check'] = mount_check(self.model_depth.io, self.arm, frame['T_world_camera'], self.tol)
+            frame['mount_check'] = mount_check(self.rig.io, self.arm, frame['T_world_camera'], self.tol)
         return frame
 
     def close(self):
@@ -105,23 +105,18 @@ class ObsCamera:
 HeadCamera = ObsCamera
 
 
-class ModelDepth:
-    """Depth source: every depth image the controller sees comes from the rd_depth service (``tools/services.sh start
-    depth``). Per action step (server action counter) it reads the three RGB images of the current observation, builds
-    K / camera pose from public calibration + encoder FK, and asks the model for the three depth maps together; head and
-    wrist frames of one step share that prediction. Each prediction is logged to ``log_path`` (jsonl)."""
+class ObsDepth:
+    """Depth source: the simulator depth image (``distance_to_image_plane``, metres) that the observation carries for
+    each camera (observation config ``vision.depth: true``). Per action step (server action counter) it reads the RGB
+    and depth images of the three cameras from the current observation and builds K / camera pose from public
+    calibration + encoder FK; head and wrist frames of one step share that observation."""
     CAMS = ('cam_head', 'cam_left_wrist', 'cam_right_wrist')
     USD_TO_CV = USD_TO_CV
 
-    def __init__(self, io, port=18765, log_path=None):
-        from runner.rd_depth_client import DepthClient
+    def __init__(self, io):
         self.io = io
         self.index = {c: k for k, c in enumerate(self.CAMS)}
-        self.port = int(port)
-        self.client = DepthClient(port=self.port)
-        self.model = self.client.info()
-        self.log_path = log_path
-        self.step, self.frames, self.calls, self.ms = None, {}, 0, []
+        self.step, self.frames, self.reads = None, {}, 0
 
     def index_of(self, camera):
         return self.index[camera]
@@ -131,37 +126,22 @@ class ModelDepth:
                 'cam_right_wrist': wrist_pose(self.io, 'right')}
 
     def _capture(self):
-        import time
-        t0 = time.monotonic()
         vision = self.io._link.obs()['vision']
-        images = []
+        Ts = self.poses()
+        frames = {}
         for c in self.CAMS:
             rgb = np.asarray(vision[c]['color'])
             if not (rgb.ndim == 3 and rgb.shape[2] >= 3 and rgb.shape[:2] == (H, W) and rgb[:, :, :3].any()):
                 raise RuntimeError(f'observation has no usable color image for {c}: {getattr(rgb, "shape", None)}')
-            images.append(np.ascontiguousarray(rgb[:, :, :3]).astype(np.uint8))
-        Ks = {c: intrinsics(c) for c in self.CAMS}
-        Ts = self.poses()
-        t1 = time.monotonic()
-        try:
-            depth = self.client.predict_views(images, [Ks[c] for c in self.CAMS],
-                                              [Ts[c] @ self.USD_TO_CV for c in self.CAMS])
-        except (EOFError, OSError):
-            from runner.rd_depth_client import DepthClient
-            self.client = DepthClient(port=self.port)          # one reconnect, never another depth source
-            depth = self.client.predict_views(images, [Ks[c] for c in self.CAMS],
-                                              [Ts[c] @ self.USD_TO_CV for c in self.CAMS])
-        t2 = time.monotonic()
-        self.frames = {c: dict(rgb=images[k], depth=np.asarray(depth[k], np.float32), K=Ks[c], T_world_camera=Ts[c],
-                               camera=c, depth_source='model') for k, c in enumerate(self.CAMS)}
-        self.calls += 1
-        self.ms.append((t2 - t0) * 1000)
-        if self.log_path:
-            import json
-            with open(self.log_path, 'a') as stream:
-                stream.write(json.dumps(dict(step=self.step, depth_source='model', render_ms=round((t1 - t0) * 1000, 1),
-                                             model_ms=round((t2 - t1) * 1000, 1),
-                                             weights_sha256=self.model.get('weights_sha256'))) + '\n')
+            if 'depth' not in vision[c]:
+                raise RuntimeError(f'observation has no depth image for {c}; enable vision.depth in the observation config')
+            depth = np.asarray(vision[c]['depth'], np.float32).squeeze()
+            if depth.shape != (H, W):
+                raise RuntimeError(f'observation depth for {c} has shape {depth.shape}')
+            frames[c] = dict(rgb=np.ascontiguousarray(rgb[:, :, :3]).astype(np.uint8), depth=depth, K=intrinsics(c),
+                             T_world_camera=Ts[c], camera=c, depth_source='sim')
+        self.frames = frames
+        self.reads += 1
 
     def frame(self, camera):
         step = int(self.io.action_count)
@@ -172,25 +152,22 @@ class ModelDepth:
         return dict(f, rgb=f['rgb'].copy(), depth=f['depth'].copy(), K=f['K'].copy(), T_world_camera=f['T_world_camera'].copy())
 
     def summary(self):
-        ms = np.asarray(self.ms) if self.ms else np.zeros(1)
-        return dict(depth_source='model', sim_depth_annotator_attached=False, port=self.port, **self.model,
-                    predictions=self.calls, latency_ms_mean=round(float(ms.mean()), 1),
-                    latency_ms_p90=round(float(np.percentile(ms, 90)), 1),
+        return dict(depth_source='sim', reads=self.reads,
                     camera_calibration='public constants + encoder FK (runner/sim_io.py)')
 
     def close(self):
-        self.client.close()
+        return None
 
 
-def wrist_cameras(io, model_depth, tol=.05):
+def wrist_cameras(io, rig, tol=.05):
     """Wrist RGB-D views keyed by arm (``cam_left_wrist`` / ``cam_right_wrist``, RobotManager._load_camera_cfg naming
     for two target arms). Returns (views, report); a view that cannot be opened is reported, never fatal."""
-    views, report = {}, dict(native_camera_names=list(ModelDepth.CAMS), views={})
+    views, report = {}, dict(native_camera_names=list(ObsDepth.CAMS), views={})
     for arm in io.arms:
         name = f'cam_{arm}_wrist'
         try:
             link, _ = wrist_mount(io.arms[arm])
-            views[arm] = ObsCamera(model_depth, camera=name, arm=arm, tol=tol)
+            views[arm] = ObsCamera(rig, camera=name, arm=arm, tol=tol)
         except Exception as exc:
             report['views'][name] = dict(arm=arm, available=False, reason=repr(exc))
             continue

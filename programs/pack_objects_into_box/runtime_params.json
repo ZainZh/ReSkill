@@ -92,7 +92,6 @@
     "timeout_seconds": 900,
     "poll_seconds": 0.5
   },
-  "depth_source": "model",
   "ps_fingers": "command",
   "_ps_fingers_note": "policy-server: finger joints = official obs gripper COMMAND only (no measured fingers in the obs; no image-based finger estimator); jaw contact by wrist-camera vision (agraph/grasp_verify.py via runner/ps_compat.py)"
 }

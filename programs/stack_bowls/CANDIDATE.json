@@ -1,6 +1,4 @@
 {
-  "created_utc": "2026-10-19T15:46:21.458218+00:00",
-  "diff_from_parent": null,
   "files": {
     "agraph/__init__.py": "ae70ee5bed4dbfc58b35ad7384403da244794f6da6be401ff27455bfd1d2039e",
     "agraph/agent_bridge.py": "5a17b7c68e8f92daee69dd7c06fc0cec290d6b03464d5bc3d10db6a3c3db06f9",
@@ -21,26 +19,23 @@
     "agraph/vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "agraph/vendor/perception_geometry.py": "d6ba31ba209bd59b7d892d9729c61208b12a615588a27cf277bd2b79f8161dbd",
     "agraph/vendor/robot_io.py": "46b12450d12a211a18bf1e024fa15b61ba39ec9aaa88f8b50a232ca06a8b2813",
-    "agraph/vendor/sam_service.py": "f7cd60eb8ff32fccaa93c4acbb5586a0c6e26c5db876439e634ff80b74fd85cd",
+    "agraph/vendor/sam_service.py": "214c2b80070805cafc421fd6a75d687be7c6d350372ca6b989bb0ba5085000c6",
     "runner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "runner/audit.py": "3f9ae82c6f6bdde5cad072b59ced3b652f29bfa9845d01de19ebd66965221e09",
-    "runner/bootstrap.py": "815ad3e6b3174326cf0e583e76e8f084937ccd691c05993b1f12075570e10319",
+    "runner/bootstrap.py": "5aa0e94b78b3097d514af0d11396c3b53aa5f5ac73cc33cd4adc9e6299f4274f",
     "runner/controller.py": "42c4efd699c52c885c372cd4fe062ab3a6f2daa22603f33fa07b08c3643a16a3",
     "runner/deploy.py": "342364e2a7285dad37a6429ac3f86e9633541416740d297e39a8f49d24e6cff0",
-    "runner/episode.py": "367a3eef31f6f2715a5b8e5e4fb9874a40ebd7349246da9d4fbb2db29b55177f",
+    "runner/episode.py": "f787cd93a4443fe16dad548d15cfe3d68a70adb5dca7eeb0ffb9889ffbf5f17f",
     "runner/lifecycle_gc.py": "0102a9fd58ecc69e2d8ecd878f9807a6e1b6fe87c89dddf75db48a4553f1e5c1",
-    "runner/rs_semantic_service.py": "fd2273c94ff653b8f6594490140e97317f1d8e1f6a0e8d981398367e4cf8023c",
+    "runner/rs_semantic_service.py": "6c83099e6f2b09cc38edaefe5b335f0b116748bdbc7fb1c20d1a66f62b645578",
     "runner/sim_io.py": "17987042dc77eb514bbf34b4f4f4fc73a73eab13109a24f6fb15ae1f402f0d0a",
     "runtime_params.json": "38a3e32a4467d5197948d3515462484749aa830fd3f251edfeadd65fe664c979",
     "tasks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "tasks/stack_bowls/README.md": "22b9b81280b6586d6020c82b15e11f15bf92107ef1d20039c97b193d05d195c9",
     "tasks/stack_bowls/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "tasks/stack_bowls/graph.py": "5fad64d9a1c1b214f988bc296e0550caab7ac93ff1548c4aeff976e336dc6ec9",
     "tasks/stack_bowls/params.json": "4b208d37051adecca681e7e559fca0023cc2c15f7b955db22c67eb16082b9ea9"
   },
-  "parent": null,
-  "repair": null,
-  "source_sha256": "81c378aaca6f18507055a64686e15f3d09a7f06daff47b78c305e54705b4512d",
+  "source_sha256": "f47f824e85684fee346dadf8ba8b8367d007395e0290f6b2115a3267f40f12d9",
   "task": "stack_bowls",
   "version": 1
 }

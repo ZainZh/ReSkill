@@ -82,7 +82,7 @@ def eval_one_episode(TASK_ENV, model_client=None):
     from runner.audit import EnvironmentBoundary, RuntimeAudit, review
     from runner.controller import run_controller
     from runner.episode import bind_instruction
-    from runner.sim_io import HeadCamera, ModelDepth, hand_exclusion, wrist_cameras
+    from runner.sim_io import HeadCamera, hand_exclusion, wrist_cameras
 
     out = Path(os.environ['AG_OUT'])
     candidate, task = Path(os.environ['AG_CANDIDATE']), os.environ['AG_TASK']
@@ -97,7 +97,7 @@ def eval_one_episode(TASK_ENV, model_client=None):
     result = dict(attempt=attempt['index'], status='initializing', privilege_claim='proposed_none',
                   privilege_audit_passed=False)
     audit = RuntimeAudit(out, watch_root=str(candidate))
-    io = camera = model_depth = None
+    io = camera = None
     wrists = {}
     controller_error = None
     static_passed = False
@@ -127,18 +127,10 @@ def eval_one_episode(TASK_ENV, model_client=None):
                 # Not the registered scene's instruction: no control, terminal hold only, flagged.
                 result.update(status='instruction_binding_mismatch', control_actions=0)
             else:
-                # Depth source (opt-in): AR_DEPTH_SOURCE env, else runtime_params.json depth_source; default sim.
-                depth_source = (os.environ.get('AR_DEPTH_SOURCE')
-                                or json.loads((candidate / 'runtime_params.json').read_text()).get('depth_source') or 'sim')
-                if depth_source == 'model':
-                    model_depth = ModelDepth(boundary, port=int(os.environ.get('AR_DEPTH_PORT', 18765)),
-                                             log_path=out / 'DEPTH_MODEL.jsonl')
-                    print(f'[depth_source] model rd_depth port {model_depth.port} {model_depth.model}', flush=True)
-                elif depth_source != 'sim':
-                    raise ValueError(f'unknown depth_source {depth_source!r}')
-                result['depth_source'] = dict(depth_source='sim') if model_depth is None else model_depth.summary()
-                camera = HeadCamera(boundary, model_depth=model_depth)
-                wrists, result['wrist_cameras'] = wrist_cameras(boundary, io, model_depth=model_depth)
+                # Depth: simulator RGB-D observation of each camera.
+                result['depth_source'] = dict(depth_source='sim')
+                camera = HeadCamera(boundary)
+                wrists, result['wrist_cameras'] = wrist_cameras(boundary, io)
                 # AppLauncher/Kit initialise after bootstrap's set_device; re-assert the assigned
                 # device for control/planning and record what is actually current.
                 import torch
@@ -180,9 +172,6 @@ def eval_one_episode(TASK_ENV, model_client=None):
             for view in [camera, *wrists.values()]:
                 if view is not None:
                     view.close()
-            if model_depth is not None:
-                result['depth_source'] = model_depth.summary()
-                model_depth.close()
         except Exception:
             result.update(status='infrastructure_error', traceback=traceback.format_exc())
         report = audit.finish()

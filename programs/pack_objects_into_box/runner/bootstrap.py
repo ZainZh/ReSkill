@@ -4,7 +4,7 @@ tools/run_episode.py (unchanged) runs ``<candidate>/runner/bootstrap.py`` with t
 (AG_* variables, CUDA_VISIBLE_DEVICES = the assigned physical GPU, process group owned by run_episode). For a
 policy-server bundle this file is that entry point and starts two processes in the same process group:
 
-1. the policy server ``runner/ps_server.py`` (python ``AR_PS_PYTHON``, default the ``envs/ps_policy`` venv: RoboDojo
+1. the policy server ``runner/ps_server.py`` (python ``AR_PS_PYTHON``, default the current interpreter: RoboDojo
    conda env + websockets>=14 as XPolicyLab requires) on a free localhost port, output in RUN_DIR/server.log;
    it is ready when RUN_DIR/SERVER_READY.json appears;
 2. the official env client ``runner/bootstrap_ps.py`` (native ``src/eval_client/main.py`` + runner/deploy.py demo
@@ -42,7 +42,7 @@ args = p.parse_args()
 HERE = Path(__file__).resolve().parent
 CANDIDATE = Path(args.candidate).resolve()
 OUT = Path(args.out).resolve()
-PS_PYTHON = os.environ.get('AR_PS_PYTHON', '/mnt/data/robodojo-autoresearch-20261019/envs/ps_policy/bin/python')
+PS_PYTHON = os.environ.get('AR_PS_PYTHON', sys.executable)
 SERVER_READY_S = float(os.environ.get('AR_PS_SERVER_READY_S', 900))
 FINALIZE_WAIT_S = float(os.environ.get('AR_PS_FINALIZE_WAIT_S', 300))
 sys.path[:0] = [str(CANDIDATE)]
@@ -155,7 +155,7 @@ RUNTIME = json.loads((CANDIDATE / 'runtime_params.json').read_text())
 # RoboDojo checkout (e.g. the current upstream clone on the NAS) instead of ROBODOJO_ROOT of the runtime env.
 if RUNTIME.get('ps_robodojo_root'):
     root = str(Path(RUNTIME['ps_robodojo_root']).resolve())
-    old_root = os.environ.get('ROBODOJO_ROOT', '/root/github/RoboDojo')
+    old_root = os.environ.get('ROBODOJO_ROOT', str(Path.home() / 'RoboDojo'))
     os.environ['ROBODOJO_ROOT'] = root
     os.environ['PYTHONPATH'] = os.pathsep.join([root, root + '/XPolicyLab'] + [
         x for x in os.environ.get('PYTHONPATH', '').split(os.pathsep) if x and not x.startswith(old_root)])

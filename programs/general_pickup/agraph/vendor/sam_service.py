@@ -4,6 +4,7 @@ import base64
 import hashlib
 import io
 import json
+import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 import subprocess
@@ -20,7 +21,7 @@ def sha(path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--port', type=int, default=18873)
-    parser.add_argument('--checkpoint', default='/mnt/workspace/aspire-world-models/sam2.1_hiera_small.pt')
+    parser.add_argument('--checkpoint', default=os.environ.get('SAM2_CHECKPOINT', 'checkpoints/sam2.1_hiera_small.pt'))
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     repo = root/'sam2_backend'

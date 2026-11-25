@@ -2,7 +2,7 @@
 
 The official obs carries only the COMMANDED gripper value, so "closed on an object" vs "closed on nothing" cannot be
 read from the fingers. This module answers it from the arm's own wrist camera: RGB from the obs, depth from the
-rd_depth ft7 model (``depth_source=model``; never simulator depth), camera pose from encoder FK. Zero API calls, zero
+simulator depth image from the observation, camera pose from encoder FK. Zero API calls, zero
 extra native actions: every check uses the frame of the CURRENT action step (the depth prediction for a step is shared
 with any other view of that step).
 

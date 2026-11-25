@@ -54,7 +54,7 @@ if str(HERE) not in sys.path:
 from agraph.candidates import freeze, verify  # noqa: E402
 from agraph.mailbox import Mailbox, write_once  # noqa: E402
 
-RUNTIME_ENV = '/root/github/RoboDojo/.rs/runtime_env.sh'
+RUNTIME_ENV = os.environ.get('ROBODOJO_RUNTIME_ENV', os.path.join(os.environ.get('ROBODOJO_ROOT', os.path.expanduser('~/RoboDojo')), 'runtime_env.sh'))
 INFRA = 'infrastructure_failure'
 UNRESOLVED = 'unresolved_failure'
 # Printed by native src/eval_client/main.py (_restart_or_exit / _exit_for_shell_restart) before exit 99.

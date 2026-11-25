@@ -1,7 +1,7 @@
 """RS-side semantic service: answers mailbox requests with Claude via the server's existing
 Claude Code CLI authentication (no credentials read or copied; nothing sent to DLC).
 
-    python runner/rs_semantic_service.py --mailbox /mnt/data/<campaign>/mailbox --max-cost-usd 90
+    python runner/rs_semantic_service.py --mailbox <run_root>/mailbox --max-cost-usd 90
 
 Admission rules (Root review):
 * Tools: ``--tools Read`` only when the request declares RGB artifacts, with ``--allowedTools``

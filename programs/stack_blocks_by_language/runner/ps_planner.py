@@ -29,7 +29,7 @@ TABLE_HEIGHT = 0.74               # RobotManager._setup_planner: table_height=0.
 
 
 def robodojo_root():
-    return Path(os.environ.get('ROBODOJO_ROOT', '/root/github/RoboDojo'))
+    return Path(os.environ.get('ROBODOJO_ROOT', str(Path.home() / 'RoboDojo')))
 
 
 def robot_specs(root=None):

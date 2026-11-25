@@ -1,6 +1,4 @@
 {
-  "created_utc": "2026-10-22T03:52:42.991303+00:00",
-  "diff_from_parent": null,
   "files": {
     "agraph/__init__.py": "ae70ee5bed4dbfc58b35ad7384403da244794f6da6be401ff27455bfd1d2039e",
     "agraph/agent_bridge.py": "5a17b7c68e8f92daee69dd7c06fc0cec290d6b03464d5bc3d10db6a3c3db06f9",
@@ -25,17 +23,17 @@
     "agraph/vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "agraph/vendor/perception_geometry.py": "d6ba31ba209bd59b7d892d9729c61208b12a615588a27cf277bd2b79f8161dbd",
     "agraph/vendor/robot_io.py": "8429fa899fa969ac136cd4e0493ad7dc36f7da7abc2a943c2e60e1657c53cabb",
-    "agraph/vendor/sam_service.py": "f7cd60eb8ff32fccaa93c4acbb5586a0c6e26c5db876439e634ff80b74fd85cd",
+    "agraph/vendor/sam_service.py": "214c2b80070805cafc421fd6a75d687be7c6d350372ca6b989bb0ba5085000c6",
     "agraph/z0_ground.py": "512e26bc2f9561ea27c7ff6d189e3b3382a6d4d6d1774ca5a239395563b5af8d",
     "agraph/z0_sam3_client.py": "5d4b252952069aacba07c847c67aceb196750ac053ca9ee794cadf2084755188",
     "runner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "runner/audit.py": "3f9ae82c6f6bdde5cad072b59ced3b652f29bfa9845d01de19ebd66965221e09",
-    "runner/bootstrap.py": "cc44fcc974f0c1d799df61a078f16ddf6b8cdd4cc560880275c55970c5575c7a",
+    "runner/bootstrap.py": "3d9688cb0ffe79bebf3cc3d68c8f0ff9c464f008df6241c324dfa058e6aac994",
     "runner/controller.py": "42c4efd699c52c885c372cd4fe062ab3a6f2daa22603f33fa07b08c3643a16a3",
     "runner/deploy.py": "da12ec801f57613a83511069c3876c834aa2c9ff2c21f2a806da3e6feab5e635",
-    "runner/episode.py": "f3b00388d3160edce8f54ecfc6db5c88ca563100bf73c644ea521165aba01a42",
+    "runner/episode.py": "1a956771b5c1401027b595a6d1dcb6619ba5e8300fcb5fd5e53e9e10a3380c1b",
     "runner/lifecycle_gc.py": "0102a9fd58ecc69e2d8ecd878f9807a6e1b6fe87c89dddf75db48a4553f1e5c1",
-    "runner/rs_semantic_service.py": "3f9975c46e99f5cf5e9a43f3f6a20626e93ca11ba4853b150f1dbead9925d0a1",
+    "runner/rs_semantic_service.py": "8704dcaaa3e02752bd36a8ff19b227aa5a901a808b57c8e5ab280d276e3480dd",
     "runner/sim_io.py": "17987042dc77eb514bbf34b4f4f4fc73a73eab13109a24f6fb15ae1f402f0d0a",
     "runtime_params.json": "d3aa1695ae0f77f8809b781cf3855d5920d666f678c40ac48bb7f99a6426e743",
     "tasks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -43,9 +41,7 @@
     "tasks/organize_table/graph.py": "ef0ca3d12dab33e85f027b120597d5bd8c37919bc11768107bc899a06a489e09",
     "tasks/organize_table/params.json": "cf52d55c6e8a3c401181165d06047a601238a123bc0d555b03aca829b1f1b072"
   },
-  "parent": null,
-  "repair": null,
-  "source_sha256": "92e4230a4149b37b793f964f88f4c69cbf7cccb83fd032640b92a3b7a141e738",
+  "source_sha256": "72c46d5b53fdb737bf6e7fc7e0141e4c48b90e968b246fad9c2303b6f84c23e3",
   "task": "organize_table",
   "version": 1
 }

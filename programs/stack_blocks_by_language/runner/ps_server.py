@@ -29,7 +29,7 @@ p.add_argument('--finalize-wait', type=float, default=300)
 args = p.parse_args()
 
 CANDIDATE = Path(args.candidate).resolve()
-ROOT = Path(os.environ.get('ROBODOJO_ROOT', '/root/github/RoboDojo'))
+ROOT = Path(os.environ.get('ROBODOJO_ROOT', str(Path.home() / 'RoboDojo')))
 sys.path[:0] = [str(CANDIDATE), str(ROOT), str(ROOT / 'XPolicyLab')]      # bootstrap.py order
 os.environ.update(AG_OUT=str(Path(args.out).resolve()), AG_CANDIDATE=str(CANDIDATE), AG_TASK=args.task)
 out = Path(args.out).resolve()

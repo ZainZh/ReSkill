@@ -1,8 +1,8 @@
 """RS-side semantic service: answers mailbox requests with Claude via the server's existing
 Claude Code CLI authentication (no credentials read or copied; nothing sent to DLC).
 
-    python runner/rs_semantic_service.py --mailbox /mnt/data/<campaign>/mailbox --max-cost-usd 90
-    python runner/rs_semantic_service.py --mailbox /mnt/data/<campaign>/mailbox --max-cost-usd unlimited \
+    python runner/rs_semantic_service.py --mailbox <run_root>/mailbox --max-cost-usd 90
+    python runner/rs_semantic_service.py --mailbox <run_root>/mailbox --max-cost-usd unlimited \
         --unlimited-authorization /path/to/AUTHORIZATION.json
 
 Cost modes. ``--max-cost-usd X`` (finite, legacy bounded): a call is admitted only while

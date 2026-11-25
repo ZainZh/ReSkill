@@ -1,38 +1,131 @@
-# ReSkill: frozen task programs
+<div align="center">
 
-Code release for **ReSkill: Selective Self-Improvement for Robot Manipulation**
-([arXiv:2611.10510](https://arxiv.org/abs/2611.10510)).
+# ReSkill: Selective Self-Improvement for Robot Manipulation
 
-This repository contains the ten frozen RoboDojo task programs reported in Table 1 of the paper.
-Each program is the retained version whose recorded evaluations give the Table 1 result.
-The files are byte-identical to the content-addressed snapshots that were evaluated; see
-[Verifying the release](#verifying-the-release).
+Zheng Sun<sup>1,\*</sup>, Zhihao Li<sup>1,\*</sup>, Zhuo Li<sup>1,\*</sup>, Wenrui Liu<sup>1</sup>, Xin Wang<sup>2</sup>, Fei Chen<sup>1,†</sup>
 
-The development loop (the coding agent, evaluation queue, paired comparison and adoption tooling)
-is not part of this release. These programs are its output: ordinary Python that runs without any
-agent or language-model call.
+<sup>1</sup>The Chinese University of Hong Kong &nbsp;&nbsp; <sup>2</sup>Openmind Intelligent Robot Co., Ltd.
 
-## Programs
+<sup>\*</sup>Equal contribution &nbsp;&nbsp; <sup>†</sup>Corresponding author
 
-| Task | Snapshot | Table 1 successes | `graph.py` lines |
-|---|---|---:|---:|
-| `stack_blocks` | `e817b73e6998892a` | 31/32 | 473 |
-| `stack_blocks_by_language` | `b8a260478925a255` | 27/27 | 1235 |
-| `general_pickup` | `5eb933dbc932a3f4` | 51/57 | 791 |
-| `stack_bowls` | `81c378aaca6f1850` | 21/22 | 799 |
-| `build_tower` | `2010e662ed1cc314` | 37/37 | 574 |
-| `classify_objects` | `9950b11220511205` | 22/25 | 1291 |
-| `classify_objects_by_language` | `a2f8f05067982363` | 20/27 | 1775 |
-| `organize_table` | `92e4230a4149b37b` | 15/36 | 2835 |
-| `pack_objects_into_box` | `a9d7eb2c6afbd2d3` | 17/27 | 2777 |
-| `store_tools_in_toolbox` | `133f59b339c421d1` | 41/47 | 1888 |
+[![Paper](https://img.shields.io/badge/arXiv-2611.10510-b31b1b.svg)](https://arxiv.org/abs/2611.10510)
+[![Project Page](https://img.shields.io/badge/Project-Page-2b7a78.svg)](https://zainzh.github.io/ReSkill/)
+[![PDF](https://img.shields.io/badge/Paper-PDF-blue.svg)](https://arxiv.org/abs/2611.10510)
 
-Successes are counted over the recorded robustness and model-selection evaluations
-(seed 1, layouts 10–54), as in the paper. These include episodes used to select the
-retained versions, so they measure performance during development rather than an
-independent final validation.
+**Follow-up work:** [RESET: One Demonstration, One Verified World, Self-Improved Skills Across Embodiments](https://zainzh.github.io/RESET/) (project page).
 
-## Layout of one program
+</div>
+
+<p align="center">
+  <img src="docs/assets/teaser.jpg" alt="ReSkill teaser" width="100%">
+</p>
+
+<p align="center"><em>Instead of retraining a whole policy or calling an agent at every step, ReSkill keeps the parts
+of a task program that work, improves only the failing part, and retains validated skills and a frozen policy.</em></p>
+
+## Overview
+
+ReSkill is a selective self-improvement framework for compositional manipulation tasks. During
+development, a coding agent composes an **object-centric task graph** from the task instruction and a
+**reusable skill library**, runs it, and uses **node-level execution records** to locate the node that
+fails. It then revises the program at one of two scales: at the **task level** (stage organization,
+hand-off conditions, recovery routes) or at the **skill level** (perception, motion, manipulation and
+verification skills that repeatedly fail). Each candidate revision goes through **multi-stage
+evaluation** and a **paired comparison** with the incumbent on the same test layouts before it is
+adopted, and validated skills are promoted to the library for later tasks. The result is a **frozen
+program**: ordinary Python that runs without any agent or language-model call at run time.
+
+## Method
+
+<p align="center">
+  <img src="docs/assets/method.jpg" alt="ReSkill method overview" width="100%">
+</p>
+
+- **Task construction.** A coding agent composes a task graph from the instruction and the skill
+  library; each node calls a library skill and runs an act–check–retry loop.
+- **Failure localization.** Node records from trial execution identify the earliest node that
+  deviates, so revision targets the capability gap rather than the whole program.
+- **Two-level revision.** The agent either revises the task graph (stage order, hand-off conditions,
+  recovery routes) or changes a skill implementation behind the same interface.
+- **Selection and adoption.** Each candidate is evaluated on the whole task; candidates that pass
+  development and robustness evaluation are compared with the incumbent on the same layouts before
+  they are adopted.
+- **Skill accumulation and deployment.** Validated skills are promoted to the shared library for
+  later tasks, and the retained program is deployed as a frozen policy with no run-time agent calls.
+
+## Results
+
+Retained programs on the ten RoboDojo tasks (Table 1 of the paper):
+
+| Task | Successes | Success rate (%) |
+|---|---:|---:|
+| `stack_blocks` | 31/32 | 96.9 |
+| `stack_blocks_by_language` | 27/27 | 100.0 |
+| `general_pickup` | 51/57 | 89.5 |
+| `stack_bowls` | 21/22 | 95.5 |
+| `build_tower` | 37/37 | 100.0 |
+| `classify_objects` | 22/25 | 88.0 |
+| `classify_objects_by_language` | 20/27 | 74.1 |
+| `organize_table` | 15/36 | 41.7 |
+| `pack_objects_into_box` | 17/27 | 63.0 |
+| `store_tools_in_toolbox` | 41/47 | 87.2 |
+| **Average** | **282/337** | **83.6** |
+
+Successes are counted over the recorded robustness and model-selection evaluations (seed 1,
+layouts 10–54), as reported in the paper.
+
+Highlights from the analysis:
+
+- On the same development set, average success rises from **30.0%** for the initial task graphs to
+  **86.2%** for the final adopted programs.
+- Revisions are local: the median revision changes **3 functions, about 0.5%** of a program.
+- Skills are reused: **39%** of the task-specific functions in the four tasks added later in
+  development are identical to a function in another task.
+- The deployed programs make **zero** agent calls at run time.
+
+## What's in this repository
+
+```
+ReSkill/
+  devloop/     the iterative self-improvement algorithm: coding-agent orchestration, evaluation
+               queue, multi-stage evaluation, paired comparison and adoption
+  programs/    the final programs for the ten RoboDojo tasks, one self-contained program per task
+```
+
+See [devloop/README.md](devloop/README.md) for how the development loop is organized and run.
+
+## Getting started
+
+### Requirements
+
+- The [RoboDojo](https://arxiv.org/abs/2607.04434) benchmark and its evaluation client. Set
+  `ROBODOJO_ROOT` to your RoboDojo checkout.
+- Python, and a GPU for simulation.
+- Segmentation services: the bundled SAM 2.1 service for all tasks, plus a SAM 3 service for five
+  of them (see [Inputs and run-time calls](#inputs-and-run-time-calls)). The SAM 3 service is not
+  included.
+
+### Launching a program
+
+The programs plug into the RoboDojo evaluation client in one of two ways:
+
+- **In-process** (`stack_blocks`, `stack_bowls`, `build_tower`, `classify_objects`,
+  `organize_table`, `store_tools_in_toolbox`): `runner/bootstrap.py` starts the native client and
+  registers `runner/deploy.py:eval_one_episode` as the policy, which builds the task graph from
+  `tasks/<task>/graph.py` and executes it in-process.
+- **Separate policy server** (`general_pickup`, `stack_blocks_by_language`,
+  `classify_objects_by_language`, `pack_objects_into_box`): `runner/bootstrap_ps.py` starts a
+  policy-server process (`runner/ps_server.py`, `ps_model.py`); the task graph runs there through
+  `runner/controller.py`, and `deploy.py` only forwards observations and actions over the official
+  client.
+
+At start-up `agraph/candidates.py` checks every file against the program's `CANDIDATE.json`; after
+editing a program, regenerate that file.
+
+> **Note.** Paths default to a generic local setup (`ROBODOJO_ROOT`, `SAM2_CHECKPOINT`, ...) and may
+> need to be adapted.
+
+## Program layout
 
 ```
 programs/<task>/
@@ -42,59 +135,27 @@ programs/<task>/
                            carry.py), verification, and the graph executor (contract.py)
   runner/                  RoboDojo integration: policy hook, episode lifecycle, input audit
   runtime_params.json      runtime parameters
-  CANDIDATE.json           snapshot metadata, including the source sha256
+  CANDIDATE.json           file checksums checked at start-up
 ```
 
-Each program is self-contained and carries its own copy of `agraph/` and `runner/`, exactly as
-it was frozen. Shared skill files are mostly identical across tasks; where a task improved a
-shared skill, its copy differs. This duplication is deliberate: every program runs the code that
-was evaluated.
+Each program is self-contained and carries its own copy of `agraph/` and `runner/`. Shared skill
+files are mostly identical across tasks; where a task improved a shared skill, its copy differs.
 
 ## Inputs and run-time calls
 
-At run time a program uses only head and wrist RGB-D images, camera calibration, joint states,
-the robot model and the instruction text. It does not read simulator state, and the benchmark's
-native criterion alone scores the episode. Object masks come from frozen SAM segmentation models.
+At run time a program uses only head and wrist RGB-D images (simulator RGB and depth of the
+benchmark cameras), camera calibration, joint states, the robot model and the instruction text.
+The policy-server programs read depth from the observation, so the RoboDojo observation config must
+enable `vision.depth`. It does not read simulator state, and the benchmark's native
+criterion alone scores the episode.
 
-The skill library still contains a client for an optional semantic query service
-(`agraph/agent_bridge.py`, `agraph/mailbox.py`, `runner/rs_semantic_service.py`). None of the
-ten retained programs used it: in all 337 recorded evaluation episodes, the logged number of
-semantic calls and their cost were zero.
-
-## Running
-
-The programs plug into the RoboDojo evaluation client
-([RoboDojo](https://arxiv.org/abs/2607.04434)) in one of two ways:
-
-- `stack_blocks`, `stack_bowls`, `build_tower`, `classify_objects`, `organize_table`,
-  `store_tools_in_toolbox`: `runner/bootstrap.py` starts the native client and registers
-  `runner/deploy.py:eval_one_episode` as the policy, which builds the task graph from
-  `tasks/<task>/graph.py` and executes it in-process.
-- `general_pickup`, `stack_blocks_by_language`, `classify_objects_by_language`,
-  `pack_objects_into_box`: `runner/bootstrap_ps.py` starts a separate policy-server process
-  (`runner/ps_server.py`, `ps_model.py`); the task graph runs there through `runner/controller.py`,
-  and `deploy.py` only forwards observations and actions over the official client.
-
-At start-up `agraph/candidates.py` re-verifies every file against `CANDIDATE.json`, so the program
-directories must be used unmodified (this includes three lint-cache files in `build_tower`).
-
-Paths in the code are the defaults of the original evaluation machines. Set `ROBODOJO_ROOT` to
-your RoboDojo checkout. Segmentation runs as a local service: the bundled SAM 2.1 service
+Object masks come from frozen SAM segmentation models served locally: the bundled SAM 2.1 service
 (`agraph/vendor/sam_service.py`, endpoint `sam_endpoint` in `runtime_params.json`) for all tasks,
 and additionally a SAM 3 service (`sam3_endpoint`, see `agraph/local_ground.py`) for
 `general_pickup`, `stack_blocks_by_language`, `classify_objects`, `classify_objects_by_language`
-and `pack_objects_into_box`. The SAM 3 service itself is not included. Some comments and task READMEs are in
-Chinese and refer to development tooling that is not included here.
+and `pack_objects_into_box`. The SAM 3 service itself is not included.
 
-## Verifying the release
-
-`SHA256SUMS` lists every file; `MANIFEST.json` maps each task to its snapshot and Table 1 result.
-
-```
-shasum -a 256 -c SHA256SUMS
-```
-
-The first 16 hex digits of each `CANDIDATE.json` `source_sha256` are the snapshot identifier above.
+The deployed programs make no language-model or other remote API calls at run time.
 
 ## Citation
 
@@ -107,6 +168,12 @@ The first 16 hex digits of each `CANDIDATE.json` `source_sha256` are the snapsho
 }
 ```
 
-> Note for maintainers: `programs/build_tower/tasks/build_tower/.ruff_cache/` contains its own
-> `.gitignore`. Its three files are part of the verified snapshot and must be committed with
-> `git add -f`.
+## License
+
+License: to be announced.
+
+## Acknowledgements
+
+We thank the authors of the [RoboDojo](https://arxiv.org/abs/2607.04434) benchmark and of the SAM
+segmentation models.
+

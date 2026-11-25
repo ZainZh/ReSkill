@@ -46,7 +46,7 @@ args = p.parse_args()
 if os.environ.get('CUDA_VISIBLE_DEVICES'):
     raise SystemExit('CUDA_VISIBLE_DEVICES must be unset; physical GPU index is passed explicitly')
 CANDIDATE = Path(args.candidate).resolve()
-ROOT = Path(os.environ.get('ROBODOJO_ROOT', '/root/github/RoboDojo'))
+ROOT = Path(os.environ.get('ROBODOJO_ROOT', str(Path.home() / 'RoboDojo')))
 sys.path[:0] = [str(CANDIDATE), str(ROOT), str(ROOT / 'XPolicyLab')]
 out = Path(args.out).resolve()
 out.mkdir(parents=True, exist_ok=True)
